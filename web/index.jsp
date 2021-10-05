@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>aho hotel</h1>
 </body>
 </html>
