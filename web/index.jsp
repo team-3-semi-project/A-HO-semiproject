@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AHO</title>
 </head>
 <body>
 	<h1>aho hotel</h1>
