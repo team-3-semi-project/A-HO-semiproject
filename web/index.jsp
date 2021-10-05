@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>aho hotel</h1>
+	<h2>test-sunmin</h2>
 </body>
 </html>
