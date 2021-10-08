@@ -10,15 +10,13 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="net.sf.log4jdbc.DriverSpy"/>
 				<property name="url" value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-				<property name="username" value="JSP"/>
-				<property name="password" value="JSP"/>
+				<property name="username" value="AHOTEL"/>
+				<property name="password" value="AHOTEL"/>
 			</dataSource>
 		</environment>
 	</environments>
 	
 	<mappers>
-		<mapper resource="com/greedy/jsp/member/model/dao/MemberDAO.xml"/>
-		<mapper resource="com/greedy/jsp/notice/model/dao/NoticeDAO.xml"/>
-		<mapper resource="com/greedy/jsp/board/model/dao/BoardDAO.xml"/>
+
 	</mappers>
 </configuration>

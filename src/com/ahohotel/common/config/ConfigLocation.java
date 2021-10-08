@@ -1,4 +1,4 @@
-package com.greedy.jsp.common.config;
+package com.ahohotel.common.config;
 
 public class ConfigLocation {
 	

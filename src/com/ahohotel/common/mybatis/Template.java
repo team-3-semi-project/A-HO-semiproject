@@ -1,4 +1,4 @@
-package com.greedy.jsp.common.mybatis;
+package com.ahohotel.common.mybatis;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.greedy.jsp.common.config.ConfigLocation;	
+import com.ahohotel.common.config.ConfigLocation;	
 
 public class Template {
 
