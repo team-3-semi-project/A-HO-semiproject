@@ -8,10 +8,10 @@
 		<environment id="dev">
 			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
-				<property name="driver" value="net.sf.log4jdbc.DriverSpy"/>
-				<property name="url" value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-				<property name="username" value="AHOTEL"/>
-				<property name="password" value="AHOTEL"/>
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>	
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
 			</dataSource>
 		</environment>
 	</environments>
