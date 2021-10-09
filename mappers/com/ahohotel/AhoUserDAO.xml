@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AhoUserDAO">
+	<resultMap type="com.ahohotel.user.model.dto.AhoUserDTO" id="memberResultMap">
+		<id property="code" column="MEMBER_NO"/>
+		<result property="vipCode" column="USER_CODE"/>
+		<result property="id" column="USER_ID"/>
+		<result property="pw" column="VIP_CODE"/>
+		<result property="name" column="USER_NAME"/>
+		<result property="email" column="USER_EMAIL"/>
+		<result property="phone" column="USER_PHONE"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="point" column="POINT"/>
+		<result property="allPoint" column="ALL_POINT"/>
+		<result property="joinDate" column="JOIN_DATE"/>
+		<result property="outDate" column="OUT_DATE"/>
+		<result property="outYN" column="OUT_YN"/>
+		<result property="blackListYN" column="BLACKLIST_YN"/>
+		<result property="blackListReason" column="BLACKLIST_REASON"/>
+	</resultMap>
+
+	<!-- 로그인 회원 정보 조회 -->
+	<select id="selectLoginUser" resultMap="memberResultMap">
+		SELECT 
+	       A.USER_CODE
+	     , A.VIP_CODE
+	     , A.USER_ID
+	     , A.USER_PW
+	     , A.USER_NAME
+	     , A.USER_EMAIL
+	     , A.USER_PHONE
+	     , A.BIRTH
+	     , A.GENDER
+	     , A.POINT
+	     , A.JOIN_DATE
+	     , A.OUT_DATE
+	     , A.OUT_YN
+	     , A.BLACKLIST_YN
+	     , A.BLACKLIST_REASON
+	  FROM AHOUSER A
+	 WHERE A.USER_ID = #{ id }
+	</select>
+ 
+ 	<!-- 로그인 회원 pw 조회(암호화한 pw와 일치하는 지 확인 하기 위해) -->
+ 	<select id="selectEncryptedPw" resultType="java.lang.String">
+ 		SELECT
+ 			   A.USER_PW
+ 		  FROM AHOUSER A
+ 		 WHERE A.OUT_YN = 'N'
+ 		   AND A.BLACKLIST_YN = 'N'
+ 		   AND A.USER_ID = #{ id }
+ 	</select>
+</mapper>
