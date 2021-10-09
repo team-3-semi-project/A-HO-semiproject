@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+	/* signup css */
+    section {
+    padding-top: 120px;
+    }
+    .main {
+    width: 600px;
+    margin-bottom: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .signup-text {
+    text-align: center;
+    font-weight: bold;
+    }
+    .logo {
+    width: 15 0px;
+    height: auto;
+    }
+    .id-error, .password-error, .name-error, .phone-error, .birthday-error .email-error {
+    margin-top: 1px;
+    font-size: 15px;
+    }
+    .signup-form > textarea {
+    width: 100%;
+    height: 10em;
+    }
+    .signup-form > h5 {
+    text-align: left;
+    font-weight: bold;
+    }
+    .gender {
+        width: 15px;
+        height: 15px;
+    }
+    #gender {
+        text-align: center;
+    }
+    #id {
+      width: 82%;
+      float: left;
+      margin-bottom: 20px;
+      margin-right: 10px;
+    }
+    #idbtn {
+      width: 100px;
+      float: left;
+    }
+    textarea {
+      width: 600px;
+      height: 150px;
+    }
+    
+    /* login css */
+    #rog {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    .sign {
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #a {
+        margin-top: 15em;
+    }

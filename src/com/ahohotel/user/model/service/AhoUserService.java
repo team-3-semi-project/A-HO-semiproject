@@ -42,4 +42,19 @@ public class AhoUserService {
 		return false;
 	}
 
+	public String idCheck(String id) {
+		SqlSession session = getSqlSession();
+		String result = null;
+		
+		String checkid = userDAO.selectCheckId(session, id);
+		
+		if(checkid == null) {
+			result = "사용 가능한 아이디입니다.";
+		} else {
+			result = "이미 사용중인 아이디입니다.";
+		}
+		
+		return result;
+	}
+
 }

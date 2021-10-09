@@ -6,59 +6,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style>
-    /* section */
-    section {
-    padding-top: 120px;
-    }
-    .main {
-    width: 600px;
-    margin-bottom: 5em;
-    margin-left: auto;
-    margin-right: auto;
-    }
-    .signup-text {
-    text-align: center;
-    font-weight: bold;
-    }
-    .logo {
-    width: 15 0px;
-    height: auto;
-    }
-    .id-error, .password-error, .name-error, .phone-error, .birthday-error .email-error {
-    margin-top: 1px;
-    font-size: 15px;
-    }
-    .signup-form > textarea {
-    width: 100%;
-    height: 10em;
-    }
-    .signup-form > h5 {
-    text-align: left;
-    font-weight: bold;
-    }
-    .gender {
-        width: 15px;
-        height: 15px;
-    }
-    #gender {
-        text-align: center;
-    }
-    #id {
-      width: 82%;
-      float: left;
-      margin-bottom: 20px;
-      margin-right: 10px;
-    }
-    #idbtn {
-      width: 100px;
-      float: left;
-    }
-    textarea {
-      width: 600px;
-      height: 150px;
-    }
-</style>
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/event.js"></script>
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common.css">
 <title>회원가입</title>
 </head>
 <body>
@@ -69,13 +18,14 @@
           <h2 class="signup-text">회원 가입</h2>
           <br>
           <form class="signup-form" action="${ pageContext.servletContext.contextPath }/user/signup" method="POST">
-            <div class="idcheck-form">
+          	<div class="idcheck-form">
               <input required type="text" name="id" id="id" class="form-control" placeholder="사용할 ID 입력" autofocus/>
-              <button class="btn btn-primary" name="idbtn" type="button" onclick="idchecker()">중복확인</button>
+              <button class="btn btn-primary" name="idbtn" id="idchekbtn" type="button">중복확인</button>
               <label class="id-error" id="id-error"></label>
             </div>
             <br>
             <input required type="password" name="pw" id="password" class="form-control" placeholder="패스워드 (영문 대 소문+숫자+특수문자 8~12자리)">
+            <label class="password-error" id="password-error"></label>
             <br>
             <input required type="password" name="pwCheck" id="passwordCheck" class="form-control" placeholder="패스워드 재입력">
             <label class="password-error" id="password-error"></label>
@@ -115,149 +65,40 @@
           </form>
         </div>
       </section>
-  
+      
       <script>
-        /* 정규표현식을 이용 */
-        $("#id").change(function() {
-          var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
-  
-          if(!idExp.test($(this).val())) {
+      var idFlag = false;
+      
+      $("#idchekbtn").click(function() {
+    	  var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
+    	  const userid = $("#id").val();
+    	  
+          if(!idExp.test(document.getElementById("id").value)) {
             $("#id-error").text("영문,숫자를 포함한 4~12글자로 작성 해 주세요(영문 대소문자 구분)").css("color", "red");
-            $(this).val("").focus();
+            $("#id").val("").focus();
           } else {
-            $("#id-error").text("")
+        	  $.ajax({
+  				
+  				url: "${pageContext.servletContext.contextPath}/idcheck",
+  				type: "get",
+  				data: { id : userid },
+  				success: function(data) {
+  					if(data == "사용 가능한 아이디입니다.") {
+  						$("#id-error").text(data).css("color", "green");
+  						idFlag = true;
+  					} else {
+  						$("#id-error").text(data).css("color", "red");
+  						$("#id").focus();
+  					}
+  				},
+  				error: function(request, status, error){
+  					alert("code:" + request.status + "\n" 
+  							+ "message:" + request.responseText + "\n"
+  							+ "error:" + error);
+  				}
+  			});	            
           }
-        })
-  
-        $("#password").change(function() {
-          var passwordEmp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}/;
-  
-          if(!passwordEmp.test($(this).val())) {
-            $("#password-error").text("영문, 숫자, 특수문자를 포함한 8~16글자로 작성 해 주세요(영문 대소문자 구분)").css("color", "red");
-            $(this).focus();
-          }else {
-            $("#password-error").text("");
-          }
-        })
-  
-        $("#passwordCheck").change(function() {
-          if ($("#password").val() != $(this).val()) {
-            $("#password-error").text("비밀번호가 일치하지 않습니다.").css("color", "red");
-            $(this).focus();
-          } else {
-            $("#password-error").text("");
-          }
-        })
-  
-        $("#name").change(function() {
-  
-          /* 한글자만 최소 2자 이상 */
-          var nameExp = /^[가-힣]{2,}$/;
-  
-          if (!nameExp.test($(this).val())) {       // 사용자가 한글 2자 이상을 여겼을 때
-              $("#name-error").text("한글로 2자 이상 입력하세요").css("color", "red");
-              $(this).val("").focus();
-          } else {
-              $("#name-error").text("");
-              $(this).css("background", "white");
-          }
-        })
-
-        $("#birthday").change(function() {
-
-          /* 1900 년대 또는 2000 년대생 이면서, 1월~12월 사이 1일~31일 사이 */
-          var birthdayExp = /^(19|20)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-
-          if (!birthdayExp.test($(this).val())) {       // 사용자가 한글 2자 이상을 여겼을 때
-                $("#birthday-error").text("올바르지 않은 생년월일입니다.").css("color", "red");
-                $(this).val("").focus();
-          } else {
-                $("#birthday-error").text("");
-                $(this).css("background", "white");
-          }
-        })
-  
-        $("#phone").change(function() {
-          // var phoneExp = /^[0-9]{11}$/;    // - 없이
-          var phoneExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;   // - 포함
-  
-          if(!phoneExp.test($(this).val())) {
-            $("#phone-error").text("올바르지 않은 휴대폰 번호입니다.").css("color", "red");
-            $(this).focus();
-          }else {
-            $("#phone-error").text("");
-          }
-        })
-  
-        $("#email").change(function() {
-          var emailExp = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
-  
-          if(!emailExp.test($(this).val())) {
-            $("#email-error").text("올바르지 않은 이메일입니다.").css("color", "red");
-            $(this).focus();
-          }else {
-            $("#email-error").text("");
-          }
-        })
-
-        /* 휴대전화 하이픈 자동 입력 */
-        function autoHypenPhone(str){
-            str = str.replace(/[^0-9]/g, '');
-            var tmp = '';
-            if( str.length < 4){
-                return str;
-            }else if(str.length < 7){
-                tmp += str.substr(0, 3);
-                tmp += '-';
-                tmp += str.substr(3);
-                return tmp;
-            }else if(str.length < 11){
-                tmp += str.substr(0, 3);
-                tmp += '-';
-                tmp += str.substr(3, 3);
-                tmp += '-';
-                tmp += str.substr(6);
-                return tmp;
-            }else{              
-                tmp += str.substr(0, 3);
-                tmp += '-';
-                tmp += str.substr(3, 4);
-                tmp += '-';
-                tmp += str.substr(7);
-                return tmp;
-            }
-            return str;
-        }
-
-        var cellPhone = document.getElementById('phone');
-        cellPhone.onkeyup = function(event){
-                event = event || window.event;
-                var _val = this.value.trim();
-                this.value = autoHypenPhone(_val) ;
-        }
-        
-        function idcheker() {
-        	
-        	if ($('#id').val() == '') {
-        	      alert('아이디를 입력해주세요.')
-        	      return;
-        	    }
-        	
-        	id_overlap_input = document.querySelector('input[name="id"]');
-        	
-        	$.ajax({
-        	      url: "{% url 'lawyerAccount:id_overlap_check' %}",
-        	      data: {
-        	        'id': id_overlap_input.value
-        	      },
-        	      datatype: 'json',
-        	
-        	
-		}
+		});
       </script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
 </body>
 </html>

@@ -51,4 +51,13 @@
  		   AND A.BLACKLIST_YN = 'N'
  		   AND A.USER_ID = #{ id }
  	</select>
+ 	
+ 	<!-- 회원가입시 아이디 중복체크 조회 -->
+ 	<select id="selectCheckId" resultType="java.lang.String">
+ 		SELECT
+ 			   A.USER_ID
+ 		  FROM AHOUSER A
+ 		 WHERE A.USER_ID = #{ id }
+ 	
+ 	</select>
 </mapper>

@@ -19,4 +19,11 @@ public class AhoUserDAO {
 		return session.selectOne("AhoUserDAO.selectLoginUser", userDto);
 	}
 
+
+	public String selectCheckId(SqlSession session, String id) {
+
+		
+		return session.selectOne("AhoUserDAO.selectCheckId", id);
+	}
+
 }
