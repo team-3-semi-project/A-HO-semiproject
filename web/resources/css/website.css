@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.carousel-inner img, #companyImg {
+    width: 100%;
+    height: 100%;
+}
+.webHotel {
+  white-space: pre-line;
+  line-height: 1.5em;
+}

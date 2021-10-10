@@ -67,3 +67,15 @@
     #a {
         margin-top: 15em;
     }
+    
+    
+    
+    #mainLogo {
+        font-size: 3em;
+        font-style: italic;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      #logoleft {
+        float: left;
+      }
