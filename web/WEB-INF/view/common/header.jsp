@@ -16,7 +16,7 @@
   
   <body>
     <header class="blog-header py-3">
-    <div class="container" id="header">
+    <div class="container-fluid" id="header">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
             <a class="text-muted" href="#" id="logoleft"><img class="logo rounded mx-auto d-block" src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO-icon.png"></a>
