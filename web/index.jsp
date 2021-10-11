@@ -12,6 +12,6 @@
 	<%-- <jsp:forward page="/WEB-INF/view/mypage/pointSearch.jsp"/> --%>
 	
 	<button onclick="location.href='mypage'">마이페이지</button>
-	
+	<button onclick="location.href='sitemap'">사이트 맵</button>
 </body>
 </html>
