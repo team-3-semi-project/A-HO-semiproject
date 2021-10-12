@@ -14,7 +14,6 @@
 		</environment>
 	</environments>
 
-	
 	<mappers>
 		<mapper resource="com/ahohotel/AhoUserDAO.xml"/>
 	</mappers>

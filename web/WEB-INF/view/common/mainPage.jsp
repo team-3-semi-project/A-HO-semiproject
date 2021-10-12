@@ -69,17 +69,17 @@
   <div id="ddd">
 
     <ul class="nav justify-content-center">
-      <li class="nav-item">
+      <li class="nav-item mt-auto">
         <a class="nav-link active" href="#">호텔목록</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="#">룸목록</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="#" style="font-size: 20px"><strong>호텔예약</strong></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="#">공지사항</a>
       </li>
     </ul>
   </div>

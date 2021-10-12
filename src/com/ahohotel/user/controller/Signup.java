@@ -34,12 +34,6 @@ public class Signup extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String gender = request.getParameter("gender");
-		System.out.println(id);
-		System.out.println(pw);
-		System.out.println(name);
-		System.out.println(phone);
-		System.out.println(email);
-		System.out.println(gender);
 		
 		int year = Integer.valueOf(birthday.substring(0,4));
 		int month = Integer.valueOf(birthday.substring(4,6));
@@ -58,9 +52,12 @@ public class Signup extends HttpServlet {
 		
 		AhoUserService userService = new AhoUserService();
 		
-		if(userService.signUp()) {
+		if(userService.signUp(signupDTO)) {
+			response.sendRedirect(request.getContextPath());
 			System.out.println("회원가입 성공!");
 		} else {
+			request.setAttribute("message", "회원가입 실패!");
+			request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
 			System.out.println("회원가입 실패!");
 		}
 		
