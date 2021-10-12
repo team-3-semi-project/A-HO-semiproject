@@ -61,8 +61,8 @@
   </head>
   <body>
   
-  <div class="container"> 
 	<jsp:include page="header.jsp"/>
+  <div class="container"> 
 
  
 
@@ -235,8 +235,8 @@
     </aside><!-- /.blog-sidebar -->
 
   </div><!-- /.row -->
-
-</main><!-- /.container -->
+	<br><br><br><br><br>
+</main>
 
 	<jsp:include page="footer.jsp"/>
 
