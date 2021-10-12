@@ -1,7 +1,7 @@
 window.onload=function(){
 	
 	/* 정규표현식을 이용 */
-        /*$("#id").change(function() {
+        $("#id").change(function() {
 		  idFalg = false;	
           var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
   
@@ -11,7 +11,7 @@ window.onload=function(){
           } else {
             $("#id-error").text("")
           }
-        })*/
+        })
   
         $("#password").change(function() {
           var passwordEmp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}/;
@@ -19,8 +19,10 @@ window.onload=function(){
           if(!passwordEmp.test($(this).val())) {
             $("#password-error").text("영문, 숫자, 특수문자를 포함한 8~16글자로 작성 해 주세요(영문 대소문자 구분)").css("color", "red");
             $(this).focus();
+			pwFlag = false;
           }else {
             $("#password-error").text("");
+			pwFlag = true;
           }
         })
   
@@ -41,9 +43,11 @@ window.onload=function(){
           if (!nameExp.test($(this).val())) {       // 사용자가 한글 2자 이상을 여겼을 때
               $("#name-error").text("한글로 2자 이상 입력하세요").css("color", "red");
               $(this).val("").focus();
+			  nameFlag=false;
           } else {
               $("#name-error").text("");
               $(this).css("background", "white");
+			  nameFlag=true;
           }
         })
 
@@ -55,9 +59,11 @@ window.onload=function(){
           if (!birthdayExp.test($(this).val())) {       // 사용자가 한글 2자 이상을 여겼을 때
                 $("#birthday-error").text("올바르지 않은 생년월일입니다.").css("color", "red");
                 $(this).val("").focus();
+				birthFlag=false;
           } else {
                 $("#birthday-error").text("");
                 $(this).css("background", "white");
+				birthFlag=true;
           }
         })
   
@@ -68,8 +74,10 @@ window.onload=function(){
           if(!phoneExp.test($(this).val())) {
             $("#phone-error").text("올바르지 않은 휴대폰 번호입니다.").css("color", "red");
             $(this).focus();
+			phoneFlag=false;
           }else {
             $("#phone-error").text("");
+			phoneFlag=true;
           }
         })
   
@@ -79,10 +87,20 @@ window.onload=function(){
           if(!emailExp.test($(this).val())) {
             $("#email-error").text("올바르지 않은 이메일입니다.").css("color", "red");
             $(this).focus();
+			emailFlag=false;
           }else {
             $("#email-error").text("");
+			emailFlag=true;
           }
         })
+
+		$("#same-address").change(function() {
+			if($("#same-address").is(":checked")){
+				checkFlag=true;
+			} else {
+				checkFlag=false;
+			}
+		})
 
         /* 휴대전화 하이픈 자동 입력 */
         function autoHypenPhone(str){
@@ -120,7 +138,7 @@ window.onload=function(){
                 this.value = autoHypenPhone(_val) ;
         }
 
-
+	 	
 		
 	
 }
