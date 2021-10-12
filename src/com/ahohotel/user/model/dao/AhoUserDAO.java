@@ -26,4 +26,12 @@ public class AhoUserDAO {
 		return session.selectOne("AhoUserDAO.selectCheckId", id);
 	}
 
+
+	public int insertNewUser(SqlSession session, AhoUserDTO signupDTO) {
+		
+
+		return session.insert("AhoUserDAO.insertNewUser", signupDTO);
+				
+	}
+
 }

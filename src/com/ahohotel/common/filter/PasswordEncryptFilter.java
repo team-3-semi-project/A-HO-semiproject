@@ -29,7 +29,7 @@ public class PasswordEncryptFilter implements Filter {
 		String intent = uri.substring(uri.lastIndexOf("/"));
 //		System.out.println("intent : " + intent);
 		
-		if (!"/login/".equals(intent)) {
+		if (!"/login".equals(intent)) {
 			
 			EncryptRequestWrapper wrapper = new EncryptRequestWrapper(hrequest);
 			

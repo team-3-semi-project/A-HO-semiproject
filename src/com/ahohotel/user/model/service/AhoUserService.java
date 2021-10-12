@@ -27,19 +27,33 @@ public class AhoUserService {
 		
 		/* matches 메소드를 통해 입력한 pw와 암호화된 pw와 일치하는지 확인 하고 일치하면 회원 정보를 조회하도록 */
 		if(passwordEncoder.matches(userDto.getPw(), encPw)) {
-			
 			loginUser = userDAO.selectLoginUser(session, userDto);
 		}
-		
-		loginUser = userDAO.selectLoginUser(session, userDto);
 	
 		session.close();
 		
 		return loginUser;
 	}
 
-	public boolean signUp() {
-		return false;
+	public boolean signUp(AhoUserDTO signupDTO) {
+		SqlSession session = getSqlSession();
+		boolean isTrue;
+		
+		int result = userDAO.insertNewUser(session, signupDTO);
+		
+		System.out.println(result);
+		
+		if(result > 0) {
+			isTrue = true;
+			session.commit();
+		} else {
+			isTrue = false;
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return isTrue;
 	}
 
 	public String idCheck(String id) {

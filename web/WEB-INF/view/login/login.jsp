@@ -12,15 +12,15 @@
 <body class="text-center"> 
     <div class="form-signin">
         <div id="a">
-            <img class="mb-4" src="../miniproject/Images/A-HO-icon.png" alt="" width="172" height="72">
+            <a class="blog-header-logo text-dark" href="${ pageContext.servletContext.contextPath }" id="mainLogo">A-HO</a>
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <form action="${ pageContext.servletContext.contextPath }/user/login">
             	<div id="rog">
 	            	<label for="inputEmail" class="sr-only">Email address</label>
-                	<input type="text" id="inputEmail" name="id" class="form-control" placeholder="Email address" required autofocus>
+                	<input type="text" id="inputEmail" name="id" class="form-control" placeholder="ID" required autofocus>
                 	<label for="inputPassword" class="sr-only">Password</label>
-                	<input type="text" id="inputPassword" name="pw" class="form-control" placeholder="Password" required>
-                	<button class="sign btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                	<input type="password" id="inputPassword" name="pw" class="form-control" placeholder="Password" required>
+                	<button class="sign btn btn-lg btn-primary btn-block" type="submit">로그인</button>
             	</div>
             </form>
            	<a href="../login/findid.jsp" type="button" class="btn btn-lg">아이디 찾기</a>

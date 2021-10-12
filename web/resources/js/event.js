@@ -1,7 +1,7 @@
 window.onload=function(){
 	
 	/* 정규표현식을 이용 */
-        $("#id").change(function() {
+        /*$("#id").change(function() {
 		  idFalg = false;	
           var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
   
@@ -11,7 +11,7 @@ window.onload=function(){
           } else {
             $("#id-error").text("")
           }
-        })
+        })*/
   
         $("#password").change(function() {
           var passwordEmp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}/;
@@ -26,10 +26,10 @@ window.onload=function(){
   
         $("#passwordCheck").change(function() {
           if ($("#password").val() != $(this).val()) {
-            $("#password-error").text("비밀번호가 일치하지 않습니다.").css("color", "red");
+            $("#passwordchek-error").text("비밀번호가 일치하지 않습니다.").css("color", "red");
             $(this).focus();
           } else {
-            $("#password-error").text("");
+            $("#passwordchek-error").text("");
           }
         })
   

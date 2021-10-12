@@ -30,15 +30,15 @@ public class Login extends HttpServlet {
 		AhoUserDTO login = userService.login(userDto);
 		
 		if(login != null) {
-//			HttpSession session = request.getSession();
-//			session.setAttribute("loginUser", login);
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", login);
+			
+			response.sendRedirect(request.getContextPath());
 			
 			System.out.println("로그인 성공!");
 		} else {
-			
-//			request.setAttribute("message", "로그인 실패!");
-			
-//			response.sendRedirect(request.getContextPath());
+			request.setAttribute("message", "로그인 실패!");
+			request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
 			
 			System.out.println("로그인 실패!");
 		}

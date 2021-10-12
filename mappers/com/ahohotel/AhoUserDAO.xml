@@ -60,4 +60,44 @@
  		 WHERE A.USER_ID = #{ id }
  	
  	</select>
+ 	
+ 	<insert id="insertNewUser">
+ 		INSERT
+			   INTO AHOUSER
+		 	 (
+			   USER_CODE
+			 , VIP_CODE
+			 , USER_ID
+			 , USER_PW
+			 , USER_NAME
+			 , USER_EMAIL
+			 , USER_PHONE
+			 , BIRTH
+			 , GENDER
+			 , POINT
+			 , JOIN_DATE
+			 , OUT_DATE
+			 , OUT_YN
+			 , BLACKLIST_YN
+			 , BLACKLIST_REASON
+			 )
+			 VALUES
+			 (
+			   SEQ_USER_CODE.NEXTVAL
+			 , 1
+			 , #{ id }
+			 , #{ pw }
+			 , #{ name }
+			 , #{ email }
+			 , #{ phone }
+			 , #{ birth }
+			 , #{ gender }
+			 , 0
+			 , sysdate
+			 , NULL
+			 , 'N'
+			 , 'N'
+			 , null
+			 )
+ 	</insert>
 </mapper>

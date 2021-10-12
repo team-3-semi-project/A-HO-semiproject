@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -29,8 +30,14 @@
             <a class="text-muted" href="#" aria-label="Search">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false" ><title>검색</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" href="#">로그인</a> &nbsp;
-            <a class="btn btn-sm btn-outline-secondary" href="#">회원가입</a>
+            <c:if test="${ empty sessionScope.loginUser }">
+            	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/user/loginconnect">로그인</a> &nbsp;
+            	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/user/signup">회원가입</a>
+            </c:if>
+            <c:if test="${ !empty sessionScope.loginUser }">
+            	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/mypage">마이페이지</a>  &nbsp;
+            	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/user/logout">로그아웃</a>
+            </c:if>
           </div>
         </div>
       </div>
