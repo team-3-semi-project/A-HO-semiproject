@@ -14,7 +14,7 @@
     <div class="col-sm-2">
             <div class="card">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="">회사 소개</a></li>
+                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/website/company">회사 소개</a></li>
                   <li class="list-group-item"><a href="">공지 사항</a></li>
                   <li class="list-group-item"><a href="">사이트 맵</a></li>
                   <li class="list-group-item"><a href="">약관 및 정책</a></li>

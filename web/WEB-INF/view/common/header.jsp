@@ -19,11 +19,11 @@
     <div class="container-fluid" id="header">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="text-muted" href="#" id="logoleft"><img class="logo rounded mx-auto d-block" src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO-icon.png"></a>
+            <a class="text-muted" href="${ pageContext.servletContext.contextPath }" id="logoleft"><img class="logo rounded mx-auto d-block" src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO-icon.png"></a>
           </div>
           
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#" id="mainLogo">A-HO</a>
+            <a class="blog-header-logo text-dark" href="${ pageContext.servletContext.contextPath }" id="mainLogo">A-HO</a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center" >
             <a class="text-muted" href="#" aria-label="Search">

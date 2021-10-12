@@ -22,7 +22,7 @@
  	<div class="row">
  		
  		<!-- 이 사이에 넣어야 틀이 망가지지 않음 -->
-    	<jsp:include page="../common/website-side.jsp"/>
+    	<jsp:include page="website-side.jsp"/>
   
  		 <div class="col-sm-9">
           <div class="col-sm-1"></div>
@@ -42,7 +42,7 @@
 	            저희 호텔에서는 반려동물과 고객여러분들이 같이 쉴수 있도록 최고의 서비스를 제공합니다.</h4>
 	        </div>
 	        <div class="col-md-5">
-	          <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO.png" alt="" id="companyImg">
+	          <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO.png" alt="A-HO 로고" id="companyImg">
 	  
 	        </div>
 	      </div>

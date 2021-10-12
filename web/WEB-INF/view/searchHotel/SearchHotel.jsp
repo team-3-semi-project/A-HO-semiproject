@@ -110,7 +110,7 @@
 		                        <label for="sale">특가</label>
 				</td>
 				<td>
-						<button type="submit">검색하기</button>
+						<button type="submit" onclick="location.href='mainPage.jsp'">검색하기</button>
 				</td>
 		
 			</tr>
