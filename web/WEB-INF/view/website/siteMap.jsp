@@ -43,16 +43,7 @@
                   <a href=""><p>호텔 목록</p></a>
                   <a href=""><p>호텔 검색</p></a>
                 </div>
-                <div class="card-body" style="text-align: center;">
-                  <h3>마이페이지</h3>
-                  <br>
-                  <a href=""><p>회원정보 수정/탈퇴</p></a>
-                  <a href=""><p>포인트</p></a>
-                  <a href=""><p>찜 목록</p></a>
-                  <a href=""><p>예약 내역</p></a>
-                  <a href=""><p>나의 후기</p></a>
-                  <a href=""><p>1:1문의 내역</p></a>
-                </div>
+
                 <div class="card-body" style="text-align: center;">
                   <h3>고객센터</h3>
                   <br>
