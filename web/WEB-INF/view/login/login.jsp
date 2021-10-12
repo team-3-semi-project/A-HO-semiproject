@@ -14,7 +14,7 @@
         <div id="a">
             <a class="blog-header-logo text-dark" href="${ pageContext.servletContext.contextPath }" id="mainLogo">A-HO</a>
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <form action="${ pageContext.servletContext.contextPath }/user/login">
+            <form action="${ pageContext.servletContext.contextPath }/user/login" method="POST">
             	<div id="rog">
 	            	<label for="inputEmail" class="sr-only">Email address</label>
                 	<input type="text" id="inputEmail" name="id" class="form-control" placeholder="ID" required autofocus>

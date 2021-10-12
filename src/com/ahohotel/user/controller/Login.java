@@ -1,6 +1,8 @@
 package com.ahohotel.user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,13 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import com.ahohotel.user.model.dto.AhoUserDTO;
 import com.ahohotel.user.model.service.AhoUserService;
+import com.google.gson.Gson;
 
 @WebServlet("/user/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "/WEB-INF/view/login/login.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -37,6 +45,7 @@ public class Login extends HttpServlet {
 			
 			System.out.println("로그인 성공!");
 		} else {
+			
 			request.setAttribute("message", "로그인 실패!");
 			request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
 			
