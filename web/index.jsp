@@ -11,8 +11,8 @@
 	<h1>aho hotel</h1>
 	<h2>test-sunmin</h2>
 	
-	<jsp:forward page="/WEB-INF/view/searchHotel/SearchHotel.jsp"/>
 
+	<jsp:forward page="/WEB-INF/view/searchHotel/SearchHotel.jsp"/>
 	
 	<%-- <jsp:forward page="/WEB-INF/view/common/test.jsp"/> --%>
 	<%-- <jsp:forward page="/WEB-INF/view/mypage/pointSearch.jsp"/> --%>
