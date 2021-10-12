@@ -1,4 +1,4 @@
-package com.ahohotel.website;
+package com.ahohotel.website.contoller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

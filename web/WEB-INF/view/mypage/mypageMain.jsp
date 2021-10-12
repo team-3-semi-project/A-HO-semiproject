@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <div class="card" style="width: 30rem;">
                                 <div class="card-body">
-                                  <p class="card-text"><a href="">포인트</a></p>
+                                  <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/point">포인트</a></p>
                                 </div>
                               </div>
                         </div>

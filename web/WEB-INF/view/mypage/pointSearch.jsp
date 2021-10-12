@@ -36,6 +36,8 @@
           <div class="card" style="width: 50rem;">
             <div class="card-body">
               <h2 class="card-title">포인트 내역</h2><br><br>
+              
+              
               <form action="" method="">
                 <table class="table">
                     <thead class="thead-dark">

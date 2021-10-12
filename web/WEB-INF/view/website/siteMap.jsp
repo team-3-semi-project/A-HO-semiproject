@@ -30,7 +30,7 @@
                 <div class="card-body" style="text-align: center;">
                   <h3>회사 정보</h3>
                   <br>
-                  <a href=""><p>회사 소개</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/website/company"><p>회사 소개</p></a>
                   <a href=""><p>공지 사항</p></a>
                   <a href=""><p>사이트 맵</p></a>
                   <a href=""><p>약관 및 정책</p></a>
