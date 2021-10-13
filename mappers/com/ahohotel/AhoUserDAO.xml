@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="AhoUserDAO">
 	<resultMap type="com.ahohotel.user.model.dto.AhoUserDTO" id="memberResultMap">
-		<id property="code" column="MEMBER_NO"/>
-		<result property="vipCode" column="USER_CODE"/>
+		<id property="code" column="USER_CODE"/>
+		<result property="vipCode" column="VIP_CODE"/>
 		<result property="id" column="USER_ID"/>
-		<result property="pw" column="VIP_CODE"/>
+		<result property="pw" column="USER_PW"/>
 		<result property="name" column="USER_NAME"/>
 		<result property="email" column="USER_EMAIL"/>
 		<result property="phone" column="USER_PHONE"/>
@@ -100,4 +100,18 @@
 			 , null
 			 )
  	</insert>
+ 	
+ 	<select id="findId" resultType="java.lang.String">
+ 		SELECT
+ 			   A.USER_ID
+ 		  FROM AHOUSER A
+ 		 WHERE A.USER_EMAIL = #{ mail }
+ 	</select>
+ 	
+ 	<select id="findEmailById" resultType="java.lang.String">
+ 		SELECT
+ 			   A.USER_EMAIL
+ 		  FROM AHOUSER A
+ 		 WHERE A.USER_ID = #{ id }
+ 	</select>
 </mapper>
