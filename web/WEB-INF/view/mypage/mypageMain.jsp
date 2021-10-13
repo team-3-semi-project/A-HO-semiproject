@@ -84,7 +84,7 @@
 
     <br><br><br><br><br><br>
   </main>
-=
+
   <!-- ---------------------------- footer --------------------------------- -->
   <jsp:include page="../common/footer.jsp"></jsp:include>
 

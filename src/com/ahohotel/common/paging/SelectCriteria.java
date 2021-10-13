@@ -1,9 +1,9 @@
 package com.ahohotel.common.paging;
 
-public class SelectCriteria implements java.io.Serializable{
-
+public class SelectCriteria implements java.io.Serializable {
+	
 	private int pageNo;					//요청한 페이지 번호
-	private int totalCount;				//전체 게시물 수
+	private int totalCount;				//전체 게시물 수 (진짜 전체 게시글 수 or 검색 후의 게시글 수)
 	private int limit;					//한 페이지에 보여줄 게시물 수
 	private int buttonAmount;			//한 번에 보여줄 페이징 버튼의 갯수
 	private int maxPage;				//가장 마지막 페이지
@@ -11,13 +11,13 @@ public class SelectCriteria implements java.io.Serializable{
 	private int endPage;				//한 번에 보여줄 페이징 버튼의 마지막 페이지 수
 	private int startRow;				//DB 조회 시 최신 글 부터 조회해야 하는 행의 시작 수
 	private int endRow;					//DB 조회 시 최신글부터 조회해야 하는 행의 마지막 수
-	private String searchHotel;			//검색 조건
+	private String searchCondition;		//검색 조건
+	private String searchValue;			//검색어
 	
-	public SelectCriteria() {
-	}
+	public SelectCriteria() {}
 
 	public SelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount, int maxPage, int startPage,
-			int endPage, int startRow, int endRow, String searchHotel) {
+			int endPage, int startRow, int endRow, String searchCondition, String searchValue) {
 		super();
 		this.pageNo = pageNo;
 		this.totalCount = totalCount;
@@ -28,7 +28,8 @@ public class SelectCriteria implements java.io.Serializable{
 		this.endPage = endPage;
 		this.startRow = startRow;
 		this.endRow = endRow;
-		this.searchHotel = searchHotel;
+		this.searchCondition = searchCondition;
+		this.searchValue = searchValue;
 	}
 
 	public int getPageNo() {
@@ -103,21 +104,28 @@ public class SelectCriteria implements java.io.Serializable{
 		this.endRow = endRow;
 	}
 
-	public String getSearchHotel() {
-		return searchHotel;
+	public String getSearchCondition() {
+		return searchCondition;
 	}
 
-	public void setSearchHotel(String searchHotel) {
-		this.searchHotel = searchHotel;
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
 	}
 
 	@Override
 	public String toString() {
 		return "SelectCriteria [pageNo=" + pageNo + ", totalCount=" + totalCount + ", limit=" + limit
 				+ ", buttonAmount=" + buttonAmount + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
-				+ endPage + ", startRow=" + startRow + ", endRow=" + endRow + ", searchHotel=" + searchHotel + "]";
+				+ endPage + ", startRow=" + startRow + ", endRow=" + endRow + ", searchCondition=" + searchCondition
+				+ ", searchValue=" + searchValue + "]";
 	}
-
-	
 	
 }
