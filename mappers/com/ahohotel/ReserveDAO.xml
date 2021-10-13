@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ReserveDAO">
-  <resultMap type="com.ahohotel.mypage.model.dto.ReserveDTO" id="reservePointResultMap">
+  <resultMap type="com.ahohotel.mypage.model.dto.ReserveSearchPointDTO" id="reservePointResultMap">
 	  	<id property="reserveCode" column="RESERVE_CODE"/>
 	  	<result property="userCode" column="USER_CODE"/>
 	  	<result property="roomcode" column="ROOM_CODE"/>
@@ -20,10 +20,10 @@
    </resultMap>
    
    <resultMap type="com.ahohotel.user.model.dto.AhoUserDTO" id="memberResultMap">
-		<id property="code" column="MEMBER_NO"/>
-		<result property="vipCode" column="USER_CODE"/>
+		<id property="code" column="USER_CODE"/>
+		<result property="vipCode" column="VIP_CODE"/>
 		<result property="id" column="USER_ID"/>
-		<result property="pw" column="VIP_CODE"/>
+		<result property="pw" column="USER_PW"/>
 		<result property="name" column="USER_NAME"/>
 		<result property="email" column="USER_EMAIL"/>
 		<result property="phone" column="USER_PHONE"/>
@@ -61,7 +61,7 @@
   		SELECT
   		       A.PAYMENT_DATE
   		     , A.USE_POINT
-  		     , A.PRICE*0.05
+  		     , A.PRICE
   		     , B.ROOM_NAME
   		     , C.HOTEL_NAME
   		     , D.POINT
@@ -69,6 +69,6 @@
   		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
   		  JOIN HOTEL C ON (B.HOTEL_CODE = C.HOTEL_CODE)
   		  JOIN AHOUSER D ON (A.USER_CODE = D.USER_CODE)
-  		 WHERE A.USER_CODE = ${ userCode }
+  		 WHERE A.USER_CODE = #{ userCode }
   	</select>
 </mapper>

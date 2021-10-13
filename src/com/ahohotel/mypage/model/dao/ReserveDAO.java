@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.ahohotel.mypage.model.dto.ReserveDTO;
 import com.ahohotel.mypage.model.dto.ReserveSearchPointDTO;
 
 public class ReserveDAO {

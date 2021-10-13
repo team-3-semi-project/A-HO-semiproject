@@ -1,24 +1,27 @@
 package com.ahohotel.user.model.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AhoUserDTO {
+public class AhoUserDTO implements Serializable {
 	
-	int code;
-	int vipCode;
-	String id;
-	String pw;
-	String name;
-	String email;
-	String phone;
-	Date birth;
-	String gender;
-	int point;
-	Date joinDate;
-	Date outDate;
-	String outYN;
-	String blackListYN;
-	String blackListReason;
+	private static final long serialVersionUID = -8007965077447433943L;
+	
+	private int code;
+	private int vipCode;
+	private String id;
+	private String pw;
+	private String name;
+	private String email;
+	private String phone;
+	private Date birth;
+	private String gender;
+	private int point;
+	private Date joinDate;
+	private Date outDate;
+	private String outYN;
+	private String blackListYN;
+	private String blackListReason;
 	
 	public AhoUserDTO() {
 	}
