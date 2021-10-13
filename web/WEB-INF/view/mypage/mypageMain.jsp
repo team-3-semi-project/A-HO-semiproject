@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,8 +20,8 @@
     <br><br>
     <div class="card w-90">
         <div class="card-body">
-          <h1>XXX 님</h1>
-          <h5>***등급</h5>
+          <h1><c:out value="${ requestScope.userName }"/> 님</h1>
+          <h5><c:out value="${ requestScope.vipGrade }"/>등급</h5>
           <div style="text-align: right;">
             <a href="#" class="btn btn-outline-primary">내 정보 수정</a>
           </div>

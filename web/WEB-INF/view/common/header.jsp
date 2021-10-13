@@ -35,8 +35,8 @@
             	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/user/signup">회원가입</a>
             </c:if>
             <c:if test="${ !empty sessionScope.loginUser }">
-            	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/mypage">마이페이지</a>  &nbsp;
-            	<a class="btn btn-sm btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/user/logout">로그아웃</a>
+            	<a class="btn btn-secondary" href="${ pageContext.servletContext.contextPath }/mypage">마이페이지</a>  &nbsp;
+            	<a class="btn btn-outline-secondary" href="${ pageContext.servletContext.contextPath }/user/logout">로그아웃</a>
             </c:if>
           </div>
         </div>
