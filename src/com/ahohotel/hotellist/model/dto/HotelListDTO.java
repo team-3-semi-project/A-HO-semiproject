@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class HotelListDTO{
 	
-	int hotelCode;
-	String hotelName;
-	String hotelStar;
-	int hotelUserAvg;
-	String hotelPhone;
-	String hotelAddress;
-	String hotelOpen;
-	Date checkIn;
-	Date checkOut;
+	private int hotelCode;
+	private String hotelName;
+	private String hotelStar;
+	private int hotelUserAvg;
+	private String hotelPhone;
+	private String hotelAddress;
+	private String hotelOpen;
+	private Date checkIn;
+	private Date checkOut;
 	
 	public HotelListDTO() {
 	}

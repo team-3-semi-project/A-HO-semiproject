@@ -28,7 +28,6 @@
 	         , H.CHECK_OUT
 	      FROM HOTEL H
 	     WHERE H.HOTEL_OPEN = 'Y'
-	     
-									     
+								     
 	</select>
 </mapper>
