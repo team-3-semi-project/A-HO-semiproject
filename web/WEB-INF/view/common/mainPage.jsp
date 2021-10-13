@@ -79,7 +79,7 @@
         <a class="nav-link" href="#" style="font-size: 20px"><strong>호텔예약</strong></a>
       </li>
       <li class="nav-item mt-auto">
-        <a class="nav-link" href="#">공지사항</a>
+        <a class="nav-link" href="notice">공지사항</a>
       </li>
     </ul>
   </div>

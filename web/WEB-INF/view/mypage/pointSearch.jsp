@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,8 +39,10 @@
               <h2 class="card-title">포인트 내역</h2><br><br>
               
               
-              <form action="${ pageContext.servletContext.contextPath }/mypage/point" method="post">
-              <div style="float: right;">보유포인트</div><br><br>
+              <c:out value="${requestScope.reserveList.usePoint }"/>
+              <div style="float: right;">보유포인트 </div><br><br>
+              <c:out value="${requestScope.reserveList.ahoUser.point }"/>
+              
                 <table class="table">
                     <thead class="thead-dark">
                       <tr align="center">
@@ -54,7 +57,7 @@
                       <tr>
                         <th scope="row">1</th>
                         <td>2021-10-05</td>
-                        <td colspan="2"><input type="text" value="${ sessionScope.loginMember.nickname }" name="writer" readonly></td>
+                        <td colspan="2"></td>
                         <td data-toggle="tooltip" title="2222">+ 100</td>
                         <td>0</td>
                         
@@ -68,7 +71,7 @@
                       </tr>
                     </tbody>
                   </table>
-              </form>
+              
             </div>
           </div>
         </div>

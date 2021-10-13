@@ -8,14 +8,14 @@ public class RoomDTO implements Serializable{
 	
 	private int roomCode;
 	private int hotelCode;
-	private int roomName;
+	private String roomName;
 	private int price;
 	private int count;
 	
 	public RoomDTO() {
 	}
 
-	public RoomDTO(int roomCode, int hotelCode, int roomName, int price, int count) {
+	public RoomDTO(int roomCode, int hotelCode, String roomName, int price, int count) {
 		this.roomCode = roomCode;
 		this.hotelCode = hotelCode;
 		this.roomName = roomName;
@@ -39,11 +39,11 @@ public class RoomDTO implements Serializable{
 		this.hotelCode = hotelCode;
 	}
 
-	public int getRoomName() {
+	public String getRoomName() {
 		return roomName;
 	}
 
-	public void setRoomName(int roomName) {
+	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
 
