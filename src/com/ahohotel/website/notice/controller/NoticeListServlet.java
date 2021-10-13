@@ -62,7 +62,7 @@ public class NoticeListServlet extends HttpServlet {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 		
-		System.out.println(selectCriteria);
+//		System.out.println(selectCriteria);
 		
 		List<NoticeDTO> noticeList = new NoticeService().selectAllNoticeList(selectCriteria);
 		
