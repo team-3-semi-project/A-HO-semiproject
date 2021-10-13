@@ -6,18 +6,20 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/event.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/js/event.js"></script>
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common.css">
 <title>회원가입</title>
 </head>
 <body>
     <section>
         <div class="main">
-          <img class="logo rounded mx-auto d-block" src="img/A-HO-icon.PNG">
-          <br><br><br>
+        	<div class="text-center">
+        		<a class="mainlogo blog-header-logo text-dark" href="${ pageContext.servletContext.contextPath }" id="mainLogo">A-HO</a>
+        	</div>
+          <br>
           <h2 class="signup-text">회원 가입</h2>
           <br>
-          <form class="signup-form" action="${ pageContext.servletContext.contextPath }/user/signup" method="POST">
+          <form class="signup-form" id="signup-form" action="${ pageContext.servletContext.contextPath }/user/signup" method="POST">
           	<div class="idcheck-form">
               <input required type="text" name="id" id="id" class="form-control" placeholder="사용할 ID 입력" autofocus/>
               <button class="btn btn-primary" name="idbtn" id="idchekbtn" type="button">중복확인</button>
@@ -27,8 +29,8 @@
             <input required type="password" name="pw" id="password" class="form-control" placeholder="패스워드 (영문 대 소문+숫자+특수문자 8~12자리)">
             <label class="password-error" id="password-error"></label>
             <br>
-            <input required type="password" name="pwCheck" id="passwordCheck" class="form-control" placeholder="패스워드 재입력">
-            <label class="password-error" id="password-error"></label>
+            <input required type="password" name="passwordCheck" id="passwordCheck" class="form-control" placeholder="패스워드 재입력">
+            <label class="passwordchek-error" id="passwordchek-error"></label>
             <br>
             <input required type="text" name="name" id="name" class="form-control" placeholder="이름(한글만)">
             <label class="name-error" id="name-error"></label>
@@ -61,13 +63,19 @@
             </div>
   
             <br><br>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" value="signup">회원가입</button>
+            <button type="button" id="signupbtn" class="btn btn-primary btn-lg btn-block" value="signup">회원가입</button>
           </form>
         </div>
       </section>
       
       <script>
       var idFlag = false;
+      var pwFlag = false;
+      var nameFlag = false;
+      var birthFlag = false;
+      var phoneFlag = false;
+      var emailFlag = false;
+      var checkFlag = false; 
       
       $("#idchekbtn").click(function() {
     	  var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
@@ -99,6 +107,28 @@
   			});	            
           }
 		});
+      
+      $("#signupbtn").click(function() {
+  	  if(!idFlag){
+  		alert('아이디 중복확인을 진행해주세요');
+  	  } else if(!pwFlag) {
+  		alert('패스워드가 형식에 알맞지 않습니다. 다시 입력해주세요');
+  	  } else if(!nameFlag) {
+  		alert('이름이 형식에 알맞지 않습니다. 다시 입력해주세요');  
+  	  } else if(!birthFlag) {
+  		alert('생일이 형식에 알맞지 않습니다. 다시 입력해주세요');  
+  	  } else if(!phoneFlag) {
+  		alert('핸드폰번호가 형식에 알맞지 않습니다. 다시 입력해주세요');
+  	  } else if(!emailFlag) {
+  		alert('이메일이 형식에 알맞지 않습니다. 다시 입력해주세요');
+  	  } else if(!checkFlag) {
+  		alert('이용약관 동의를 하지 않았습니다.');
+  	  } else {
+  		document.getElementById("signup-form").submit();
+  	  }
+  		  
+    });
       </script>
+      
 </body>
 </html>

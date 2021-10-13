@@ -14,11 +14,7 @@
     text-align: center;
     font-weight: bold;
     }
-    .logo {
-    width: 15 0px;
-    height: auto;
-    }
-    .id-error, .password-error, .name-error, .phone-error, .birthday-error .email-error {
+    .id-error, .password-error, .name-error, .phone-error, .birthday-error, .email-error, .passwordchek-error {
     margin-top: 1px;
     font-size: 15px;
     }
@@ -69,13 +65,16 @@
     }
     
     
-    
-    #mainLogo {
+    	#mainLogo {
         font-size: 3em;
         font-style: italic;
         font-weight: 800;
         text-decoration: none;
+        margin-left: auto;
+    	margin-right: auto;
       }
-      #logoleft {
-        float: left;
-      }
+      
+   #logoleft {
+     float: left;
+   }
+    
