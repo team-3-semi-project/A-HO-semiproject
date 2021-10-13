@@ -54,11 +54,11 @@ public class Signup extends HttpServlet {
 		
 		if(userService.signUp(signupDTO)) {
 			response.sendRedirect(request.getContextPath());
-			System.out.println("회원가입 성공!");
+//			System.out.println("회원가입 성공!");
 		} else {
 			request.setAttribute("message", "회원가입 실패!");
 			request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
-			System.out.println("회원가입 실패!");
+//			System.out.println("회원가입 실패!");
 		}
 		
 		

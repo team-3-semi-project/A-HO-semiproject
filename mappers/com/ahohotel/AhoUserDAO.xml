@@ -114,4 +114,11 @@
  		  FROM AHOUSER A
  		 WHERE A.USER_ID = #{ id }
  	</select>
+ 	
+ 	<update id="resetPw">
+ 		UPDATE
+		       AHOUSER A
+		   SET A.USER_PW = #{ pw }
+		 WHERE A.USER_ID = #{ id }  
+ 	</update>
 </mapper>

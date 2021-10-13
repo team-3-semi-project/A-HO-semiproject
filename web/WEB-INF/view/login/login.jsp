@@ -12,6 +12,7 @@
 <title>login</title>
 </head>
 <body class="text-center"> 
+
     <div class="form-signin">
         <div id="a">
             <a class="blog-header-logo text-dark" href="${ pageContext.servletContext.contextPath }" id="mainLogo">A-HO</a>
@@ -25,8 +26,8 @@
                 	<button class="sign btn btn-lg btn-primary btn-block" id="loginbtn" type="button">로그인</button>
             	</div>
             </form>
-           	<a href="../login/findid.jsp" type="button" class="btn btn-lg">아이디 찾기</a>
-            <a href="../login/findpwd.jsp" type="button" class="btn btn-lg">비밀번호 찾기</a>
+           	<a href="${ pageContext.servletContext.contextPath }/user/findid" type="button" class="btn btn-lg">아이디 찾기</a>
+            <a href="${ pageContext.servletContext.contextPath }/user/findpw" type="button" class="btn btn-lg">비밀번호 찾기</a>
             <a href="${ pageContext.servletContext.contextPath }/user/signup" id="signup" type="button" class="btn btn-lg">회원가입</a>
             
             <p class="mt-5 mb-3 text-muted">© 2021-2030</p>
