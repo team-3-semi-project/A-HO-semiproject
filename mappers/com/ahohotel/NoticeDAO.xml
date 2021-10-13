@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="NoticeDAO">
+	<resultMap type="com.ahohotel.website.notice.model.dto.NoticeDTO" id="noticeResultMap">
+		<id property="noticeCode" column="NOTICE_CODE" />
+		<result property="noticeTitle" column="NOTICE_TITLE" />
+		<result property="noticeContent" column="NOTICE_CONTENT" />
+		<result property="noticeDate" column="NOTICE_DATE" />
+		<result property="noticeCount" column="NOTICE_COUNT" />
+	</resultMap>
+	<resultMap type="com.ahohotel.website.notice.model.dto.NoticeDTO" id="noticeListMap">
+		<id property="noticeCode" column="NOTICE_CODE" />
+		<result property="noticeTitle" column="NOTICE_TITLE" />
+		<result property="noticeContent" column="NOTICE_CONTENT" />
+		<result property="noticeDate" column="NOTICE_DATE" />
+		<result property="noticeCount" column="NOTICE_COUNT" />
+	</resultMap>
+	
+	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+               COUNT(*)
+          FROM NOTICE A
+    	<where>
+			<if test="searchCondition == 'title'">
+	           A.NOTICE_TITLE LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+			<if test="searchCondition == 'content'">
+	           A.NOTICE_CONTENT LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+    	</where>
+	</select>
+	
+	<select id="selectAllNoticeList" resultMap="noticeListMap">
+         SELECT 
+               A.RNUM
+             , A.NOTICE_CODE
+             , A.NOTICE_TITLE
+             , A.NOTICE_CONTENT
+             , A.NOTICE_DATE
+             , A.NOTICE_COUNT
+          FROM (SELECT ROWNUM RNUM
+                     , B.NOTICE_CODE
+                     , B.NOTICE_TITLE
+                     , B.NOTICE_CONTENT
+                     , B.NOTICE_DATE
+                     , B.NOTICE_COUNT
+                  FROM (SELECT C.NOTICE_CODE
+                             , C.NOTICE_TITLE
+                             , C.NOTICE_CONTENT
+                             , C.NOTICE_DATE
+                             , C.NOTICE_COUNT
+                          FROM NOTICE C
+    					<where>
+							<if test="searchCondition == 'title'">
+	           				   C.NOTICE_TITLE LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+							<if test="searchCondition == 'content'">
+	           				   C.NOTICE_CONTENT LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+    					</where>
+                         ORDER BY C.NOTICE_CODE DESC
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+         WHERE A.RNUM >= #{ startRow }  
+	</select>
+	
+	<update id="incrementNoticeCount">
+		UPDATE
+		       NOTICE A
+		   SET A.NOTICE_COUNT = (SELECT B.NOTICE_COUNT
+		                           FROM NOTICE B
+		                          WHERE B.NOTICE_CODE = #{ no }
+		                         ) + 1
+		 WHERE A.NOTICE_CODE = #{ no }
+	</update>
+	
+	<select id="selectNoticeDetail" resultMap="noticeResultMap">
+			SELECT
+			       A.NOTICE_CODE
+			     , A.NOTICE_TITLE
+			     , A.NOTICE_CONTENT
+			     , A.NOTICE_DATE
+				 , A.NOTICE_COUNT
+			  FROM NOTICE A
+			 WHERE A.NOTICE_CODE = #{ no }
+	</select>
+	
+</mapper>
