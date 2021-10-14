@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="OQ">
+	<resultMap type="com.ahohotel.website.oftenQuestion.model.dto.OftenQuestionDTO" id="oqResultMap">
+		<id property="oqCode" column="OQ_CODE"/>
+		<result property="oqTitle" column="OQ_TITLE"/>
+		<result property="oqContent" column="OQ_CONTENT"/>
+	</resultMap>
+	
+	<select id="selectAllOQ" resultMap="oqResultMap">
+		SELECT
+		       A.OQ_CODE
+		     , A.OQ_TITLE
+		     , A.OQ_CONTENT
+		  FROM OFTEN_QUESTION A
+	</select>
+</mapper>

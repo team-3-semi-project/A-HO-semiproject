@@ -47,7 +47,7 @@
                 <div class="card-body" style="text-align: center;">
                   <h3>고객센터</h3>
                   <br>
-                  <a href=""><p>자주하는 질문</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/website/oftenOQ"><p>자주하는 질문</p></a>
                   <a href=""><p>1:1문의 작성</p></a>
                 </div>
               </div>

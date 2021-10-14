@@ -18,5 +18,6 @@
 		<mapper resource="com/ahohotel/AhoUserDAO.xml"/>
 		<mapper resource="com/ahohotel/ReserveDAO.xml"/>
 		<mapper resource="com/ahohotel/NoticeDAO.xml"/>
+		<mapper resource="com/ahohotel/OftenQuestionDAO.xml"/>
 	</mappers>
 </configuration>
