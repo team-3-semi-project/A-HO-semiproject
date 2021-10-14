@@ -1,4 +1,4 @@
-package com.ahohotel.mypage.mainpage.controller;
+package com.ahohotel.mypage;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ahohotel.mypage.useraccount.model.service.UserAccountService;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 
 @WebServlet("/mypage")
@@ -16,8 +17,12 @@ public class MyPageMainpageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userName = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getName();
-		int vipCode = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getVipCode();
+		int userCode = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode();
+
+		AhoUserDTO userDTO = new UserAccountService().selectUserAccount(userCode);
+		
+		String userName = userDTO.getName();
+		int vipCode = userDTO.getVipCode();
 		
 		String vipGrade = "";
 		if (vipCode == 1) {

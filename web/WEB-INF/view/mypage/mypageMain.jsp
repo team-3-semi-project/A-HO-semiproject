@@ -21,9 +21,9 @@
     <div class="card w-90">
         <div class="card-body">
           <h1><c:out value="${ requestScope.userName }"/> 님</h1>
-          <h5><c:out value="${ requestScope.vipGrade }"/>등급</h5>
+          <h5>  <c:out value="${ requestScope.vipGrade }"/>등급</h5>
           <div style="text-align: right;">
-            <a href="#" class="btn btn-outline-primary">내 정보 수정</a>
+            <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">내 정보 수정</a>
           </div>
         </div>
     </div>

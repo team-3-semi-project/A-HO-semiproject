@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "UserAccountDAO">
+	
+	<resultMap type="com.ahohotel.user.model.dto.AhoUserDTO" id="accountResultMap">
+		<id property="code" column="USER_CODE"/>
+		<result property="vipCode" column="VIP_CODE"/>
+		<result property="id" column="USER_ID"/>
+		<result property="pw" column="USER_PW"/>
+		<result property="name" column="USER_NAME"/>
+		<result property="email" column="USER_EMAIL"/>
+		<result property="phone" column="USER_PHONE"/>
+		<result property="birth" column="BIRTH"/>
+	</resultMap>
+
+	<select id="selectUserAccount" resultMap="accountResultMap">
+		SELECT 
+	       A.USER_CODE
+	     , A.VIP_CODE
+	     , A.USER_ID
+	     , A.USER_PW
+	     , A.USER_NAME
+	     , A.USER_EMAIL
+	     , A.USER_PHONE
+	     , A.BIRTH
+	  FROM AHOUSER A
+	 WHERE A.USER_CODE = #{ userCode }
+	</select>
+	
+	<update id="updateUserAccount" parameterType="com.ahohotel.user.model.dto.AhoUserDTO">
+		UPDATE
+		       AHOUSER A
+		   SET A.USER_PW = #{ pw }
+		     , A.USER_NAME = #{ name }
+		     , A.USER_EMAIL = #{ email }
+		     , A.USER_PHONE = #{ phone }
+		     , A.BIRTH = #{ birth }
+		 WHERE USER_CODE = #{ code }
+	</update>
+	
+	<update id="deleteUserAccount">
+		UPDATE
+		       AHOUSER
+		   SET OUT_YN = 'Y'
+		 WHERE USER_CODE = #{ userCode }
+	</update>
+
+</mapper>

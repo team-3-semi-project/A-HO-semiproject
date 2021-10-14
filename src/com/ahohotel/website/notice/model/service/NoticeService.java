@@ -48,7 +48,7 @@ public class NoticeService {
 		NoticeDTO noticeDetail = null;
 		
 		int result = noticeDAO.incrementNoticeCount(session, no);
-		System.out.println(result);
+//		System.out.println(result);
 		
 		if (result > 0) {
 			noticeDetail = noticeDAO.selectNoticeDetail(session, no);

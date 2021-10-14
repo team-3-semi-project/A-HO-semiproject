@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.ahohotel.common.wrapper.EncryptRequestWrapper;
 
-@WebFilter("/user/*")
+@WebFilter("/*")
 public class PasswordEncryptFilter implements Filter {
 
 	public void destroy() {
