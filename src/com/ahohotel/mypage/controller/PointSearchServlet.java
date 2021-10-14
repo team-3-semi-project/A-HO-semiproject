@@ -1,6 +1,8 @@
 package com.ahohotel.mypage.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,22 +22,37 @@ public class PointSearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int searchUserNo = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode();
 		System.out.println(searchUserNo);
-		ReserveSearchPointDTO reserveUser = new ReserveSearchPointDTO();
-		reserveUser.setUserCode(searchUserNo);
+		
 		
 		ReserveService reserveService = new ReserveService();
-		List<ReserveSearchPointDTO> reserveList = reserveService.searchPoint(reserveUser);
+		
+		List<ReserveSearchPointDTO> reserveList = reserveService.searchPoint(searchUserNo);
 		
 		for (ReserveSearchPointDTO reserveSearchPointDTO : reserveList) {
 			System.out.println(reserveSearchPointDTO);
 			
 		}
 		
+		/* 포인트 소멸 일자 넣기 위한 반복문 */
+		for (ReserveSearchPointDTO reserve : reserveList) {
+			long time = reserve.getPaymentDate().getTime() + 31536000000L;  // 1년을 Millisecond으로 변환시킨 것
+//			System.out.println(reserve.getPaymentDate().getTime());
+//			System.out.println(time);
+			java.util.Date endPointDate = new Date(time);
+			
+			reserve.setendPointDate(endPointDate);
+//			System.out.println("엔드"+reserve.getendPointDate());
+		}
+		
+		AhoUserDTO ahoUser = reserveService.searchMemberPoint(searchUserNo);	
+		
+		System.out.println(ahoUser);
 		
 		String path = "";
 		if(reserveList != null) {
 			path = "/WEB-INF/view/mypage/pointSearch.jsp";
 			request.setAttribute("reserveList", reserveList);
+			request.setAttribute("ahoUser", ahoUser);
 		} else {
 //			path = "/WEB-INF/view/common/failed.jsp";
 //			request.setAttribute("message", "공지사항 조회 실패!");

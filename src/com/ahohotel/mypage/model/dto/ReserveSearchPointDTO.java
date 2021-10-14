@@ -3,7 +3,6 @@ package com.ahohotel.mypage.model.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.ahohotel.user.model.dto.AhoUserDTO;
 
 public class ReserveSearchPointDTO implements Serializable{
 
@@ -20,15 +19,17 @@ public class ReserveSearchPointDTO implements Serializable{
 	private String review;
 	private int score;
 	private java.util.Date reviewDate;
-	private AhoUserDTO ahoUser;
 	private HotelDTO hotel;
 	private RoomDTO room;
+	
+	/* 포인트 소멸일자용 변수(테이블에는 없음) */
+	private java.util.Date endPointDate;
 	
 	public ReserveSearchPointDTO() {
 	}
 
 	public ReserveSearchPointDTO(int reserveCode, int userCode, int roomCode, Date paymentDate, int usePoint, int price,
-			Date startDate, Date endDate, String review, int score, Date reviewDate, AhoUserDTO ahoUser, HotelDTO hotel,
+			Date startDate, Date endDate, String review, int score, Date reviewDate, HotelDTO hotel,
 			RoomDTO room) {
 		this.reserveCode = reserveCode;
 		this.userCode = userCode;
@@ -41,7 +42,6 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.review = review;
 		this.score = score;
 		this.reviewDate = reviewDate;
-		this.ahoUser = ahoUser;
 		this.hotel = hotel;
 		this.room = room;
 	}
@@ -134,14 +134,6 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.reviewDate = reviewDate;
 	}
 
-	public AhoUserDTO getAhoUser() {
-		return ahoUser;
-	}
-
-	public void setAhoUser(AhoUserDTO ahoUser) {
-		this.ahoUser = ahoUser;
-	}
-
 	public HotelDTO getHotel() {
 		return hotel;
 	}
@@ -158,12 +150,20 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.room = room;
 	}
 
+	public java.util.Date getendPointDate() {
+		return endPointDate;
+	}
+
+	public void setendPointDate(java.util.Date endPointDate) {
+		this.endPointDate = endPointDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "ReserveSearchPointDTO [reserveCode=" + reserveCode + ", userCode=" + userCode + ", roomCode=" + roomCode
 				+ ", paymentDate=" + paymentDate + ", usePoint=" + usePoint + ", price=" + price + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", review=" + review + ", score=" + score + ", reviewDate="
-				+ reviewDate + ", ahoUser=" + ahoUser + ", hotel=" + hotel + ", room=" + room + "]";
+				+ reviewDate + ", hotel=" + hotel + ", room=" + room + "]";
 	}
 	
 	
