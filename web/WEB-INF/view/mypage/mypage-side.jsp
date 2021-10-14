@@ -15,7 +15,7 @@
                   <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect"><p class="user-information">내 정보 수정</p></a><br><br><br>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="#">포인트</a></li>
+                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/point">포인트</a></li>
                   <li class="list-group-item"><a href="#">찜 목록</a></li>
                   <li class="list-group-item"><a href="#">예약내역</a></li>
                   <li class="list-group-item"><a href="#">나의 후기</a></li>

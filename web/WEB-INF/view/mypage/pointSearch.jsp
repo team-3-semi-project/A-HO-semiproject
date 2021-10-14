@@ -36,7 +36,7 @@
         <jsp:include page="mypage-side.jsp"/>
 
         <div class="col-sm-9" >
-          <div class="card" style="width: 50rem;">
+          <div class="card col-sm-9">
             <div class="card-body">
               <h2 class="card-title">포인트 내역</h2><br><br>
               
