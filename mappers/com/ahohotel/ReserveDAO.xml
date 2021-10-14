@@ -14,7 +14,6 @@
 	  	<result property="score" column="SCORE"/>
 	  	<result property="reviewDate" column="REVIEW_DATE"/>
 	  	
-	  	<association property="ahoUser" resultMap="memberResultMap"/>
 	  	<association property="hotel" resultMap="hotelResultMap"/>
 	  	<association property="room" resultMap="roomResultMap"/>
    </resultMap>
@@ -57,6 +56,21 @@
    		<result property="price" column="ROOM_PRICE"/>
    		<result property="count" column="ROOM_COUNT"/>
    </resultMap>
+  	
+  	<resultMap type="com.ahohotel.mypage.model.dto.ReserveDTO" id="reserveResultMap">
+	  	<id property="reserveCode" column="RESERVE_CODE"/>
+	  	<result property="userCode" column="USER_CODE"/>
+	  	<result property="roomcode" column="ROOM_CODE"/>
+	  	<result property="paymentDate" column="PAYMENT_DATE"/>
+	  	<result property="usePoint" column="USE_POINT"/>
+	  	<result property="price" column="PRICE"/>
+	  	<result property="startDate" column="START_DATE"/>
+	  	<result property="endDate" column="END_DATE"/>
+	  	<result property="review" column="REVIEW"/>
+	  	<result property="score" column="SCORE"/>
+	  	<result property="reviewDate" column="REVIEW_DATE"/>
+	 </resultMap>
+  	
   	<select id="searchPoint" resultMap="reservePointResultMap">
   		SELECT
   		       A.PAYMENT_DATE
@@ -64,11 +78,16 @@
   		     , A.PRICE
   		     , B.ROOM_NAME
   		     , C.HOTEL_NAME
-  		     , D.POINT
   		  FROM RESERVE A
   		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
   		  JOIN HOTEL C ON (B.HOTEL_CODE = C.HOTEL_CODE)
-  		  JOIN AHOUSER D ON (A.USER_CODE = D.USER_CODE)
-  		 WHERE A.USER_CODE = #{ userCode }
+  		 WHERE A.USER_CODE = #{ searchUserNo }
+  	</select>
+  	
+  	<select id="searchMemberPoint" resultMap="memberResultMap">
+  		SELECT
+  		       A.POINT
+  		  FROM AHOUSER A
+  		 WHERE USER_CODE = #{ searchUserNo }
   	</select>
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,9 +39,9 @@
             <div class="card-body">
               <h2 class="card-title">포인트 내역</h2><br><br>
               
-              
-              <c:out value="${requestScope.reserveList.usePoint }"/>
-              <div style="float: right;">보유포인트</div><br><br>
+              <div style="float: right;">보유포인트 : <c:out value="${ requestScope.ahoUser.point }"/> P</div><br><br>
+                
+                <c:if test="${ !empty requestScope.reserveList }">
                 <table class="table">
                     <thead class="thead-dark">
                       <tr align="center">
@@ -52,24 +53,30 @@
                       </tr>
                     </thead>
                     <tbody>
+                    
+                    <c:forEach var="pointSelect" items="${ requestScope.reserveList }" varStatus="num">
+                    	<c:set var="plusePoint" value="${ Integer.valueOf(pointSelect.price * 0.05) }"/>
+                      
                       <tr>
-                        <th scope="row">1</th>
-                        <td>2021-10-05</td>
-                        <td colspan="2"><input type="text" value="${ sessionScope.loginMember.nickname }" name="writer" readonly></td>
-                        <td data-toggle="tooltip" title="2222">+ 100</td>
-                        <td>0</td>
+                        <th scope="row">${ num.index + 1 }</th>
+                        <td><fmt:formatDate value="${ pointSelect.paymentDate }" type="date" pattern="yyyy/MM/dd (E)"/></td>
+                        <td colspan="2"><c:out value="${ pointSelect.hotel.hoName }"/> <c:out value="${ pointSelect.room.roomName }"/></td>
+                        <td data-toggle="tooltip" title="포인트 소멸 일자 : <c:out value="${pointSelect.endPointDate }"/>">+ <c:out value="${ pageScope.plusePoint }"/></td>
+                        <td><c:out value="${ pointSelect.usePoint }"/></td>
+                      </tr>
                         
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td colspan="2">Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                      </tr>
+                    </c:forEach>
+                    
                     </tbody>
                   </table>
-             
+             	</c:if>
+             	
+             	<c:if test="${ empty requestScope.reserveList }">
+             	<br><br>
+             	<p style="text-align: center; font-size: 2.5em">포인트 내역이 없습니다.</p>
+             	<br><br>
+             	</c:if>
+             	
             </div>
           </div>
         </div>
