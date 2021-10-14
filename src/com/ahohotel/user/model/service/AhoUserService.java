@@ -71,4 +71,39 @@ public class AhoUserService {
 		return result;
 	}
 
+	public String findId(String mail) {
+		SqlSession session = getSqlSession();
+		
+		String result = userDAO.findId(session, mail);
+		
+		return result;
+	}
+
+	public String findEmailById(String id) {
+		SqlSession session = getSqlSession();
+		
+		String result = userDAO.findEmailById(session, id);
+		
+		return result;
+	}
+
+	public boolean resetPw(AhoUserDTO resetPw) {
+		SqlSession session = getSqlSession();
+		boolean isTrue;
+		
+		int result = userDAO.resetPw(session, resetPw);
+		
+		if(result > 0) {
+			isTrue = true;
+			session.commit();
+		} else {
+			isTrue = false;
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return isTrue;
+	}
+
 }
