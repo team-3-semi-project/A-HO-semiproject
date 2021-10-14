@@ -64,6 +64,17 @@
         margin-top: 15em;
     }
     
+    /* idfind css */
+    #idfind {
+        font-weight: bolder;
+        margin-bottom: 20px;
+    }
+    #idfind-label {
+        margin-top: 5px;
+        margin-bottom : 40px;
+        color: rgb(156, 156, 156);
+    }
+    
     
     	#mainLogo {
         font-size: 3em;

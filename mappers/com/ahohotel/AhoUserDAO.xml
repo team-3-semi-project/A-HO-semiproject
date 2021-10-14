@@ -100,4 +100,26 @@
 			 , null
 			 )
  	</insert>
+ 	
+ 	<select id="findId" resultType="java.lang.String">
+ 		SELECT
+ 			   A.USER_ID
+ 		  FROM AHOUSER A
+ 		 WHERE A.USER_EMAIL = #{ mail }
+ 	</select>
+ 	
+ 	<select id="findEmailById" resultType="java.lang.String">
+ 		SELECT
+ 			   A.USER_EMAIL
+ 		  FROM AHOUSER A
+ 		 WHERE A.USER_ID = #{ id }
+ 	</select>
+ 	
+ 	<update id="resetPw">
+ 		UPDATE
+		       AHOUSER A
+		   SET A.USER_PW = #{ pw }
+		 WHERE A.USER_ID = #{ id }  
+ 	</update>
+
 </mapper>

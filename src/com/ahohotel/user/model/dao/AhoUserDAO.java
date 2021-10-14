@@ -34,4 +34,22 @@ public class AhoUserDAO {
 				
 	}
 
+
+	public String findId(SqlSession session, String mail) {
+		
+		return session.selectOne("AhoUserDAO.findId", mail);
+	}
+
+
+	public String findEmailById(SqlSession session, String id) {
+		
+		return session.selectOne("AhoUserDAO.findEmailById", id);
+	}
+
+
+	public int resetPw(SqlSession session, AhoUserDTO resetPw) {
+
+		return session.update("AhoUserDAO.resetPw", resetPw);
+	}
+
 }

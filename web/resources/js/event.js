@@ -2,7 +2,7 @@ window.onload=function(){
 	
 	/* 정규표현식을 이용 */
         $("#id").change(function() {
-		  idFalg = false;	
+		  idFlag = false;	
           var idExp = /^(?=.*[a-zA-Z])(?!=.*[$@$!%*?&])(?=.*[0-9]).{4,12}$/;
   
           if(!idExp.test($(this).val())) {
@@ -14,7 +14,7 @@ window.onload=function(){
         })
   
         $("#password").change(function() {
-          var passwordEmp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,16}/;
+          var passwordEmp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!.%*?&])[A-Za-z\d$@$!.%*?&]{8,16}/;
   
           if(!passwordEmp.test($(this).val())) {
             $("#password-error").text("영문, 숫자, 특수문자를 포함한 8~16글자로 작성 해 주세요(영문 대소문자 구분)").css("color", "red");
@@ -30,8 +30,10 @@ window.onload=function(){
           if ($("#password").val() != $(this).val()) {
             $("#passwordchek-error").text("비밀번호가 일치하지 않습니다.").css("color", "red");
             $(this).focus();
+			pwCheckFlag = false;
           } else {
             $("#passwordchek-error").text("");
+			pwCheckFlag = true;
           }
         })
   

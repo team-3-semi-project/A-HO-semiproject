@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper>
+	<resultMap type="com.ahohotel.hotellist.model.dto.HotelListDTO" id="hotelResultMap">
+		<id property="code" column="HOTEL_NO"/>
+		<result property="hotelCode" column="HOTEL_CODE"/>
+		<result property="hotelName" column="HOTEL_NAME"/>
+		<result property="hotelStar" column="HOTEL_STAR"/>
+		<result property="hotelUserAvg" column="HOTEL_USER_AVG"/>
+		<result property="hotelPhone" column="HOTEL_PHONE"/>
+		<result property="hotelAddress" column="HOTEL_ADDRESS"/>
+		<result property="hotelOpen" column="HOTEL_OPEN"/>
+		<result property="checkIn" column="CHECK_IN"/>
+		<result property="checkOut" column="CHECK_OUT"/>
+	</resultMap>
+	
+	
+	<!-- 호텔 정보 조회 -->
+	<select id="searchHotel" resultMap="hotelResultMap">
+	    SELECT
+	           A.HOTEL_CODE
+	         , A.HOTEL_NAME
+	         , A.HOTEL_STAR
+	         , A.HOTEL_USER_AVG
+	         , A.HOTEL_PHONE
+	         , A.HOTEL_ADDRESS
+	         , A.HOTEL_OPEN
+	         , A.CHECK_IN
+	         , A.CHECK_OUT
+	      FROM HOTEL A
+	     WHERE A.HOTEL_OPEN = 'Y'		     	     					     
+	
+	</select>
+	
+
+</mapper>
