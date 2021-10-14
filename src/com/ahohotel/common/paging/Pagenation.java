@@ -1,12 +1,5 @@
 package com.ahohotel.common.paging;
 
-/*
- * 페이징 및 검색 순서
- *  1. 요청하는 페이지 유무
- *  2. 검색 유무
- *  3. (Pagination의 메소드 요청 및 기본 세팅 값 활용해서) SelectCriteria 값 담기 (화면단, 쿼리에 쓸 값들)
- *  4. SelectCriteria를 활용해서 화면단에 버튼 생성 및 쿼리에서 게시글 조회
- */
 public class Pagenation {
 	
 	/* 검색어가 없는 경우 페이징 처리만을 위한 용도 */
@@ -60,8 +53,8 @@ public class Pagenation {
 		startRow = (pageNo - 1) * limit + 1;
 		endRow = startRow + limit - 1;
 		
-//		System.out.println("startRow : " + startRow);
-//		System.out.println("endRow : " + endRow);
+		System.out.println("startRow : " + startRow);
+		System.out.println("endRow : " + endRow);
 		
 		SelectCriteria selectCriteria = new SelectCriteria(pageNo, totalCount, limit, buttonAmount ,maxPage, startPage, endPage, startRow, endRow, searchCondition, searchValue);
 		

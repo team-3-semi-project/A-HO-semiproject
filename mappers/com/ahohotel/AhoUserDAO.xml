@@ -114,4 +114,5 @@
  		  FROM AHOUSER A
  		 WHERE A.USER_ID = #{ id }
  	</select>
+
 </mapper>
