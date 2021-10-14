@@ -28,12 +28,8 @@
 	         , A.CHECK_IN
 	         , A.CHECK_OUT
 	      FROM HOTEL A
-	      <where>
-	      	<if test="selectCondition == ''">
-	      	
-	      	</if>
-	      </where>
-	     WHERE A.HOTEL_OPEN = 'Y'						     
+	     WHERE A.HOTEL_OPEN = 'Y'		     	     					     
+	
 	</select>
 	
 

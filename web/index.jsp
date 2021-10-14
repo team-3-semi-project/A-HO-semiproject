@@ -12,7 +12,8 @@
 	<h2>test-sunmin</h2>
 	
 
-	<jsp:forward page="/WEB-INF/view/searchHotel/SearchHotel.jsp"/>
+	<jsp:forward page="/WEB-INF/view/searchHotel/hotelList.jsp"/>
+	<!-- <jsp:forward page="/WEB-INF/view/searchHotel/SearchHotel.jsp"/> -->
 
 	
 	
