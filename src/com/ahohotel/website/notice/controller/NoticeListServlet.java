@@ -23,9 +23,7 @@ public class NoticeListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
-		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
-		 * */
+		/* 처음에 보여지는 공지 목록의 페이지는 1페이지 */
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -33,6 +31,7 @@ public class NoticeListServlet extends HttpServlet {
 			pageNo = Integer.parseInt(currentPage);
 		}
 		
+		/* 검색조건 get한 후 mapping */
 		String searchCondition = request.getParameter("searchCondition");
 		String searchValue = request.getParameter("searchValue");
 		
@@ -40,20 +39,16 @@ public class NoticeListServlet extends HttpServlet {
 		searchMap.put("searchCondition", searchCondition);
 		searchMap.put("searchValue", searchValue);
 		
-		/* 전체 게시물 수가 필요하다.
-		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
-		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
-		 * */
+		/* 전체 게시물 수(검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수) 조회 */
 		int totalCount = new NoticeService().selectTotalCount(searchMap);
-		
 //		System.out.println("totalNoticeCount : " + totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
-		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
+		int limit = 10;	
 		/* 한 번에 보여질 페이징 버튼의 갯수 */
 		int buttonAmount = 5;
 		
-		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
+		/* 페이징 처리에 관한 정보를 담고 있는 인스턴스 */
 		SelectCriteria selectCriteria = null;
 		
 		if(searchCondition != null && !"".equals(searchCondition)) {
@@ -61,11 +56,9 @@ public class NoticeListServlet extends HttpServlet {
 		} else {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
-		
 //		System.out.println(selectCriteria);
 		
 		List<NoticeDTO> noticeList = new NoticeService().selectAllNoticeList(selectCriteria);
-		
 //		System.out.println(noticeList);
 		
 		String path = "";

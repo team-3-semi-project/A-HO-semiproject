@@ -19,6 +19,7 @@ public class NoticeService {
 		noticeDAO = new NoticeDAO();
 	}
 	
+	/* 공지의 총 갯수 조회 */
 	public int selectTotalCount(Map<String, String> searchMap) {
 		
 		SqlSession session = getSqlSession();
@@ -30,7 +31,7 @@ public class NoticeService {
 		return totalCount;
 	}
 
-	
+	/* 공지 목록 조회 */
 	public List<NoticeDTO> selectAllNoticeList(SelectCriteria selectCriteria) {
 		SqlSession session = getSqlSession();
 		
@@ -41,16 +42,18 @@ public class NoticeService {
 		return noticeList;
 	}
 
-
+	/* 공지 세부내용 조회 */
 	public NoticeDTO selectNoticeDetail(int no) {
 		
 		SqlSession session = getSqlSession();
 		NoticeDTO noticeDetail = null;
 		
+		/* 공지 세부내용 조회 시 마다 공지의 조회수 +1 증가 */
 		int result = noticeDAO.incrementNoticeCount(session, no);
 //		System.out.println(result);
 		
 		if (result > 0) {
+			/* 공지 세부내용 조회 */
 			noticeDetail = noticeDAO.selectNoticeDetail(session, no);
 			
 			if (noticeDetail != null) {

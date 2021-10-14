@@ -22,8 +22,10 @@ public class UserAccountSelectServlet extends HttpServlet {
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 로그인한 회원 code */
 		int userCode = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode();
 
+		/* 로그인한 회원 정보 조회 */
 		AhoUserDTO userDTO = new UserAccountService().selectUserAccount(userCode);
 //		System.out.println(userDTO);
 		

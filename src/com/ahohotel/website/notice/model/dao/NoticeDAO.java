@@ -10,25 +10,27 @@ import com.ahohotel.website.notice.model.dto.NoticeDTO;
 
 public class NoticeDAO {
 	
+	/* 공지 총 갯수 select */
 	public int selectTotalCount(SqlSession session, Map<String, String> searchMap) {
 		
 		return session.selectOne("NoticeDAO.selectTotalCount", searchMap);
 		
 	}
 	
-	
+	/* 모든 공지 조회 */
 	public List<NoticeDTO> selectAllNoticeList(SqlSession session, SelectCriteria selectCriteria) {
 		
 		return session.selectList("NoticeDAO.selectAllNoticeList", selectCriteria);
 		
 	}
 
-
+	/* 공지 조회수 증가 */
 	public int incrementNoticeCount(SqlSession session, int no) {
 
 		return session.update("NoticeDAO.incrementNoticeCount", no);
 	}
 
+	/* 공지 세부내용 조회 */
 	public NoticeDTO selectNoticeDetail(SqlSession session, int no) {
 
 		return session.selectOne("NoticeDAO.selectNoticeDetail", no);

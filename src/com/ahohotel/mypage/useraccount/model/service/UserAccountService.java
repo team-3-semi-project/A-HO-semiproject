@@ -9,6 +9,7 @@ import static com.ahohotel.common.mybatis.Template.getSqlSession;
 
 public class UserAccountService {
 
+	/* 회원 탈퇴 */
 	public int deleteUserAccount(int userCode) {
 
 		SqlSession session = getSqlSession();
@@ -25,6 +26,7 @@ public class UserAccountService {
 		return result;
 	}
 
+	/* 회원 정보 수정 */
 	public int updateUserAccount(AhoUserDTO updateUserDTO) {
 
 		SqlSession session = getSqlSession();
@@ -41,6 +43,7 @@ public class UserAccountService {
 		return result;
 	}
 
+	/* 회원 정보 조회 (mypage) */
 	public AhoUserDTO selectUserAccount(int userCode) {
 		
 		SqlSession session = getSqlSession();

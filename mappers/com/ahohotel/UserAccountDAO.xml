@@ -13,6 +13,7 @@
 		<result property="birth" column="BIRTH"/>
 	</resultMap>
 
+	<!-- (마이페이지에서 필요한 정보만)회원정보 조회 -->
 	<select id="selectUserAccount" resultMap="accountResultMap">
 		SELECT 
 	       A.USER_CODE
@@ -27,6 +28,7 @@
 	 WHERE A.USER_CODE = #{ userCode }
 	</select>
 	
+	<!-- 회원정보 수정 -->
 	<update id="updateUserAccount" parameterType="com.ahohotel.user.model.dto.AhoUserDTO">
 		UPDATE
 		       AHOUSER A
@@ -38,6 +40,7 @@
 		 WHERE USER_CODE = #{ code }
 	</update>
 	
+	<!-- 회원탈퇴 -->	
 	<update id="deleteUserAccount">
 		UPDATE
 		       AHOUSER

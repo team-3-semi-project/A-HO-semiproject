@@ -19,13 +19,12 @@ import com.ahohotel.user.model.dto.AhoUserDTO;
 public class UserAccountUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 로그인한 회원 code */
 		int userCode = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode();
 		
+		/* 수정할 회원정보 받아서 dto에 담기 */
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String birthday = request.getParameter("birthday");
@@ -38,7 +37,6 @@ public class UserAccountUpdateServlet extends HttpServlet {
 		Calendar birth = new GregorianCalendar(year, month-1, day);
 		Date bday = new Date(birth.getTimeInMillis());
 
-		
 		AhoUserDTO updateUserDTO = new AhoUserDTO();
 		updateUserDTO.setCode(userCode);
 		updateUserDTO.setPw(pw);
@@ -46,14 +44,16 @@ public class UserAccountUpdateServlet extends HttpServlet {
 		updateUserDTO.setPhone(phone);
 		updateUserDTO.setEmail(email);
 		updateUserDTO.setBirth(bday);
-
+		
+		/* 회원정보 수정 */
 		int result = new UserAccountService().updateUserAccount(updateUserDTO);
 		
-		if (result > 0) {
+		if (result > 0) { /* 회원정보 수정 성공 시 */
 			System.out.println("회원 정보 수정 성공!");
 			
 			int userCode2 = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode();
 
+			/* 수정한 정보로 회원정보 db에서 재조회 */
 			AhoUserDTO userDTO = new UserAccountService().selectUserAccount(userCode2);
 //			System.out.println(userDTO);
 			
@@ -79,7 +79,7 @@ public class UserAccountUpdateServlet extends HttpServlet {
 			request.getRequestDispatcher(path).forward(request, response);
 			
 			
-		} else {
+		} else { /* 회원정보 수정 실패 시 */
 			System.out.println("회원 정보 수정 실패.....");
 		}
 	}

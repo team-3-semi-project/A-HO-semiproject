@@ -16,13 +16,15 @@ public class NoticeDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 선택한 공지의 code */
 		int no = Integer.valueOf(request.getParameter("no"));
-		System.out.println(no);
+//		System.out.println(no);
 		
+		/* 공지 세부내용 조회하기 */
 		NoticeService noticeService = new NoticeService();
 		NoticeDTO noticeDetail = noticeService.selectNoticeDetail(no);
 		
-		System.out.println(noticeDetail);
+//		System.out.println(noticeDetail);
 		
 		String path = "";
 		if (noticeDetail != null) {

@@ -16,6 +16,7 @@
 		<result property="noticeCount" column="NOTICE_COUNT" />
 	</resultMap>
 	
+	<!-- 개시물 조회수 select -->
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT
                COUNT(*)
@@ -30,6 +31,7 @@
     	</where>
 	</select>
 	
+	<!-- 모든 공지 select + 페이징 처리 -->
 	<select id="selectAllNoticeList" resultMap="noticeListMap">
          SELECT 
                A.RNUM
@@ -67,6 +69,7 @@
          WHERE A.RNUM >= #{ startRow }  
 	</select>
 	
+	<!-- 조회수 +1 update -->
 	<update id="incrementNoticeCount">
 		UPDATE
 		       NOTICE A
@@ -77,6 +80,7 @@
 		 WHERE A.NOTICE_CODE = #{ no }
 	</update>
 	
+	<!-- 공지 세부내용 조회 -->
 	<select id="selectNoticeDetail" resultMap="noticeResultMap">
 			SELECT
 			       A.NOTICE_CODE
