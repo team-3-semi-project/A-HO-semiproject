@@ -31,7 +31,7 @@
                     <input type="text" class="form-control" id="userId" name="userId" value="${ requestScope.userId }" readonly>
                     <br>
                     <label for="pw">비밀번호 <sub>&nbsp;&nbsp;영문 대 소문+숫자+특수문자 8~12자리</sub> </label>  
-                    <input type="password" class="form-control" id="password" name="pw" value="${ requestScope.userPw }" >
+                    <input type="password" class="form-control" id="password" name="pw" value="" >
                     <label class="password-error" id="password-error"></label>
                     <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" value="" placeholder="비밀번호 확인">
                     <label class="passwordchek-error" id="passwordchek-error"></label>
