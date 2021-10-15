@@ -1,8 +1,15 @@
 package com.ahohotel.hotellist.model.dto;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class HotelListDTO{
+public class HotelListDTO implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1708452054882390739L;
 	
 	private int hotelCode;
 	private String hotelName;
@@ -13,12 +20,14 @@ public class HotelListDTO{
 	private String hotelOpen;
 	private Date checkIn;
 	private Date checkOut;
+	private List<AttachmentDTO> attachmentList;
 	
 	public HotelListDTO() {
+
 	}
 
 	public HotelListDTO(int hotelCode, String hotelName, String hotelStar, int hotelUserAvg, String hotelPhone,
-			String hotelAddress, String hotelOpen, Date checkIn, Date checkOut) {
+			String hotelAddress, String hotelOpen, Date checkIn, Date checkOut, List<AttachmentDTO> attachmentList) {
 		super();
 		this.hotelCode = hotelCode;
 		this.hotelName = hotelName;
@@ -29,8 +38,10 @@ public class HotelListDTO{
 		this.hotelOpen = hotelOpen;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.attachmentList = attachmentList;
 	}
 
+	
 	public int getHotelCode() {
 		return hotelCode;
 	}
@@ -103,12 +114,24 @@ public class HotelListDTO{
 		this.checkOut = checkOut;
 	}
 
+	public List<AttachmentDTO> getAttachmentList() {
+		return attachmentList;
+	}
+
+	public void setAttachmentList(List<AttachmentDTO> attachmentList) {
+		this.attachmentList = attachmentList;
+	}
+
 	@Override
 	public String toString() {
 		return "HotelListDTO [hotelCode=" + hotelCode + ", hotelName=" + hotelName + ", hotelStar=" + hotelStar
 				+ ", hotelUserAvg=" + hotelUserAvg + ", hotelPhone=" + hotelPhone + ", hotelAddress=" + hotelAddress
-				+ ", hotelOpen=" + hotelOpen + ", checkIn=" + checkIn + ", checkOut=" + checkOut + "]";
+				+ ", hotelOpen=" + hotelOpen + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", attachmentList="
+				+ attachmentList + "]";
 	}
+	
+	
+	
 	
 	
 	

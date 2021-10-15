@@ -39,19 +39,5 @@
 	     WHERE A.HOTEL_OPEN = 'Y'		     	     					     
 	</select>
 	
-	<!--  -->
-	<select id="searchHotel" resultMap="hotelResultMap">
-	    SELECT
-	           A.HOTEL_CODE
-	         , A.HOTEL_NAME
-	         , A.HOTEL_STAR
-	         , A.HOTEL_USER_AVG
-	         , A.HOTEL_PHONE
-	         , A.HOTEL_ADDRESS
-	         , A.HOTEL_OPEN
-	         , A.CHECK_IN
-	         , A.CHECK_OUT
-	      FROM HOTEL A
-	 </select>
 
 </mapper>

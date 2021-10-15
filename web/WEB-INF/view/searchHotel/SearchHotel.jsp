@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html>
@@ -37,22 +38,31 @@
 				<th width="100px">아동</th>
 				<th width="100px">상세</th>
 			</tr>
-			
+			<c:forEach var="hotel" items="${ requestScope.hotelList }">
+			<tr>
+				<td><c:out value="${ hotel.hotelCode }"/></td>
+				<td><c:out value="${ hotel.hotelName }"/></td>
+				<td><c:out value="${ hotel.hotelStar }"/></td>
+				<td><c:out value="${ hotel.hotelUserAvg }"/></td>
+				<td><c:out value="${ hotel.hotelPhone }"/></td>
+				<td><c:out value="${ hotel.createdDate }"/></td>
+			</tr>
+			</c:forEach>			
 			<tr>
 				<td>
-					<%-- 호텔 검색 --%>
+					<%-- 페이징 처리 --%>
 				<jsp:include page="../common/paging.jsp"/>
 		
 
 					    <input type="hidden" name="hotelRegion" value="1">
 						<!-- 호텔 지역 선택 -->
 					    <select id="searchHotel" name="searchHotel">
-							<option value="none" ${ requestScope.selectCriteria.searchCondition eq "region"? "selected": "" }>--</option>
-							<option value="kangwon" ${ requestScope.selectCriteria.searchCondition eq "region"? "selected": "" }>강원점</option>
-							<option value="busan" ${ requestScope.selectCriteria.searchCondition eq "region"? "selected": "" }>부산점</option>
-							<option value="seoul" ${ requestScope.selectCriteria.searchCondition eq "region"? "selected": "" }>서울점</option>
-							<option value="incheon" ${ requestScope.selectCriteria.searchCondition eq "region"? "selected": "" }>인천점</option>
-							<option value="jeju" ${ requestScope.selectCriteria.searchCondition eq "region"? "selected": "" }>제주점</option>
+							<option value="none" ${ requestScope.selectCriteria.searchCondition eq "none"? "selected": "" }>--</option>
+							<option value="kangwon" ${ requestScope.selectCriteria.searchCondition eq "kangwon"? "selected": "" }>강원점</option>
+							<option value="busan" ${ requestScope.selectCriteria.searchCondition eq "busan"? "selected": "" }>부산점</option>
+							<option value="seoul" ${ requestScope.selectCriteria.searchCondition eq "seoul"? "selected": "" }>서울점</option>
+							<option value="incheon" ${ requestScope.selectCriteria.searchCondition eq "incheon"? "selected": "" }>인천점</option>
+							<option value="jeju" ${ requestScope.selectCriteria.searchCondition eq "jeju"? "selected": "" }>제주점</option>
 						</select>
 				</td>
 				<td>

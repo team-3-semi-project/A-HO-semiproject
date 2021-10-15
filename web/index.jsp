@@ -9,7 +9,7 @@
 <body>
 	
 	
-	<jsp:forward page="/WEB-INF/view/common/mainPage.jsp"/>
+	<jsp:forward page="/WEB-INF/view/searchHotel/hotelList.jsp"/>
 	
 	
 </body>
