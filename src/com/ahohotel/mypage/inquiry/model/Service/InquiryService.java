@@ -35,6 +35,17 @@ public class InquiryService {
 		return inquiryList;
 	}
 
+	public InquiryDTO selectInquiryDetail(int no) {
+		
+		SqlSession session = getSqlSession();
+		
+		InquiryDTO inquiryDetail = new InquiryDAO().selectInquiryDetail(session, no);
+		
+		session.close();
+		
+		return inquiryDetail;
+	}
+
 
 
 }

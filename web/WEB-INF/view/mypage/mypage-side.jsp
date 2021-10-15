@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="col-sm-3">
+	<div class="col-sm-2">
 		<div class="card">
                 <div class="card-body">
                   <h1 class="user-name"><c:out value="${ requestScope.userName }"/> 님</h1>

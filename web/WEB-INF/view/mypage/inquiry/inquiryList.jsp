@@ -71,6 +71,7 @@
                         	<c:forEach items="${ requestScope.inquiryList }" var="inquiry">
 							<tr>
 								<td><c:out value="${ inquiry.rowNum }"/></td>
+								<td style="display: none;"><c:out value="${ inquiry.inquiryCode }"/></td>
 								<td><c:out value="${ inquiry.inquiryTitle }"/></td>
 								<td style="text-align: center"><c:out value="${ inquiry.inquiryDate }"/></td>
 								<td style="text-align: center">
@@ -116,12 +117,10 @@
 				$tds[i].onclick = function() {
 					
 					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있겠죠? */
-					const no = this.parentNode.children[0].innerText;
-					//location.href = "${ pageContext.servletContext.contextPath }/notice/detail?no=" + no;
+					const no = this.parentNode.children[1].innerText;
+					location.href = "${ pageContext.servletContext.contextPath }/mypage/inquiry/detail?no=" + no;
 				}
-				
 			}
-			
 		}
 		
 	</script>

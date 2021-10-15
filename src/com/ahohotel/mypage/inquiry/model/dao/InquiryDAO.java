@@ -22,5 +22,11 @@ public class InquiryDAO {
 
 	}
 
+	public InquiryDTO selectInquiryDetail(SqlSession session, int no) {
+		
+		return session.selectOne("InquiryDAO.selectInquiryDetail", no);
+		
+	}
+
 
 }
