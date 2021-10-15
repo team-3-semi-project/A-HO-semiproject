@@ -11,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.reflection.SystemMetaObject;
 
 import com.ahohotel.mypage.useraccount.model.service.UserAccountService;
 import com.ahohotel.user.model.dto.AhoUserDTO;
@@ -57,12 +60,20 @@ public class UserAccountUpdateServlet extends HttpServlet {
 			AhoUserDTO userDTO = new UserAccountService().selectUserAccount(userCode2);
 //			System.out.println(userDTO);
 			
-			String userId = userDTO.getId();
-			String userPw = userDTO.getPw();
-			String userName = userDTO.getName();
-			String userEmail = userDTO.getEmail();
-			Date birth2 = userDTO.getBirth();
-			String userPhone = userDTO.getPhone();
+			/* 수정된 정보로 session의 회원정보 수정 */
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", userDTO);			
+			
+			/* session에서 수정된 회원정보 받아오기 */
+			AhoUserDTO loginUserUpdate = (AhoUserDTO) request.getSession().getAttribute("loginUser");
+//			System.out.println(loginUserUpdate);
+			
+			String userId = loginUserUpdate.getId();
+			String userPw = loginUserUpdate.getPw();
+			String userName = loginUserUpdate.getName();
+			String userEmail = loginUserUpdate.getEmail();
+			Date birth2 = loginUserUpdate.getBirth();
+			String userPhone = loginUserUpdate.getPhone();
 			
 			SimpleDateFormat sdformat = new SimpleDateFormat("YYYY-MM-dd");
 			String userBirth = sdformat.format(birth2);

@@ -46,8 +46,7 @@
                     <label class="email-error" id="email-error"></label>
                     <br>
                     <label for="birthday">생년월일</label>  
-                    <input type="date" class="form-control" id="birthday" name="birthday" value="${ requestScope.userBirth }">
-                    <label class="birthday-error" id="birthday-error"></label>
+                    <input type="date" class="form-control" id="bday" name="birthday" value="${ requestScope.userBirth }">
                     <br>
                     <label for="phone">전화번호 <sub>&nbsp;&nbsp; '-' 없이 입력</sub></label>  
                     <input type="text" class="form-control" id="phone" name="phone" value="${ requestScope.userPhone }">
@@ -72,8 +71,6 @@
   				alert('패스워드가 형식에 알맞지 않습니다. 다시 입력해주세요');
   	  		} else if(!nameFlag) {
   				alert('이름이 형식에 알맞지 않습니다. 다시 입력해주세요');  
-  	  		} else if(!birthFlag) {
-  				alert('생일이 형식에 알맞지 않습니다. 다시 입력해주세요');  
   	  		} else if(!phoneFlag) {
   				alert('핸드폰번호가 형식에 알맞지 않습니다. 다시 입력해주세요');
   	  		} else if(!emailFlag) {
