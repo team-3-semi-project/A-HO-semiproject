@@ -3,10 +3,14 @@ package com.ahohotel.user.model.service;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.user.model.dao.AhoUserDAO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 
 import static com.ahohotel.common.mybatis.Template.getSqlSession;
+
+import java.util.List;
+import java.util.Map;
 
 public class AhoUserService {
 	
@@ -104,6 +108,34 @@ public class AhoUserService {
 		session.close();
 		
 		return isTrue;
+	}
+
+	public int selectUserTotalCount(Map<String, String> searchMap) {
+		SqlSession session = getSqlSession();
+		
+		int result = userDAO.selectUserTotalCount(session, searchMap);
+		
+		return result;
+	}
+
+	public List<AhoUserDTO> selectUserList(SelectCriteria selectCriteria) {
+		SqlSession session = getSqlSession();
+		
+		List<AhoUserDTO> userList = userDAO.selectUserList(session, selectCriteria);
+		
+		session.close();
+		
+		return userList;
+	}
+
+	public AhoUserDTO selectUserDetail(String code) {
+		SqlSession session = getSqlSession();
+		
+		AhoUserDTO userDetail = userDAO.selectUserDetail(session, code);
+		
+		session.close();
+		
+		return userDetail;
 	}
 
 }

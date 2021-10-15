@@ -18,7 +18,34 @@
 		<result property="outYN" column="OUT_YN"/>
 		<result property="blackListYN" column="BLACKLIST_YN"/>
 		<result property="blackListReason" column="BLACKLIST_REASON"/>
+		<result property="grade" column="GRADE"/>
+		<collection property="reserve" resultMap="reserveResultMap"></collection>
+		<collection property="report" resultMap="reportResultMap"></collection>
 	</resultMap>
+	
+	<resultMap type="com.ahohotel.user.model.dto.ReserveAndReportDTO" id="reserveResultMap">
+		<id property="reserveCode" column="RESERVE_CODE"/>
+		<result property="userCode" column="USER_CODE"/>
+		<result property="roomCode" column="ROOM_CODE"/>
+		<result property="paymentDate" column="PAYMENT_DATE"/>
+		<result property="usePoint" column="USE_POINT"/>
+		<result property="price" column="PRICE"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="review" column="REVIEW"/>
+		<result property="score" column="SCORE"/>
+		<result property="reviewDate" column="REVIEW_DATE"/>
+		<collection property="report" resultMap="reportResultMap"></collection>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.user.model.dto.ReportDTO" id="reportResultMap">
+		<id property="reportCode" column="REPORT_CODE"/>
+		<result property="userCode" column="USER_CODE"/>
+		<result property="reserveCode" column="RESERVE_CODE"/>
+		<result property="reserveReason" column="RESERVE_REASON"/>
+	</resultMap>
+	
+	
 
 	<!-- 로그인 회원 정보 조회 -->
 	<select id="selectLoginUser" resultMap="memberResultMap">
@@ -121,4 +148,134 @@
 		   SET A.USER_PW = #{ pw }
 		 WHERE A.USER_ID = #{ id }  
  	</update>
+ 	
+ 	<select id="selectUserTotalCount" resultType="_int" parameterType="hashmap">
+ 		SELECT 
+               COUNT(*)
+          FROM AHOUSER A
+          <where>
+	          <if test="searchCondition == 'id'">
+		      	  A.USER_ID LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'name'">
+		          A.USER_NAME LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'email'">
+		      	  A.USER_EMAIL LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'phone'">
+		      	  A.USER_PHONE LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+          </where>
+ 	</select>
+ 	
+ 	<select id="selectUserList" resultMap="memberResultMap">
+         SELECT 
+               A.RNUM
+             , A.USER_CODE
+		     , A.VIP_CODE
+		     , A.USER_ID
+		     , A.USER_PW
+		     , A.USER_NAME
+		     , A.USER_EMAIL
+		     , A.USER_PHONE
+		     , A.BIRTH
+		     , A.GENDER
+		     , A.POINT
+		     , A.JOIN_DATE
+		     , A.OUT_DATE
+		     , A.OUT_YN
+		     , A.BLACKLIST_YN
+		     , A.BLACKLIST_REASON
+          FROM (SELECT ROWNUM RNUM
+                     , B.USER_CODE
+				     , B.VIP_CODE
+				     , B.USER_ID
+				     , B.USER_PW
+				     , B.USER_NAME
+				     , B.USER_EMAIL
+				     , B.USER_PHONE
+				     , B.BIRTH
+				     , B.GENDER
+				     , B.POINT
+				     , B.JOIN_DATE
+				     , B.OUT_DATE
+				     , B.OUT_YN
+				     , B.BLACKLIST_YN
+				     , B.BLACKLIST_REASON
+                  FROM (SELECT C.USER_CODE
+						     , C.VIP_CODE
+						     , C.USER_ID
+						     , C.USER_PW
+						     , C.USER_NAME
+						     , C.USER_EMAIL
+						     , C.USER_PHONE
+						     , C.BIRTH
+						     , C.GENDER
+						     , C.POINT
+						     , C.JOIN_DATE
+						     , C.OUT_DATE
+						     , C.OUT_YN
+						     , C.BLACKLIST_YN
+						     , C.BLACKLIST_REASON
+                          FROM AHOUSER C
+    					<where>
+							<if test="searchCondition == 'id'">
+					            C.USER_ID LIKE '%' || #{ searchValue } || '%'
+				      	    </if>
+				        	<if test="searchCondition == 'name'">
+					            C.USER_NAME LIKE '%' || #{ searchValue } || '%'
+				    	    </if>
+				    	    <if test="searchCondition == 'email'">
+					        	C.USER_EMAIL LIKE '%' || #{ searchValue } || '%'
+				    	    </if>
+				    	    <if test="searchCondition == 'phone'">
+					      	    C.USER_PHONE LIKE '%' || #{ searchValue } || '%'
+				    	    </if>
+    					</where>
+                         ORDER BY C.USER_CODE
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+         WHERE A.RNUM >= #{ startRow }  
+	</select>
+	
+	<select id="selectUserDetail" resultMap="memberResultMap">
+		SELECT 
+		       A.USER_CODE
+		     , A.VIP_CODE
+		     , A.USER_ID
+		     , A.USER_PW
+		     , A.USER_NAME
+		     , A.USER_EMAIL
+		     , A.USER_PHONE
+		     , A.BIRTH
+		     , A.GENDER
+		     , A.POINT
+		     , A.JOIN_DATE
+		     , A.OUT_DATE
+		     , A.OUT_YN
+		     , A.BLACKLIST_YN
+		     , A.BLACKLIST_REASON
+		     , C.GRADE
+		     , B.RESERVE_CODE
+		     , B.ROOM_CODE
+		     , B.PAYMENT_DATE
+		     , B.USE_POINT
+		     , B.PRICE
+		     , B.START_DATE
+		     , B.END_DATE
+		     , B.REVIEW
+		     , B.SCORE
+		     , B.REVIEW_DATE
+		     , D.REPORT_CODE
+		     , D.RESERVE_REASON
+		  FROM AHOUSER A
+		  LEFT OUTER JOIN RESERVE B ON (A.USER_CODE = B.USER_CODE)
+		  JOIN VIP C ON (A.VIP_CODE = C.VIP_CODE)
+		  LEFT OUTER JOIN AHOREPORT D ON(B.RESERVE_CODE = D.RESERVE_CODE)
+		 WHERE A.USER_CODE = #{ code }
+	</select>
 </mapper>
