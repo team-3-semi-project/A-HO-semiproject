@@ -44,7 +44,7 @@
 	
 	<script>
 	
-		const link = "${ pageContext.servletContext.contextPath }/?";
+		const link = "${ pageContext.servletContext.contextPath }/notice";
 		let searchText = "";
 		
 		if(${ !empty requestScope.selectCriteria.searchCondition? true: false }) {
