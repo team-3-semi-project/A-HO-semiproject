@@ -1,42 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper>
-	<resultMap type="com.ahohotel.hotellist.model.dto.HotelListDTO" id="hotelResultMap">
+	<resultMap type="com.ahohotel.room.model.dto.RoomDTO" id="roomMap">
 		<id property="code" column="HOTEL_NO"/>
+		<result property="roomCode" column="ROOM_CODE"/>
 		<result property="hotelCode" column="HOTEL_CODE"/>
-		<result property="hotelName" column="HOTEL_NAME"/>
-		<result property="hotelStar" column="HOTEL_STAR"/>
-		<result property="hotelUserAvg" column="HOTEL_USER_AVG"/>
-		<result property="hotelPhone" column="HOTEL_PHONE"/>
-		<result property="hotelAddress" column="HOTEL_ADDRESS"/>
-		<result property="hotelOpen" column="HOTEL_OPEN"/>
-		<result property="checkIn" column="CHECK_IN"/>
-		<result property="checkOut" column="CHECK_OUT"/>
+		<result property="roomName" column="ROOM_NAME"/>
+		<result property="roomPrice" column="ROOM_PRICE"/>
+		<result property="roomCount" column="ROOM_COUNT"/>
 	</resultMap>
-	
-	<select id="selectRegion" resultMap="hotelResultMap" parameterType="hashmap">
-	 SELECT * FROM HOTEL WHERE ${ searchHotel } LIKE '%' || #{ searchValue } || '%' 
-	</select>			
-	<!-- 호텔 정보 조회 -->
-	<select id="searchHotel" resultMap="hotelResultMap">
+
+	<!-- 객실 정보 조회 -->
+	<select id="room" resultMap="roomMap">
 	    SELECT
-	           A.HOTEL_CODE
-	         , A.HOTEL_NAME
-	         , A.HOTEL_STAR
-	         , A.HOTEL_USER_AVG
-	         , A.HOTEL_PHONE
-	         , A.HOTEL_ADDRESS
-	         , A.HOTEL_OPEN
-	         , A.CHECK_IN
-	         , A.CHECK_OUT
-	      FROM HOTEL A
-	      <if test="searchCondition != null and searchCondition !=''">
-	           	 ${ searchHotel } LIKE '%' || #{ searchValue } || '%'
-		  </if>
-		  <if test="searchSale != null and searchSale !=''">
-	           	 searchSale = #{ searchSale }
-		  </if>
-	     WHERE A.HOTEL_OPEN = 'Y'		     	     					     
+	           A.ROOM_CODE
+	         , A.HOTEL_CODE
+	         , A.ROOM_NAME
+	         , A.ROOM_PRICE
+	         , A.ROOM_COUNT
+	      FROM ROOM A	     					     
 	</select>
 	
 

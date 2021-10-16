@@ -45,7 +45,7 @@
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
-            <h3 style="text-align: center;">A-HO호텔 xx점</h3>
+            <h3 style="text-align: center;">A-HO호텔 <c:out value="${ requestScope.hotelName }"/> 점</h3>
             <div class="row gx-4 gx-lg-5 align-items-center my-5" >
                 <div><img src="img/download.jpg" style="display: block; margin-left: 200px; width:700px; height:400px;"/></div>
                 <div class="col-lg-5">

@@ -21,47 +21,18 @@ public class HotelService {
 		hotelDAO = new HotelListDAO();
 	}
 	
-	/* 페이징 처리를 위한 전체 게시물 수 조회용 메소드 */
-	public int selectTotalCount(Map<String, String> searchMap) {
-		
+	
+	/* 호텔 전체 조회용 메소드 */
+	public HotelListDTO selectHotelList(int hotelCode) {
 		SqlSession session = getSqlSession();
 		
-		int totalCount = hotelDAO.selectTotalCount(session, searchMap);
+		HotelListDTO hotelDTO = new HotelListDAO().selectHotelList(session, hotelCode);
 		
 		session.close();
 		
-		return totalCount;
+		return hotelDTO;
 	}
 	
-	/* 게시물 전체 조회용 메소드 */
-	public List<HotelListDTO> selectHotelList(SelectCriteria selectCriteria) {
-		
-		SqlSession session = getSqlSession();
-		
-		List<HotelListDTO> hotelList = HotelListDAO.selectHotelList(session, selectCriteria);
-		
-		session.close();
-		
-		return hotelList;
-	}
-	
-	/* 신규 게시물 등록용 메소드 */
-	public int insertHotel(HotelListDTO newHotel) {
-		
-		SqlSession session = getSqlSession();
-		
-		int result = HotelListDAO.insertHotel(session, newHotel);
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
-		session.close();
-		
-		return result;
-	}
 	
 	/* 썸네일 게시판 조회용 메소드 */
 	public List<HotelListDTO> selectThumbnailList() {

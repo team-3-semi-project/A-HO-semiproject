@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper>
+	<resultMap type="com.ahohotel.room.model.dto.RoomPhotoDTO" id="roomPhotoMap">
+		<id property="code" column="HOTEL_NO"/>
+		<result property="roPhotoCode" column="RO_PHOTO_CODE"/>
+		<result property="roomCode" column="ROOM_CODE"/>
+		<result property="roOriginalFile" column="RO_ORIGINAL_FILE"/>
+		<result property="roFileName" column="RO_FILE_NAME"/>
+		<result property="roFile" column="RO_FILE"/>
+		<result property="roThumbnailYn" column="RO_THUMBNAIL_YN"/>
+	</resultMap>
+
+	<!-- 객실 정보 조회 -->
+	<select id="roomPhoto" resultMap="roomPhotoMap">
+	    SELECT
+	           A.RO_PHOTO_CODE
+	         , A.ROOM_CODE
+	         , A.RO_ORIGINAL_FILE
+	         , A.RO_FILE_NAME
+	         , A.RO_FILE
+	         , A.RO_THUMBNAIL_YN
+	      FROM ROOM_PHOTO A	     					     
+	</select>
+	
+
+</mapper>

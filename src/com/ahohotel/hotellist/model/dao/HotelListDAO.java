@@ -8,24 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.hotellist.model.dto.AttachmentDTO;
 import com.ahohotel.hotellist.model.dto.HotelListDTO;
+import com.ahohotel.user.model.dto.AhoUserDTO;
 
 
 public class HotelListDAO {
 
-	public int selectTotalCount(SqlSession session, Map<String, String> searchMap) {
-		
-		return session.selectOne("HotelListDAO.selectTotalCount", searchMap);
+	
+	/* 호텔 정보 조회 */
+	public HotelListDTO selectHotelList(SqlSession session, int hotelCode) {
+
+		return session.selectOne("HotelListDAO.selectHotelList", hotelCode);
 	}
 
-	public static List<HotelListDTO> selectHotelList(SqlSession session, SelectCriteria selectCriteria) {
-		
-		return session.selectList("HotelListDAO.selectHotelList", selectCriteria);
-	}
-
-	public static int insertHotel(SqlSession session, HotelListDTO newBoard) {
-		
-		return session.insert("HotelListDAO.insertHotel", newBoard);
-	}
 	
 	/* 썸네일게시판 목록 조회용 메소드 */
 	public static List<HotelListDTO> selectThumbnailList(SqlSession session) {

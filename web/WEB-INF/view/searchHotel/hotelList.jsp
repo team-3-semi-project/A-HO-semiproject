@@ -17,6 +17,25 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
   </script>
+   	
+  <style>
+  	.flex-container{
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-align: center;
+	      -ms-flex-align: center;
+	          align-items: center;
+	  -webkit-box-pack: center;
+	      -ms-flex-pack: center;
+	          justify-content: center;
+	}
+	
+	.width{
+		width: 500px;
+
+	}
+  </style>
 <title>호텔 검색</title>
 </head>
 
@@ -94,29 +113,18 @@
 		</div>
 	</div>
 
-	<div class="outer outer-notice-insert">
-		<br>
-		<div class="table-area">
-			<formmethod="post">
-				<div width="200" position="absolute" left="80%">
-				    <div class="col-md-6">
-				      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4">
-				        <div>
-				          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
-				        </div>
-				        <div class="col p-4 d-flex flex-column position-static">
-				          <h3 class="mb-0">A-HO호텔 강원점</h3><br>
-				          <p class="card-text mb-auto">산 속의 맑은 공기를 마시며 자연과 함께 즐기는 것이 장점입니다.</p>
-				          <button type="submit">찜하기</button>
-				          <button type="submit">객실정보 보기</button>
-				        </div>
-				      </div>
-				    </div>				
-				</div>
-			</form>
+
+		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4">
+			<div>
+				<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
+			</div>
+				<div class="col p-4 d-flex flex-column position-static">
+				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br>
+				  <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">찜하기</a>
+				  <a href="${ pageContext.servletContext.contextPath }/WEB-INF/view/room/room.jsp" class="btn btn-outline-primary">객실정보 보기</a>
+				 </div>
 		</div>
-	</div>
-	
+				   
 
 	
 	

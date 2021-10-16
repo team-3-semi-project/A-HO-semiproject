@@ -18,8 +18,8 @@ public class HotelListDTO implements Serializable{
 	private String hotelPhone;
 	private String hotelAddress;
 	private String hotelOpen;
-	private Date checkIn;
-	private Date checkOut;
+	private java.util.Date checkIn;
+	private java.util.Date checkOut;
 	private List<AttachmentDTO> attachmentList;
 	
 	public HotelListDTO() {
