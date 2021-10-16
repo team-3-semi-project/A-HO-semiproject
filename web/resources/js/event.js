@@ -141,6 +141,22 @@ window.onload=function(){
         }
 
 	 	
+		if(document.getElementsByTagName("td")) {
+			
+			const $tds = document.getElementsByTagName("td");
+			for(let i = 0; i < $tds.length; i++) {
+				
+				$tds[i].onmouseenter = function() {
+					this.parentNode.style.backgroundColor = "lightgrey";
+					this.parentNode.style.cursor = "pointer";
+				}
+				
+				$tds[i].onmouseout = function() {
+					this.parentNode.style.backgroundColor = "white";
+				}
+			}
+		}
+	
 		
 	
 }

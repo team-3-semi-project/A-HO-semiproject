@@ -75,6 +75,41 @@
         color: rgb(156, 156, 156);
     }
     
+    /* manager header */
+   #mainnav {
+       margin-left: auto;
+       margin-right: auto;
+       text-align: center;
+       background-color: dimgray;
+       padding-left: 24px;
+       padding-right: 24px;
+   } 
+   #sidebarMenu {
+       text-align: center;
+   }
+
+   #managerheaderimg {
+       margin-left: 100px;
+   }
+
+   #managermode {
+       margin-top: 15px;
+       border-style: solid;
+       border-color: firebrick;
+   }
+   
+   /* 회원 목록 */
+   .userlisttb {
+   	   margin-top: 20px;
+       text-align: center;
+   } 
+   
+   /* 회원 상세 정보 */
+   .userdetail {
+   		margin-top: 20px;
+   }
+    
+    
     
     	#mainLogo {
         font-size: 3em;

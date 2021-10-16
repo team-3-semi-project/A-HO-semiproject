@@ -1,7 +1,11 @@
 package com.ahohotel.user.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
+import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 
 public class AhoUserDAO {
@@ -50,6 +54,24 @@ public class AhoUserDAO {
 	public int resetPw(SqlSession session, AhoUserDTO resetPw) {
 
 		return session.update("AhoUserDAO.resetPw", resetPw);
+	}
+
+
+	public int selectUserTotalCount(SqlSession session, Map<String, String> searchMap) {
+		
+		return session.selectOne("AhoUserDAO.selectUserTotalCount", searchMap);
+	}
+
+
+	public List<AhoUserDTO> selectUserList(SqlSession session, SelectCriteria selectCriteria) {
+		
+		return session.selectList("AhoUserDAO.selectUserList", selectCriteria);
+	}
+
+
+	public AhoUserDTO selectUserDetail(SqlSession session, String code) {
+		
+		return session.selectOne("AhoUserDAO.selectUserDetail", code);
 	}
 
 }
