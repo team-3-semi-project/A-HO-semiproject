@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ReserveDAO">
-  <resultMap type="com.ahohotel.mypage.model.dto.ReserveSearchPointDTO" id="reservePointResultMap">
+  <resultMap type="com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO" id="reserveListResultMap">
 	  	<id property="reserveCode" column="RESERVE_CODE"/>
 	  	<result property="userCode" column="USER_CODE"/>
 	  	<result property="roomcode" column="ROOM_CODE"/>
@@ -13,9 +13,11 @@
 	  	<result property="review" column="REVIEW"/>
 	  	<result property="score" column="SCORE"/>
 	  	<result property="reviewDate" column="REVIEW_DATE"/>
+	  	<result property="option" column="ROOM_OPTION"/>
 	  	
 	  	<association property="room" resultMap="roomResultMap"/>
 	  	<association property="hotel" resultMap="hotelResultMap"/>
+	  	<association property="hotelPhoto" resultMap="hotelPhotoResultMap"></association>
    </resultMap>
    
    <resultMap type="com.ahohotel.user.model.dto.AhoUserDTO" id="memberResultMap">
@@ -37,7 +39,7 @@
 		<result property="blackListReason" column="BLACKLIST_REASON"/>
 	</resultMap>
    
-   <resultMap type="com.ahohotel.mypage.model.dto.HotelDTO" id="hotelResultMap">
+   <resultMap type="com.ahohotel.mypage.reserve.model.dto.HotelDTO" id="hotelResultMap">
    		<id property="hoCode" column="HOTEL_CODE"/>
    		<result property="hoName" column="HOTEL_NAME"/>
    		<result property="hoStar" column="HOTEL_STAR"/>
@@ -49,7 +51,7 @@
    		<result property="checkOut" column="CHECK_OUT"/>
    </resultMap>
    
-   <resultMap type="com.ahohotel.mypage.model.dto.RoomDTO" id="roomResultMap">
+   <resultMap type="com.ahohotel.mypage.reserve.model.dto.RoomDTO" id="roomResultMap">
    		<id property="roomCode" column="ROOM_CODE"/>
    		<result property="hotelCode" column="HOTEL_CODE"/>
    		<result property="roomName" column="ROOM_NAME"/>
@@ -57,7 +59,7 @@
    		<result property="count" column="ROOM_COUNT"/>
    </resultMap>
   	
-  	<resultMap type="com.ahohotel.mypage.model.dto.ReserveDTO" id="reserveResultMap">
+  	<resultMap type="com.ahohotel.mypage.reserve.model.dto.ReserveDTO" id="reserveResultMap">
 	  	<id property="reserveCode" column="RESERVE_CODE"/>
 	  	<result property="userCode" column="USER_CODE"/>
 	  	<result property="roomcode" column="ROOM_CODE"/>
@@ -69,9 +71,19 @@
 	  	<result property="review" column="REVIEW"/>
 	  	<result property="score" column="SCORE"/>
 	  	<result property="reviewDate" column="REVIEW_DATE"/>
+	  	<result property="option" column="ROOM_OPTION"/>
 	 </resultMap>
   	
-  	<select id="searchPoint" resultMap="reservePointResultMap">
+  	<resultMap type="com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO" id="hotelPhotoResultMap">
+  		<id property="photoCode" column="H_PHOTO_CODE"/>
+  		<result property="hotelCode" column="HOTEL_CODE"/>
+  		<result property="originFile" column="H_ORIGINAL_FILE"/>
+  		<result property="fileName" column="H_FILE_NAME"/>
+  		<result property="file" column="H_FILE"/>
+  		<result property="thumbnail" column="H_THUMBNAIL_YN"/>
+  	</resultMap>
+  	
+  	<select id="searchPoint" resultMap="reserveListResultMap">
   		SELECT
   		       A.PAYMENT_DATE
   		     , A.USE_POINT
@@ -82,6 +94,7 @@
   		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
   		  JOIN HOTEL C ON (B.HOTEL_CODE = C.HOTEL_CODE)
   		 WHERE A.USER_CODE = #{ searchUserNo }
+  		 ORDER BY A.PAYMENT_DATE DESC
   	</select>
   	
   	<select id="searchMemberPoint" resultMap="memberResultMap">
@@ -89,5 +102,32 @@
   		       A.POINT
   		  FROM AHOUSER A
   		 WHERE USER_CODE = #{ searchUserNo }
+  	</select>
+  	
+  	<select id="selectMyReserve" resultMap="reserveListResultMap">
+  		SELECT
+  		       A.PAYMENT_DATE
+  		     , A.PRICE
+  		     , A.START_DATE
+  		     , A.END_DATE
+  		     , A.ROOM_OPTION
+  		     , A.REVIEW
+  		     , B.ROOM_NAME
+  		     , C.HOTEL_CODE
+  		     , C.HOTEL_NAME
+  		  FROM RESERVE A
+  		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
+  		  JOIN HOTEL C ON (B.HOTEL_CODE = C.HOTEL_CODE)
+  		 WHERE USER_CODE = #{ userNum }
+  		 ORDER BY A.PAYMENT_DATE DESC
+  	</select>
+  	
+  	<select id="selectPhotoPath" resultMap="hotelPhotoResultMap">
+  		SELECT
+  		       A.H_FILE_NAME
+  		     , A.H_ORIGINAL_FILE
+  		     , A.H_FILE
+  		  FROM HOTEL_PHOTO A
+  		 WHERE A.HOTEL_CODE = #{ hotelNum } 
   	</select>
 </mapper>

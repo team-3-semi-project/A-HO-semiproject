@@ -1,0 +1,63 @@
+package com.ahohotel.mypage.reserve.model.service;
+
+import static com.ahohotel.common.mybatis.Template.getSqlSession;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.ahohotel.mypage.reserve.model.dao.ReserveDAO;
+import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
+import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
+import com.ahohotel.user.model.dto.AhoUserDTO;
+public class ReserveService {
+
+	private final ReserveDAO reserveDAO;
+	
+	public ReserveService() {
+		reserveDAO = new ReserveDAO();
+	}
+
+	public List<ReserveSearchListDTO> searchPoint(int searchUserNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<ReserveSearchListDTO> reserveList = reserveDAO.searchReservePoint(session, searchUserNo);
+		session.close();
+		
+		return reserveList;
+	}
+
+	public AhoUserDTO searchMemberPoint(int searchUserNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		AhoUserDTO ahoUser = reserveDAO.searchMemberPoint(session, searchUserNo);
+		session.close();
+		
+		return ahoUser;
+	}
+
+	public List<ReserveSearchListDTO> selectMyReserve(int userNum) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<ReserveSearchListDTO> reserveList = reserveDAO.selectMyReserve(session, userNum);
+		
+		session.close();
+		
+		return reserveList;
+	}
+
+	public HotelPhotoDTO selectPhotoPath(int hotelNum) {
+		
+		SqlSession session = getSqlSession();
+		
+		HotelPhotoDTO hotelPhoto = reserveDAO.selectPhotoPath(session, hotelNum);
+		
+		session.close();
+		
+		return hotelPhoto;
+	}
+
+}

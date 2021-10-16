@@ -1,4 +1,4 @@
-package com.ahohotel.mypage.model.dto;
+package com.ahohotel.mypage.reserve.model.dto;
 
 import java.io.Serializable;
 import java.util.Date;

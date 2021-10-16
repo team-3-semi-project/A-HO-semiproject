@@ -37,19 +37,8 @@
   <main class="container-fluid">
     <div class="row">
         
-        <!-- include하면 동작을 안함 -->
-		<div class="col-sm-2">
-            <div class="card">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/website/company">회사 소개</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/notice">공지 사항</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/website/oftenOQ">자주하는 질문</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/sitemap">사이트 맵</a></li>
-                  <li class="list-group-item"><a href="">약관 및 정책</a></li>
-                </ul>
-            </div> 
-        </div>
-
+		<jsp:include page="website-side.jsp"/>
+        
         <div class="col-sm-9">
           <div class="col-sm-1"></div>
           <div class="card col-sm-10">

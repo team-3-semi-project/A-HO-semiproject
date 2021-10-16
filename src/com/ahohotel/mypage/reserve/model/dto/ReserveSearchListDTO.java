@@ -1,10 +1,10 @@
-package com.ahohotel.mypage.model.dto;
+package com.ahohotel.mypage.reserve.model.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
 
-public class ReserveSearchPointDTO implements Serializable{
+public class ReserveSearchListDTO implements Serializable{
 
 	private static final long serialVersionUID = 2030322266576900721L;
 
@@ -19,18 +19,21 @@ public class ReserveSearchPointDTO implements Serializable{
 	private String review;
 	private int score;
 	private java.util.Date reviewDate;
+	private String option;
 	private HotelDTO hotel;
 	private RoomDTO room;
+	private HotelPhotoDTO hotelPhoto;
+	
 	
 	/* 포인트 소멸일자용 변수(테이블에는 없음) */
 	private java.util.Date endPointDate;
 	
-	public ReserveSearchPointDTO() {
+	public ReserveSearchListDTO() {
 	}
 
-	public ReserveSearchPointDTO(int reserveCode, int userCode, int roomCode, Date paymentDate, int usePoint, int price,
-			Date startDate, Date endDate, String review, int score, Date reviewDate, HotelDTO hotel,
-			RoomDTO room) {
+	public ReserveSearchListDTO(int reserveCode, int userCode, int roomCode, Date paymentDate, int usePoint, int price,
+			Date startDate, Date endDate, String review, int score, Date reviewDate, String option, HotelDTO hotel,
+			RoomDTO room, HotelPhotoDTO hotelPhoto, Date endPointDate) {
 		this.reserveCode = reserveCode;
 		this.userCode = userCode;
 		this.roomCode = roomCode;
@@ -42,8 +45,11 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.review = review;
 		this.score = score;
 		this.reviewDate = reviewDate;
+		this.option = option;
 		this.hotel = hotel;
 		this.room = room;
+		this.hotelPhoto = hotelPhoto;
+		this.endPointDate = endPointDate;
 	}
 
 	public int getReserveCode() {
@@ -158,13 +164,31 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.endPointDate = endPointDate;
 	}
 	
+	public HotelPhotoDTO getHotelPhoto() {
+		return hotelPhoto;
+	}
+
+	public void setHotelPhoto(HotelPhotoDTO hotelPhoto) {
+		this.hotelPhoto = hotelPhoto;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
 	@Override
 	public String toString() {
-		return "ReserveSearchPointDTO [reserveCode=" + reserveCode + ", userCode=" + userCode + ", roomCode=" + roomCode
+		return "ReserveSearchListDTO [reserveCode=" + reserveCode + ", userCode=" + userCode + ", roomCode=" + roomCode
 				+ ", paymentDate=" + paymentDate + ", usePoint=" + usePoint + ", price=" + price + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", review=" + review + ", score=" + score + ", reviewDate="
-				+ reviewDate + ", hotel=" + hotel + ", room=" + room + "]";
+				+ reviewDate + ", option=" + option + ", hotel=" + hotel + ", room=" + room + ", hotelPhoto="
+				+ hotelPhoto + ", endPointDate=" + endPointDate + "]";
 	}
+
 	
 	
 	
