@@ -14,7 +14,9 @@
 		<result property="checkOut" column="CHECK_OUT"/>
 	</resultMap>
 	
-	
+	<select id="selectRegion" resultMap="hotelResultMap" parameterType="hashmap">
+	 SELECT * FROM HOTEL WHERE ${ searchHotel } LIKE '%' || #{ searchValue } || '%' 
+	</select>			
 	<!-- 호텔 정보 조회 -->
 	<select id="searchHotel" resultMap="hotelResultMap">
 	    SELECT
@@ -28,9 +30,28 @@
 	         , A.CHECK_IN
 	         , A.CHECK_OUT
 	      FROM HOTEL A
+	      <if test="searchCondition != null and searchCondition !=''">
+	           	 ${ searchHotel } LIKE '%' || #{ searchValue } || '%'
+		  </if>
+		  <if test="searchSale != null and searchSale !=''">
+	           	 searchSale = #{ searchSale }
+		  </if>
 	     WHERE A.HOTEL_OPEN = 'Y'		     	     					     
-	
 	</select>
 	
+	<!--  -->
+	<select id="searchHotel" resultMap="hotelResultMap">
+	    SELECT
+	           A.HOTEL_CODE
+	         , A.HOTEL_NAME
+	         , A.HOTEL_STAR
+	         , A.HOTEL_USER_AVG
+	         , A.HOTEL_PHONE
+	         , A.HOTEL_ADDRESS
+	         , A.HOTEL_OPEN
+	         , A.CHECK_IN
+	         , A.CHECK_OUT
+	      FROM HOTEL A
+	 </select>
 
 </mapper>
