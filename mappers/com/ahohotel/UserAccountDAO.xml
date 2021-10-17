@@ -11,9 +11,16 @@
 		<result property="email" column="USER_EMAIL"/>
 		<result property="phone" column="USER_PHONE"/>
 		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="point" column="POINT"/>
+		<result property="joinDate" column="JOIN_DATE"/>
+		<result property="outDate" column="OUT_DATE"/>
+		<result property="outYN" column="OUT_YN"/>
+		<result property="blackListYN" column="BLACKLIST_YN"/>
+		<result property="blackListReason" column="BLACKLIST_REASON"/>
 	</resultMap>
 
-	<!-- (마이페이지에서 필요한 정보만)회원정보 조회 -->
+	<!-- 회원정보 조회 -->
 	<select id="selectUserAccount" resultMap="accountResultMap">
 		SELECT 
 	       A.USER_CODE
@@ -24,6 +31,13 @@
 	     , A.USER_EMAIL
 	     , A.USER_PHONE
 	     , A.BIRTH
+	     , A.GENDER
+	     , A.POINT
+	     , A.JOIN_DATE
+	     , A.OUT_DATE
+	     , A.OUT_YN
+	     , A.BLACKLIST_YN
+	     , A.BLACKLIST_REASON
 	  FROM AHOUSER A
 	 WHERE A.USER_CODE = #{ userCode }
 	</select>

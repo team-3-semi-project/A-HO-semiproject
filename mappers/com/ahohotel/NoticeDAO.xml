@@ -16,7 +16,7 @@
 		<result property="noticeCount" column="NOTICE_COUNT" />
 	</resultMap>
 	
-	<!-- 개시물 조회수 select -->
+	<!-- 전체 게시물 갯수 select -->
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT
                COUNT(*)

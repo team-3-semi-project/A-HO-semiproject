@@ -55,7 +55,7 @@
                 </div>
                 
                 <%-- 페이지 처리 --%>
-				<jsp:include page="../common/paging.jsp"/>
+				<jsp:include page="noticePaging.jsp"/>
 				
                 <br><br>
                 

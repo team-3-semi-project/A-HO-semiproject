@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="col-sm-3">
+	<div class="col-sm-2">
 		<div class="card">
                 <div class="card-body">
                   <h1 class="user-name"><c:out value="${ sessionScope.loginUser.name }"/> 님</h1>
@@ -19,7 +19,7 @@
                   <li class="list-group-item"><a href="#">찜 목록</a></li>
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/reserve">예약내역</a></li>
                   <li class="list-group-item"><a href="#">나의 후기</a></li>
-                  <li class="list-group-item"><a href="#">1:1문의 내역</a></li>
+                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/inquiry">1:1문의 내역</a></li>
                 </ul>
                 <div class="card-body">
                 </div>
