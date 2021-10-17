@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,7 +21,7 @@
   background: url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain;
 }
 
-.ss {
+.star {
 display: none;
 }
 
@@ -49,22 +51,22 @@ display: none;
           <div class="card" style="width: 50rem;">
             <div class="card-body">
               <h2 class="card-title">리뷰 작성</h2><br><br>
-              <form action="" method="">
+              <form action="${ pageContext.servletContext.contextPath }/mypage/review" method="post">
                 <div style="border: 1px solid black;">
                   <br>
-                  <div style="margin-left: 20px; margin-right: 20px;"><h4>호텔</h4></div><br>
+                  <div style="margin-left: 20px; margin-right: 20px;"><h4><c:out value="${ reserve.hotel.hoName } ${ reserve.room.roomName } Room"/></h4></div><br>
                   <div style="margin-left: 20px;">
-                    <input type="radio" name="1" id="2" class="ss"><label for="2"></label>
-                    <input type="radio" name="1" id="3" class="ss"><label for="3"></label>
-                    <input type="radio" name="1" id="4" class="ss"><label for="4"></label>
-                    <input type="radio" name="1" id="5" class="ss"><label for="5"></label>
-                    <input type="radio" name="1" id="6" class="ss"><label for="6"></label>
-                    <p style="float: right; margin-right: 20px;" >예약 날짜</p>
+                    <input type="radio" name="score" id="1" class="star" value="1"><label for="1"></label>
+                    <input type="radio" name="score" id="2" class="star" value="2"><label for="2"></label>
+                    <input type="radio" name="score" id="3" class="star" value="3"><label for="3"></label>
+                    <input type="radio" name="score" id="4" class="star" value="4"><label for="4"></label>
+                    <input type="radio" name="score" id="5" class="star" value="5"><label for="5"></label>
+                    <p class="card-text" style="float: right; margin-right: 20px;"><small class="text-muted"><fmt:formatDate value="${ reserve.startDate }" type="date" pattern="yyyy-MM-dd 15시"/> ~ <fmt:formatDate value="${ reserve.endDate }" type="date" pattern="yyyy-MM-dd 11시"/></small>
                   </div>
                   <br>
-                  <textarea name="111" id="" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
-                  <br>
-                  <button type="submit" class="reviewB">취소</button> <button type="reset" class="reviewB">확인</button>
+                  <textarea name="reviewText" id="reviewText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
+                  <input type="radio" name="reserveCode" value="${ reserve.reserveCode }" style="display: none;" checked="checked">
+                  <button type="reset" class="reviewB" id="reviewCancle">취소</button> <button type="submit" class="reviewB" id="reviewOk">확인</button>
                   <br clear="both">
                 </div>
                
@@ -75,41 +77,46 @@ display: none;
       </div>
 
       <script>
+        $("#1").click(function(){
+          $("#1+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
+          $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
+          $("#3+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
+          $("#4+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
+          $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
+        });
         $("#2").click(function(){
+          $("#1+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#3+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
           $("#4+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
           $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
-          $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
         });
         $("#3").click(function(){
+          $("#1+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#3+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#4+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
           $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
-          $("#6+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
         });
         $("#4").click(function(){
+          $("#1+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#3+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#4+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
-          $("#6+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
         });
         $("#5").click(function(){
+          $("#1+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#3+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#4+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
-          $("#6+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
         });
-        $("#6").click(function(){
-          $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
-          $("#3+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
-          $("#4+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
-          $("#5+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
-          $("#6+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
-        });
+        
+        $("#reviewCancle").click(function(){
+        	location.href = "${ pageContext.servletContext.contextPath}/mypage/reserve";
+        })
+        
       </script>
   </main>
 

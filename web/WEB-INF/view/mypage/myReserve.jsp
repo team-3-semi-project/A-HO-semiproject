@@ -59,7 +59,7 @@
                               </c:if>
                               <c:if test="${ reserved.startDate lt requestScope.today}">
                               	<c:if test="${ empty reserved.review }">
-                              	<button style="float: right;" class="review" value="${ reserved.hotel.hoCode }">리뷰</button>
+                              	<button style="float: right;" class="review" value="${ reserved.reserveCode }">리뷰</button>
                               	</c:if>
                               </c:if>
                             </div>
@@ -73,7 +73,7 @@
                       	$(".review").click(function(){
                       		const no = $(this).val();
                       		console.log(no);
-                      		location.href = "${ pageContext.servletContext.contextPath }/mypage/review";
+                      		location.href = "${ pageContext.servletContext.contextPath }/mypage/review?no=" + no;
                       	});
                       </script>
             </div>

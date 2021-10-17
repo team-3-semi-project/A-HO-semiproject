@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.ahohotel.mypage.reserve.model.dao.ReserveDAO;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
+import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 public class ReserveService {
@@ -58,6 +59,36 @@ public class ReserveService {
 		session.close();
 		
 		return hotelPhoto;
+	}
+
+	public ReserveSearchListDTO selectOneReserve(int reserveNum) {
+		
+		SqlSession session = getSqlSession();
+		
+		ReserveSearchListDTO reserve = reserveDAO.selectOneReserve(session, reserveNum);
+		
+		session.close();
+		
+		return reserve;
+	}
+
+	public int insertReview(ReserveDTO review) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = reserveDAO.insertReview(session, review);
+		
+		if (result > 0) {
+			session.commit();
+			System.out.println("커밋 성공");
+		} else {
+			session.rollback();
+			System.out.println("실패");
+		}
+		
+		session.close();
+		
+		return result;
 	}
 
 }

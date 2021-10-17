@@ -108,12 +108,12 @@
   		SELECT
   		       A.PAYMENT_DATE
   		     , A.PRICE
+  		     , A.RESERVE_CODE
   		     , A.START_DATE
   		     , A.END_DATE
   		     , A.ROOM_OPTION
   		     , A.REVIEW
   		     , B.ROOM_NAME
-  		     , C.HOTEL_CODE
   		     , C.HOTEL_NAME
   		  FROM RESERVE A
   		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
@@ -130,4 +130,27 @@
   		  FROM HOTEL_PHOTO A
   		 WHERE A.HOTEL_CODE = #{ hotelNum } 
   	</select>
+  	
+  	<select id="selectOneReserve" resultMap="reserveListResultMap">
+  		SELECT
+  		       A.RESERVE_CODE
+  		     , A.START_DATE
+  		     , A.END_DATE
+  		     , B.ROOM_NAME
+  		     , C.HOTEL_NAME
+  		  FROM RESERVE A
+  		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
+  		  JOIN HOTEL C ON (B.HOTEL_CODE = C.HOTEL_CODE)
+  		  WHERE A.RESERVE_CODE = #{ reserveNum }
+  	</select>
+  	
+  	<update id="insertReview">
+  	    UPDATE
+  	           RESERVE A
+  	       SET A.REVIEW = #{ review }
+  	         , A.SCORE = #{ score }
+  	         , A.REVIEW_DATE = #{ reviewDate }
+  	     WHERE A.RESERVE_CODE = #{ reserveCode }
+  	       AND A.USER_CODE = #{ userCode}
+  	</update>
 </mapper>
