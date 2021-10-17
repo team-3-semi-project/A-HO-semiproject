@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script>
   $( function() {
@@ -74,12 +74,12 @@
 					    <input type="hidden" name="hotelRegion" value="1">
 						<!-- 호텔 지역 선택 -->
 					    <select id="searchHotel" name="searchHotel">
-							<option value="none" ${ requestScope.selectCriteria.searchCondition eq "none"? "selected": "" }>--</option>
-							<option value="kangwon" ${ requestScope.selectCriteria.searchCondition eq "kangwon"? "selected": "" }>강원점</option>
-							<option value="busan" ${ requestScope.selectCriteria.searchCondition eq "busan"? "selected": "" }>부산점</option>
-							<option value="seoul" ${ requestScope.selectCriteria.searchCondition eq "seoul"? "selected": "" }>서울점</option>
-							<option value="incheon" ${ requestScope.selectCriteria.searchCondition eq "incheon"? "selected": "" }>인천점</option>
-							<option value="jeju" ${ requestScope.selectCriteria.searchCondition eq "jeju"? "selected": "" }>제주점</option>
+							<option value="none">--</option>
+							<option value="kangwon">강원점</option>
+							<option value="busan">부산점</option>
+							<option value="seoul">서울점</option>
+							<option value="incheon">인천점</option>
+							<option value="jeju">제주점</option>
 						</select>
 				</td>
 				<td>
@@ -110,29 +110,74 @@
 		
 			</tr>
 			</table>
+			<br>
 		</div>
 	</div>
 
 
-		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4">
+		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4" style="width:800px; margin-left:500px;">
 			<div>
 				<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
 			</div>
 				<div class="col p-4 d-flex flex-column position-static">
-				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br>
+				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br><br>
 				  <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">찜하기</a>
-				  <a href="${ pageContext.servletContext.contextPath }/WEB-INF/view/room/room.jsp" class="btn btn-outline-primary">객실정보 보기</a>
+				  <a href="${ pageContext.servletContext.contextPath }/room/room" class="btn btn-outline-primary">객실정보 보기</a>
 				 </div>
 		</div>
-				   
+		
+		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4" style="width:800px; margin-left:500px;">
+			<div>
+				<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
+			</div>
+				<div class="col p-4 d-flex flex-column position-static">
+				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br><br>
+				  <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">찜하기</a>
+				  <a href="${ pageContext.servletContext.contextPath }/room/room" class="btn btn-outline-primary">객실정보 보기</a>
+				 </div>
+		</div>
+		
+		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4" style="width:800px; margin-left:500px;">
+			<div>
+				<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
+			</div>
+				<div class="col p-4 d-flex flex-column position-static">
+				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br><br>
+				  <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">찜하기</a>
+				  <a href="${ pageContext.servletContext.contextPath }/room/room" class="btn btn-outline-primary">객실정보 보기</a>
+				 </div>
+		</div>
+		
+		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4" style="width:800px; margin-left:500px;">
+			<div>
+				<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
+			</div>
+				<div class="col p-4 d-flex flex-column position-static">
+				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br><br>
+				  <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">찜하기</a>
+				  <a href="${ pageContext.servletContext.contextPath }/room/room" class="btn btn-outline-primary">객실정보 보기</a>
+				 </div>
+		</div>
+		
+		<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4" style="width:800px; margin-left:500px;">
+			<div>
+				<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%"/></svg>
+			</div>
+				<div class="col p-4 d-flex flex-column position-static">
+				  <h3 class="mb-0">A-HO호텔<c:out value="${ requestScope.hotelName }"/>점</h3><br><br>
+				  <a href="${ pageContext.servletContext.contextPath }/mypage/accountSelect" class="btn btn-outline-primary">찜하기</a>
+				  <a href="${ pageContext.servletContext.contextPath }/room/room" class="btn btn-outline-primary">객실정보 보기</a>
+				 </div>
+		</div>
 
 	
 	
 		
 <script>
-	function getHotel(){
-		$("#searchHotel option:selected").val();
-	}
+function getHotel(){
+	$("#searchHotel option:selected").val();
+}
+
 </script>
 	
 <jsp:include page="../common/footer.jsp"/>

@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script>
   $( function() {
@@ -17,31 +18,14 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
   </script>
-<title>호텔 검색</title>
+
+<title>호텔 객실</title>
 </head>
 
 <jsp:include page="../common/header.jsp"/>
-  <body>
 
-    <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-4 pt-1">
-            <a class="text-muted" href="#"><img class="logo rounded mx-auto d-block" src="img/A-HO-icon.PNG"></a>
-          </div>
-          <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#" id="mainLogo">A-HO</a>
-          </div>
-          <div class="col-4 d-flex justify-content-end align-items-center" >
-            <a class="text-muted" href="#" aria-label="Search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false" ><title>검색</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-            </a>
-            <a class="btn btn-sm btn-outline-secondary" href="#">로그인</a> &nbsp;
-            <a class="btn btn-sm btn-outline-secondary" href="#">회원가입</a>
-          </div>
-        </div>
-      </header>
-    </div>    
+  <body>
+   
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
@@ -159,7 +143,7 @@
 
           <div>
             <h1 class="font-weight-light" style="text-align: left;">호텔 시설 소개</h1>
-            <img src="img/호텔소개.jpg" style="display: block; margin-left: 50px;"/>
+            <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/호텔소개.jpg" style="display: block; margin-left: 50px;"/>
           </div>
           <hr>
           
@@ -168,6 +152,6 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3336.8709933017203!2d126.56625675139865!3d33.24368298073967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x350c5375044f7471%3A0xd40b6fe15bc738db!2z7IOI66eM67aA7KCV!5e0!3m2!1sko!2skr!4v1633684616176!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
-
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

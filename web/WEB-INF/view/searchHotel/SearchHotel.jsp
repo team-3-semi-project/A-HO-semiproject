@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script>
   $( function() {
@@ -57,12 +57,12 @@
 					    <input type="hidden" name="hotelRegion" value="1">
 						<!-- 호텔 지역 선택 -->
 					    <select id="searchHotel" name="searchHotel">
-							<option value="none" ${ requestScope.selectCriteria.searchCondition eq "none"? "selected": "" }>--</option>
-							<option value="kangwon" ${ requestScope.selectCriteria.searchCondition eq "kangwon"? "selected": "" }>강원점</option>
-							<option value="busan" ${ requestScope.selectCriteria.searchCondition eq "busan"? "selected": "" }>부산점</option>
-							<option value="seoul" ${ requestScope.selectCriteria.searchCondition eq "seoul"? "selected": "" }>서울점</option>
-							<option value="incheon" ${ requestScope.selectCriteria.searchCondition eq "incheon"? "selected": "" }>인천점</option>
-							<option value="jeju" ${ requestScope.selectCriteria.searchCondition eq "jeju"? "selected": "" }>제주점</option>
+							<option value="none">--</option>
+							<option value="kangwon" >강원점</option>
+							<option value="busan">부산점</option>
+							<option value="seoul">서울점</option>
+							<option value="incheon">인천점</option>
+							<option value="jeju">제주점</option>
 						</select>
 				</td>
 				<td>
@@ -88,7 +88,7 @@
 		                        <label for="sale">특가</label>
 				</td>
 				<td>
-						<button type="submit" onclick="getHotel()">검색하기</button>
+						<button type="submit" onchange="getHotel()">검색하기</button>
 				</td>
 		
 			</tr>

@@ -2,6 +2,9 @@ package com.ahohotel.common.paging;
 
 public class SelectCriteria implements java.io.Serializable {
 	
+
+	private static final long serialVersionUID = -7692710995898948992L;
+	
 	private int pageNo;					//요청한 페이지 번호
 	private int totalCount;				//전체 게시물 수 (진짜 전체 게시글 수 or 검색 후의 게시글 수)
 	private int limit;					//한 페이지에 보여줄 게시물 수

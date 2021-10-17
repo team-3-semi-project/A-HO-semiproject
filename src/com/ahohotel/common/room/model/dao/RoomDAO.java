@@ -1,7 +1,6 @@
 package com.ahohotel.common.room.model.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -11,14 +10,10 @@ import com.ahohotel.hotellist.model.dto.HotelListDTO;
 
 public class RoomDAO {
 	
-public int selectTotalCount(SqlSession session, Map<String, String> searchMap) {
-		
-		return session.selectOne("RoomDAO.selectTotalCount", searchMap);
-	}
+	/* 방 정보 조회 */
+	public RoomDTO selectRoom(SqlSession session, int roomCode) {
 
-	public static int insertRoom(SqlSession session, RoomDTO newRoom) {
-		
-		return session.insert("RoomDAO.insertRoom", newRoom);
+		return session.selectOne("RoomDAO.selectRoom", roomCode);
 	}
 	
 	/* 썸네일게시판 목록 조회용 메소드 */
