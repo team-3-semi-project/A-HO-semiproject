@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <div class="card" style="width: 63rem;">
                                 <div class="card-body">
-                                  <p class="card-text"><a href="#">1:1 문의 내역</a></p>
+                                  <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/inquiry">1:1 문의 내역</a></p>
                                 </div>
                               </div>
                         </div>

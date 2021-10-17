@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>AHO</title>
+<title>Insert title here</title>
 </head>
 <body>
-	
-	
-	<jsp:forward page="/WEB-INF/view/common/mainPage.jsp"/>
-	
-	
+
 </body>
 </html>
