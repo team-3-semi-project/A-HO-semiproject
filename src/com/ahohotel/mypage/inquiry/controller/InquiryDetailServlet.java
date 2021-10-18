@@ -19,8 +19,8 @@ public class InquiryDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* mypage-side.jsp에 넘겨줄 값 */
 		AhoUserDTO user = (AhoUserDTO) request.getSession().getAttribute("loginUser");
-		
 		String userName = user.getName();
 		
 		/* 선택한 1:1문의 code */
@@ -36,13 +36,21 @@ public class InquiryDetailServlet extends HttpServlet {
 			path = "/WEB-INF/view/mypage/inquiry/inquiryDetail.jsp";
 			request.setAttribute("userName", userName);
 			request.setAttribute("inquiry", inquiryDetail);
+			
 		} else {
-//			path = "/WEB-INF/views/common/failed.jsp";
-//			request.setAttribute("message", "공지사항 상세 보기 조회에 실패하였습니다.");
+			inquiryDetail = new InquiryService().selectInquiryDetailWithoutFile(no);
+			
+			if (inquiryDetail != null) {
+				path = "/WEB-INF/view/mypage/inquiry/inquiryDetail.jsp";
+				request.setAttribute("userName", userName);
+				request.setAttribute("inquiry", inquiryDetail);
+			} else {
+				path = "/WEB-INF/view/common/failed.jsp";
+				request.setAttribute("message", "1:1 문의 목록 조회 실패!");
+			}
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
-		
 	}
 
 }

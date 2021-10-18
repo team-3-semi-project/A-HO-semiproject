@@ -26,8 +26,8 @@
             <h1 class="card-title">1:1 문의</h1><br><br>
             <c:if test="${ empty requestScope.inquiry.inquiryAnswer }">
             <div style="text-align: right;">
-          		<a href=""><button type="button" class="btn btn-primary btn-lg">수정하기</button></a>
-          		<button type="submit" class="btn btn-outline-danger btn-lg">삭제하기</button>
+          		<a href="${ pageContext.servletContext.contextPath }/mypage/inquiry/update?inquiryCode=${ requestScope.inquiry.inquiryCode }"><button type="button" class="btn btn-primary btn-lg">수정하기</button></a>
+          		<button type="button" class="btn btn-outline-danger btn-lg" onclick="location.href='${ pageContext.servletContext.contextPath }/mypage/inquiry/delete?inquiryCode=${ requestScope.inquiry.inquiryCode }'">삭제하기</button>
         	</div>
           	</c:if>
         	<div>
@@ -53,18 +53,21 @@
                       <label for="inquiryTitle"><strong>문의 제목</strong></label>  
                       <input type="text" class="form-control" id="title" name="title" value="${ requestScope.inquiry.inquiryTitle }" readonly><br>
                   </div>
+                  <br>
+                  <div>
+                  	<label><strong>첨부파일</strong></label> <br>
+                  	<c:if test="${ empty requestScope.inquiry.inquiryFileList }">첨부파일이 없습니다.</c:if>
+                  	<%-- <c:forEach items="${ requestScope.inquiry.inquiryFileList }" var="inquiryPhoto">
+                  		<p>${ inquiryPhoto.qOriginalFile }</p>
+                  	</c:forEach> --%>
+                  	<c:forEach items="${ requestScope.inquiry.inquiryFileList }" var="inquiryPhoto">
+                  		<img width="300" height="200" src="${ pageContext.servletContext.contextPath }/resources/inquiry-img/${ inquiryPhoto.qFileName }"/>
+                  	</c:forEach>
+                 </div>
+                 <br><br>
                   <div>
                       <label for="inquiryContent"><strong>문의 내용</strong></label>  
                       <textarea class="form-control" rows="10px" aria-label="With textarea" readonly>${ requestScope.inquiry.inquiryContent }</textarea><br>
-                  </div>
-                  <div>
-                      <label for="inquiryFile"><strong>첨부파일</strong></label>  
-                      <div class="input-group mb-3">
-                          <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                              <label class="custom-file-label" for="inputGroupFile01">파일 추가 시 이곳을 클릭하세요</label>
-                          </div>
-                      </div>
                   </div>
                 </div>
             </div>
