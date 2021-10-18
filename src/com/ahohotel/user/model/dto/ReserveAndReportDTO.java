@@ -163,10 +163,5 @@ public class ReserveAndReportDTO {
 				+ latelyReportReason + "]";
 	}
 
-	
-	
-
-	
-	
 
 }

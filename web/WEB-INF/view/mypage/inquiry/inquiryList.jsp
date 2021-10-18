@@ -52,7 +52,7 @@
                         </form>
                     </div>
                     <div style="text-align: right;">
-                        <a href=""><button type="button" id="writeNotice" class="btn btn-info btn-lg">문의 작성하기</button></a>
+                        <a href="${ pageContext.servletContext.contextPath }/mypage/inquiry/insert"><button type="button" id="writeInquiry" class="btn btn-info btn-lg">문의 작성하기</button></a>
                     </div>
                     <br>
 

@@ -2,6 +2,7 @@ package com.ahohotel.mypage.inquiry.model.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class InquiryDTO implements Serializable {
 	
@@ -10,19 +11,20 @@ public class InquiryDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1802443305529879560L;
 	
-	int inquiryCode;
-	int rowNum;
-	int userCode;
-	String inquiryTitle;
-	String inquiryContent;
-	String inquiryAnswer;
-	Date inquiryDate;
-	String inquiryCategory;
+	private int inquiryCode;
+	private int rowNum;
+	private int userCode;
+	private String inquiryTitle;
+	private String inquiryContent;
+	private String inquiryAnswer;
+	private Date inquiryDate;
+	private String inquiryCategory;
+	private List<InquiryFileDTO> inquiryFileList;
 	
 	public InquiryDTO() {
 	}
 	public InquiryDTO(int inquiryCode, int rowNum, int userCode, String inquiryTitle, String inquiryContent,
-			String inquiryAnswer, Date inquiryDate, String inquiryCategory) {
+			String inquiryAnswer, Date inquiryDate, String inquiryCategory, List<InquiryFileDTO> inquiryFileList) {
 		this.inquiryCode = inquiryCode;
 		this.rowNum = rowNum;
 		this.userCode = userCode;
@@ -31,6 +33,7 @@ public class InquiryDTO implements Serializable {
 		this.inquiryAnswer = inquiryAnswer;
 		this.inquiryDate = inquiryDate;
 		this.inquiryCategory = inquiryCategory;
+		this.inquiryFileList = inquiryFileList;
 	}
 	
 	public int getInquiryCode() {
@@ -81,11 +84,18 @@ public class InquiryDTO implements Serializable {
 	public void setInquiryCategory(String inquiryCategory) {
 		this.inquiryCategory = inquiryCategory;
 	}
+	public List<InquiryFileDTO> getInquiryFileList() {
+		return inquiryFileList;
+	}
+	public void setInquiryFileList(List<InquiryFileDTO> inquiryFileList) {
+		this.inquiryFileList = inquiryFileList;
+	}
 	
 	@Override
 	public String toString() {
 		return "InquiryDTO [inquiryCode=" + inquiryCode + ", rowNum=" + rowNum + ", userCode=" + userCode
 				+ ", inquiryTitle=" + inquiryTitle + ", inquiryContent=" + inquiryContent + ", inquiryAnswer="
-				+ inquiryAnswer + ", inquiryDate=" + inquiryDate + ", inquiryCategory=" + inquiryCategory + "]";
+				+ inquiryAnswer + ", inquiryDate=" + inquiryDate + ", inquiryCategory=" + inquiryCategory
+				+ ", inquiryFileList=" + inquiryFileList + "]";
 	}
 }

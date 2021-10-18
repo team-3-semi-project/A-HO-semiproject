@@ -77,17 +77,23 @@ public class InquiryListServlet extends HttpServlet {
 //		System.out.println(selectCriteriaWithUserCode);
 		
 		/* 검색조건에 해당하는 1:1문의 목록 조회 */
-		List<InquiryDTO> inquiryList = new InquiryService().selectInquiryList(selectCriteriaWithUserCode);
+		List<InquiryDTO> inquiryList  = new InquiryService().selectInquiryList(selectCriteriaWithUserCode);
 //		System.out.println(inquiryList);
 		
-		String path = "/WEB-INF/view/mypage/inquiry/inquiryList.jsp";
-		request.setAttribute("userName", userName);
-		request.setAttribute("jspPage", jspPage);
-		request.setAttribute("inquiryList", inquiryList);
-		request.setAttribute("selectCriteria", selectCriteria);
-		
-		request.getRequestDispatcher(path).forward(request, response);
+		String path = "";
+		if (inquiryList != null) {
+			path = "/WEB-INF/view/mypage/inquiry/inquiryList.jsp";
+			request.setAttribute("userName", userName);
+			request.setAttribute("jspPage", jspPage);
+			request.setAttribute("inquiryList", inquiryList);
+			request.setAttribute("selectCriteria", selectCriteria);
+			
+		} else {
+			path = "/WEB-INF/view/common/failed.jsp";
+			request.setAttribute("message", "1:1 문의 목록 조회 실패!");
+		}
 
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

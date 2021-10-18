@@ -22,6 +22,7 @@ import com.ahohotel.user.model.dto.AhoUserDTO;
 public class UserAccountUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* 로그인한 회원 code */
@@ -51,48 +52,18 @@ public class UserAccountUpdateServlet extends HttpServlet {
 		/* 회원정보 수정 */
 		int result = new UserAccountService().updateUserAccount(updateUserDTO);
 		
-		if (result > 0) { /* 회원정보 수정 성공 시 */
-			System.out.println("회원 정보 수정 성공!");
-			
-			int userCode2 = ((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode();
-
-			/* 수정한 정보로 회원정보 db에서 재조회 */
-			AhoUserDTO userDTO = new UserAccountService().selectUserAccount(userCode2);
-//			System.out.println(userDTO);
-			
-			/* 수정된 정보로 session의 회원정보 수정 */
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", userDTO);			
-			
-			/* session에서 수정된 회원정보 받아오기 */
-			AhoUserDTO loginUserUpdate = (AhoUserDTO) request.getSession().getAttribute("loginUser");
-//			System.out.println(loginUserUpdate);
-			
-			String userId = loginUserUpdate.getId();
-			String userPw = loginUserUpdate.getPw();
-			String userName = loginUserUpdate.getName();
-			String userEmail = loginUserUpdate.getEmail();
-			Date birth2 = loginUserUpdate.getBirth();
-			String userPhone = loginUserUpdate.getPhone();
-			
-			SimpleDateFormat sdformat = new SimpleDateFormat("YYYY-MM-dd");
-			String userBirth = sdformat.format(birth2);
-//			System.out.println(userBirth);
-
-			String path = "/WEB-INF/view/mypage/useraccount/userAccountSelect.jsp";
-			request.setAttribute("userId", userId);
-			request.setAttribute("userPw", userPw);
-			request.setAttribute("userName", userName);
-			request.setAttribute("userEmail", userEmail);
-			request.setAttribute("userPhone", userPhone);
-			request.setAttribute("userBirth", userBirth);
-			
-			request.getRequestDispatcher(path).forward(request, response);
-			
+		String path = "";
+		
+		if (result > 0) { /* 회원정보 수정 성공 시 */			
+			response.sendRedirect(request.getContextPath() + "/mypage/accountSelect");
 			
 		} else { /* 회원정보 수정 실패 시 */
-			System.out.println("회원 정보 수정 실패.....");
+			path = "/WEB-INF/view/common/failed.jsp";
+			request.setAttribute("message", "회원정보 수정 실패!");
+			request.getRequestDispatcher(path).forward(request, response);
 		}
+		
+		
 	}
 
 }

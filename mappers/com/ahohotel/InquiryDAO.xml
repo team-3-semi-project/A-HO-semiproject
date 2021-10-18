@@ -12,13 +12,34 @@
 		<result property="inquiryDate" column="QUESTION_DATE" />
 		<result property="inquiryCategory" column="QUESTION_CATEGORY" />
 	</resultMap>
-	<resultMap type="com.ahohotel.mypage.inquiry.model.dto.InquiryDTO" id="inquiryResultMap">
+	
+	<resultMap type="com.ahohotel.mypage.inquiry.model.dto.InquiryDTO" id="inquiryWithoutFileResultMap">
 		<id property="inquiryCode" column="QUESTION_CODE" />
+		<result property="userCode" column="USER_CODE" />
 		<result property="inquiryTitle" column="QUESTION_TITLE" />
 		<result property="inquiryContent" column="QUESTION_CONTENT" />
 		<result property="inquiryAnswer" column="QUESTION_ANSWER" />
 		<result property="inquiryDate" column="QUESTION_DATE" />
 		<result property="inquiryCategory" column="QUESTION_CATEGORY" />
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.mypage.inquiry.model.dto.InquiryDTO" id="inquiryResultMap">
+		<id property="inquiryCode" column="QUESTION_CODE" />
+		<result property="userCode" column="USER_CODE" />
+		<result property="inquiryTitle" column="QUESTION_TITLE" />
+		<result property="inquiryContent" column="QUESTION_CONTENT" />
+		<result property="inquiryAnswer" column="QUESTION_ANSWER" />
+		<result property="inquiryDate" column="QUESTION_DATE" />
+		<result property="inquiryCategory" column="QUESTION_CATEGORY" />
+		
+		<collection property="inquiryFileList" resultMap="inquiryFileResultMap"/>
+	</resultMap>
+	<resultMap type="com.ahohotel.mypage.inquiry.model.dto.InquiryFileDTO" id="inquiryFileResultMap">
+		<id property="qPhotoCode" column="Q_PHOTO_CODE"></id>
+		<result property="inquiryCode" column="QUESTION_CODE"/>
+		<result property="qOriginalFile" column="Q_ORIGINAL_FILE"/>
+		<result property="qFileName" column="Q_FILE_NAME"/>
+		<result property="qFile" column="Q_FILE"/>
 	</resultMap>
 	
 	
@@ -67,17 +88,37 @@
          WHERE A.RNUM >= #{ selectCriteria.startRow }  
 	</select>
 	
-	<!-- 1:1문의 세부내용 조회 -->
+	<!-- 1:1문의 세부내용 조회 (file 있는 경우) -->
 	<select id="selectInquiryDetail" resultMap="inquiryResultMap">
 			SELECT
-			       A.QUESTION_CODE
-			     , A.QUESTION_TITLE
-			     , A.QUESTION_CONTENT
-			     , A.QUESTION_ANSWER
-				 , A.QUESTION_DATE
-				 , A.QUESTION_CATEGORY
-			  FROM QUESTION A
-			 WHERE A.QUESTION_CODE = #{ no }
+		       A.QUESTION_CODE
+		     , A.USER_CODE
+		     , A.QUESTION_TITLE
+		     , A.QUESTION_CONTENT
+		     , A.QUESTION_ANSWER
+		     , A.QUESTION_DATE
+		     , A.QUESTION_CATEGORY
+		     , B.Q_PHOTO_CODE
+		     , B.Q_ORIGINAL_FILE
+		     , B.Q_FILE_NAME
+		     , B.Q_FILE
+		  FROM QUESTION A
+		  JOIN QUESTION_PHOTO B ON (A.QUESTION_CODE = B.QUESTION_CODE)
+		 WHERE A.QUESTION_CODE = #{ no }
+	</select>
+	
+	<!-- 1:1문의 세부내용 조회 (file 없는 경우) -->
+	<select id="selectInquiryDetailWithoutFile" resultMap="inquiryWithoutFileResultMap">
+			SELECT
+		       A.QUESTION_CODE
+		     , A.USER_CODE
+		     , A.QUESTION_TITLE
+		     , A.QUESTION_CONTENT
+		     , A.QUESTION_ANSWER
+		     , A.QUESTION_DATE
+		     , A.QUESTION_CATEGORY
+		  FROM QUESTION A
+		 WHERE A.QUESTION_CODE = #{ no }
 	</select>
 	
 	<!-- 전체 게시물 갯수 select -->
@@ -94,5 +135,75 @@
 			</if>
     	</where>
 	</select>
+	
+	<!-- 1:1문의 (파일제외) 작성 -->
+	<insert id="insertInquiryWithoutFile">
+		INSERT
+          INTO QUESTION A
+        (
+          A.QUESTION_CODE
+        , A.USER_CODE
+        , A.QUESTION_CATEGORY
+        , A.QUESTION_TITLE
+        , A.QUESTION_CONTENT
+        )
+        VALUES 
+        (
+          SEQ_QUESTION_CODE.NEXTVAL
+        , #{ userCode }
+        , #{ inquiryCategory }
+        , #{ inquiryTitle }
+        , #{ inquiryContent }
+        )
+        <selectKey keyProperty="inquiryCode" resultType="Integer" order="AFTER">
+        	SELECT
+        	       SEQ_QUESTION_CODE.CURRVAL
+        	  FROM DUAL
+        </selectKey>
+	</insert>
+	
+	<!-- 1:1문의 파일만 insert -->
+	<insert id="insertInquiryFile">
+		INSERT 
+          INTO QUESTION_PHOTO A
+        (
+          A.Q_PHOTO_CODE
+        , A.QUESTION_CODE
+        , A.Q_ORIGINAL_FILE
+        , A.Q_FILE_NAME
+        , A.Q_FILE
+        )
+        VALUES 
+        (
+          SEQ_QUESTION_FILE_CODE.NEXTVAL
+        , #{ inquiryCode }
+        , #{ qOriginalFile }
+        , #{ qFileName }
+        , #{ qFile }
+        )
+	</insert>
+	
+	<!-- 1:1문의 삭제 -->
+	<delete id="deleteInquiry">
+		DELETE 
+		  FROM QUESTION A 
+		 WHERE A.QUESTION_CODE = #{ inquiryCode }
+	</delete>
+	
+	<!-- 1:1 문의 수정 (파일 제외) -->
+	<update id="updateInquiry" parameterType="com.ahohotel.mypage.inquiry.model.dto.InquiryDTO">
+		UPDATE QUESTION A 
+		   SET A.QUESTION_CATEGORY = #{ inquiryCategory }
+		     , A.QUESTION_TITLE = #{ inquiryTitle }
+		     , A.QUESTION_CONTENT = #{ inquiryContent }
+		 WHERE A.QUESTION_CODE = #{ inquiryCode }
+	</update>
+	
+	<!-- 1:1문의 *파일* 삭제 -->
+	<delete id="deleteInquiryFile">
+		DELETE
+		  FROM QUESTION_PHOTO A
+		 WHERE A.QUESTION_CODE = #{ inquiryCode }
+	</delete>
 	
 </mapper>

@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.user.model.dto.AhoUserDTO;
+import com.ahohotel.user.model.dto.ReportDTO;
+import com.ahohotel.user.model.dto.ReportListDTO;
 
 public class AhoUserDAO {
 
@@ -74,4 +76,34 @@ public class AhoUserDAO {
 		return session.selectOne("AhoUserDAO.selectUserDetail", code);
 	}
 
+
+	public int selectReportTotalCount(SqlSession session, Map<String, String> searchMap) {
+		System.out.println("test");
+		return session.selectOne("AhoUserDAO.selectReportTotalCount", searchMap);
+	}
+
+
+	public List<ReportListDTO> selectReporList(SqlSession session, SelectCriteria selectCriteria) {
+		
+		return session.selectList("AhoUserDAO.selectReporList", selectCriteria);
+	}
+
+
+	public int checkReport(SqlSession session, Map<String, String> reportMap) {
+		
+		return session.update("AhoUserDAO.checkReport", reportMap);
+	}
+
+
+	public int updateBlackList(SqlSession session, Map<String, String> blackListMap) {
+		
+		return session.update("AhoUserDAO.updateBlackList", blackListMap);
+	}
+
+
+	public int blackListCancle(SqlSession session, String blacklistcancle) {
+		
+		return session.update("AhoUserDAO.blackListCancle", blacklistcancle);
+	}
+	
 }
