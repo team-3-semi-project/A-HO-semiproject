@@ -10,6 +10,7 @@ import com.ahohotel.mypage.reserve.model.dao.ReserveDAO;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
+import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 public class ReserveService {
 
@@ -87,6 +88,29 @@ public class ReserveService {
 		}
 		
 		session.close();
+		
+		return result;
+	}
+
+	public int insertReview(ReserveDTO review, List<ReviewPhotoDTO> reviewPhoto) {
+
+		SqlSession session = getSqlSession();
+		
+		int result = 0;
+		
+		int reviewResult = reserveDAO.insertReview(session, review);
+		
+		int rePhotoResult = 0;
+		for (int i = 0; i < reviewPhoto.size(); i++) {
+			rePhotoResult += reserveDAO.insertReviewPhoto(session, reviewPhoto.get(i));
+		}
+		
+		if (reviewResult > 0 && rePhotoResult == reviewPhoto.size()) {
+			session.commit();
+			result = 1;
+		} else {
+			session.rollback();
+		}
 		
 		return result;
 	}

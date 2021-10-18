@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
+import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 
 public class ReserveDAO {
@@ -39,6 +40,11 @@ public class ReserveDAO {
 	public int insertReview(SqlSession session, ReserveDTO review) {
 		
 		return session.update("ReserveDAO.insertReview", review);
+	}
+
+	public int insertReviewPhoto(SqlSession session, ReviewPhotoDTO reviewPhotoDTO) {
+	
+		return session.insert("ReserveDAO.insertReviewPhoto", reviewPhotoDTO);
 	}
 
 }

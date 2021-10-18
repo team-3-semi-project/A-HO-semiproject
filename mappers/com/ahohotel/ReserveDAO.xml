@@ -153,4 +153,25 @@
   	     WHERE A.RESERVE_CODE = #{ reserveCode }
   	       AND A.USER_CODE = #{ userCode}
   	</update>
+  	
+  	<insert id="insertReviewPhoto">
+  		INSERT
+  		  INTO REVIEW_PHOTO A
+  		(
+  		  A.RE_PHOTO_CODE
+  		, A.RESERVE_CODE
+  		, A.RE_ORIGINAL_FILE
+  		, A.RE_FILE_NAME
+  		, A.RE_FILE
+  		)
+  		VALUES
+  		(
+  		  SEQ_REVIEW_PHOTO_CODE.NEXTVAL
+  		, #{ reserveCode }
+  		, #{ originalFile }
+  		, #{ fileName }
+  		, #{ filePath }
+  		)
+  	</insert>
+  	
 </mapper>

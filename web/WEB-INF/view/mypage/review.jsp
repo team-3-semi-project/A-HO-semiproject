@@ -51,7 +51,7 @@ display: none;
           <div class="card" style="width: 50rem;">
             <div class="card-body">
               <h2 class="card-title">리뷰 작성</h2><br><br>
-              <form action="${ pageContext.servletContext.contextPath }/mypage/review" method="post">
+              <form action="${ pageContext.servletContext.contextPath }/mypage/review" method="post" id="reviewForm" encType="multipart/form-data">
                 <div style="border: 1px solid black;">
                   <br>
                   <div style="margin-left: 20px; margin-right: 20px;"><h4><c:out value="${ reserve.hotel.hoName } ${ reserve.room.roomName } Room"/></h4></div><br>
@@ -62,11 +62,13 @@ display: none;
                     <input type="radio" name="score" id="4" class="star" value="4"><label for="4"></label>
                     <input type="radio" name="score" id="5" class="star" value="5"><label for="5"></label>
                     <p class="card-text" style="float: right; margin-right: 20px;"><small class="text-muted"><fmt:formatDate value="${ reserve.startDate }" type="date" pattern="yyyy-MM-dd 15시"/> ~ <fmt:formatDate value="${ reserve.endDate }" type="date" pattern="yyyy-MM-dd 11시"/></small>
+                  	<br clear="both">
                   </div>
+                  	<label for="imgup" style="margin-left: 20px;">파일 : &nbsp; </label><input type="file" name="uploadImg" id="imgup" multiple="multiple">
                   <br>
                   <textarea name="reviewText" id="reviewText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
                   <input type="radio" name="reserveCode" value="${ reserve.reserveCode }" style="display: none;" checked="checked">
-                  <button type="reset" class="reviewB" id="reviewCancle">취소</button> <button type="submit" class="reviewB" id="reviewOk">확인</button>
+                  <button type="reset" class="reviewB" id="reviewCancle">취소</button> <button type="button" class="reviewB" id="reviewOk">확인</button>
                   <br clear="both">
                 </div>
                
@@ -77,6 +79,9 @@ display: none;
       </div>
 
       <script>
+        var chStarFlag = false;
+        var textFlag = false;
+        
         $("#1").click(function(){
           $("#1+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star-fill.svg') no-repeat 0 0px / contain");
           $("#2+label").css("background","url('${ pageContext.servletContext.contextPath }/resources/common-Img/star.svg') no-repeat 0 0px / contain");
@@ -116,6 +121,26 @@ display: none;
         $("#reviewCancle").click(function(){
         	location.href = "${ pageContext.servletContext.contextPath}/mypage/reserve";
         })
+        
+        
+        $("#reviewOk").click(function(){
+	        const reviewArea = $('#reviewText').val();
+    	    
+	        if(reviewArea != ""){
+	        	textFlag = true;
+	        }
+        	
+	        if($(".star").is(":checked")){
+	        	chStarFlag = true;
+	        }
+        	if(!chStarFlag){
+        		alert('별점을 선택해 주세요');
+        	} else if(!textFlag){
+        		alert('리뷰를 작성해 주세요');
+        	} else {
+        		document.getElementById("reviewForm").submit();
+        	}
+        });
         
       </script>
   </main>
