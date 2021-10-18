@@ -42,11 +42,20 @@
 		<id property="reportCode" column="REPORT_CODE"/>
 		<result property="userCode" column="USER_CODE"/>
 		<result property="reserveCode" column="RESERVE_CODE"/>
-		<result property="reserveReason" column="RESERVE_REASON"/>
+		<result property="reportReason" column="REPORT_REASON"/>
+		<result property="reportCheck" column="REPORT_CHECK"/>
+	</resultMap>
+
+	<resultMap type="com.ahohotel.user.model.dto.ReportListDTO" id="ReporListMap">
+		<id property="reportCode" column="REPORT_CODE"/>
+		<result property="reserveCode" column="RESERVE_CODE"/>
+		<result property="reviewerId" column="리뷰어"/>
+		<result property="repoterId" column="신고자"/>
+		<result property="review" column="REVIEW"/>
+		<result property="reportReason" column="REPORT_REASON"/>
+		<result property="reportCheck" column="REPORT_CHECK"/>
 	</resultMap>
 	
-	
-
 	<!-- 로그인 회원 정보 조회 -->
 	<select id="selectLoginUser" resultMap="memberResultMap">
 		SELECT 
@@ -154,17 +163,21 @@
                COUNT(*)
           FROM AHOUSER A
           <where>
+          		  A.USER_CODE != 0
+          	  <if test='blackList == "Y"'>
+		      	  AND A.BLACKLIST_YN = 'Y'
+	    	  </if>
 	          <if test="searchCondition == 'id'">
-		      	  A.USER_ID LIKE '%' || #{ searchValue } || '%'
+		      	  AND A.USER_ID LIKE '%' || #{ searchValue } || '%'
 	    	  </if>
 	    	  <if test="searchCondition == 'name'">
-		          A.USER_NAME LIKE '%' || #{ searchValue } || '%'
+		          AND A.USER_NAME LIKE '%' || #{ searchValue } || '%'
 	    	  </if>
 	    	  <if test="searchCondition == 'email'">
-		      	  A.USER_EMAIL LIKE '%' || #{ searchValue } || '%'
+		      	  AND A.USER_EMAIL LIKE '%' || #{ searchValue } || '%'
 	    	  </if>
 	    	  <if test="searchCondition == 'phone'">
-		      	  A.USER_PHONE LIKE '%' || #{ searchValue } || '%'
+		      	  AND A.USER_PHONE LIKE '%' || #{ searchValue } || '%'
 	    	  </if>
           </where>
  	</select>
@@ -220,17 +233,21 @@
 						     , C.BLACKLIST_REASON
                           FROM AHOUSER C
     					<where>
+    							C.USER_CODE != 0 
+    						<if test='blackList == "Y"'>
+					      	    AND C.BLACKLIST_YN = 'Y'
+				    	    </if>
 							<if test="searchCondition == 'id'">
-					            C.USER_ID LIKE '%' || #{ searchValue } || '%'
+					            AND C.USER_ID LIKE '%' || #{ searchValue } || '%'
 				      	    </if>
 				        	<if test="searchCondition == 'name'">
-					            C.USER_NAME LIKE '%' || #{ searchValue } || '%'
+					            AND C.USER_NAME LIKE '%' || #{ searchValue } || '%'
 				    	    </if>
 				    	    <if test="searchCondition == 'email'">
-					        	C.USER_EMAIL LIKE '%' || #{ searchValue } || '%'
+					        	AND C.USER_EMAIL LIKE '%' || #{ searchValue } || '%'
 				    	    </if>
 				    	    <if test="searchCondition == 'phone'">
-					      	    C.USER_PHONE LIKE '%' || #{ searchValue } || '%'
+					      	    AND C.USER_PHONE LIKE '%' || #{ searchValue } || '%'
 				    	    </if>
     					</where>
                          ORDER BY C.USER_CODE
@@ -271,11 +288,117 @@
 		     , B.SCORE
 		     , B.REVIEW_DATE
 		     , D.REPORT_CODE
-		     , D.RESERVE_REASON
+		     , D.REPORT_REASON
 		  FROM AHOUSER A
 		  LEFT OUTER JOIN RESERVE B ON (A.USER_CODE = B.USER_CODE)
 		  JOIN VIP C ON (A.VIP_CODE = C.VIP_CODE)
 		  LEFT OUTER JOIN AHOREPORT D ON(B.RESERVE_CODE = D.RESERVE_CODE)
 		 WHERE A.USER_CODE = #{ code }
 	</select>
+	
+	<select id="selectReportTotalCount" resultType="_int" parameterType="hashmap">
+ 		SELECT 
+		       COUNT(*)
+		  FROM AHOREPORT A
+		  JOIN RESERVE B ON(A.RESERVE_CODE = B.RESERVE_CODE)
+		  JOIN AHOUSER C ON(A.USER_CODE = C.USER_CODE)
+		  JOIN AHOUSER D ON(B.USER_CODE = D.USER_CODE)
+          <where>
+          	  <if test="searchCondition == 'reportCheck'">
+		      	  A.REPORT_CHECK IS NULL
+	    	  </if>
+	          <if test="searchCondition == 'reviewerid'">
+		      	  D.USER_ID LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'reporterid'">
+		          C.USER_ID LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'reason'">
+		      	  A.REPORT_REASON LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'reservecode'">
+	      	      A.RESERVE_CODE = #{ searchValue }
+	   	      </if>
+          </where>
+ 	</select>
+ 	
+ 	<select id="selectReporList" resultMap="ReporListMap">
+         SELECT 
+               RNUM
+             , REPORT_CODE
+		     , RESERVE_CODE
+		     , "리뷰어"  
+		     , "신고자"
+		     , REVIEW
+		     , REPORT_REASON
+		     , REPORT_CHECK
+          FROM (SELECT ROWNUM RNUM
+                     , REPORT_CODE
+				     , RESERVE_CODE
+				     , "리뷰어"  
+				     , "신고자"
+				     , REVIEW
+				     , REPORT_REASON
+				     , REPORT_CHECK
+                  FROM (SELECT 
+						       A.REPORT_CODE
+						     , A.RESERVE_CODE
+						     , D.USER_ID AS "리뷰어"  
+						     , C.USER_ID AS "신고자"
+						     , B.REVIEW
+						     , A.REPORT_REASON
+						     , A.REPORT_CHECK
+						  FROM AHOREPORT A
+						  JOIN RESERVE B ON(A.RESERVE_CODE = B.RESERVE_CODE)
+						  JOIN AHOUSER C ON(A.USER_CODE = C.USER_CODE)
+						  JOIN AHOUSER D ON(B.USER_CODE = D.USER_CODE)
+    					<where>
+	    					<if test="searchCondition == 'reportCheck'">
+						      	A.REPORT_CHECK IS NULL
+					    	</if>
+							<if test="searchCondition == 'reviewerid'">
+					      	    D.USER_ID LIKE '%' || #{ searchValue } || '%'
+					   	    </if>
+					   	    <if test="searchCondition == 'reporterid'">
+					            C.USER_ID LIKE '%' || #{ searchValue } || '%'
+					   	    </if>
+					   	    <if test="searchCondition == 'reason'">
+					      	    A.REPORT_REASON LIKE '%' || #{ searchValue } || '%'
+					   	    </if>
+					   	    <if test="searchCondition == 'reservecode'">
+					      	    A.RESERVE_CODE = #{ searchValue }
+					   	    </if>
+    					</where>
+                         ORDER BY A.REPORT_CODE
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+         WHERE A.RNUM >= #{ startRow }  
+	</select>
+	
+	<update id="checkReport" parameterType="hashmap">
+		UPDATE
+		       AHOREPORT A
+		   SET A.REPORT_CHECK = #{ reportcheck }
+		 WHERE A.REPORT_CODE = #{ reportcode }
+	</update>
+	
+	<update id="updateBlackList" parameterType="hashmap">
+		UPDATE
+		       AHOUSER A
+		   SET A.BLACKLIST_YN = 'Y'
+		     , A.BLACKLIST_REASON = #{ blackListReason }   
+		 WHERE A.USER_ID = #{ userId }
+	</update>
+	
+	<update id="blackListCancle" parameterType="java.lang.String">
+		UPDATE
+		       AHOUSER A
+		   SET A.BLACKLIST_YN = 'N'
+		     , A.BLACKLIST_REASON = NULL
+		 WHERE A.USER_ID = #{ blacklistcancle }
+	</update>
+		     
 </mapper>

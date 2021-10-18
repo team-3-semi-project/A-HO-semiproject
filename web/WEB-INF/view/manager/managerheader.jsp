@@ -18,8 +18,8 @@
                 
             </div>
             <div id="mainnav" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <a href="manager.html"><img id="managerheaderimg" src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO-icon.png" alt="A-HO아이콘"></a>
-                <button type="button" class="btn btn-lg" style="height: 65px; float: right;"><h6>로그아웃</h6></button>
+                <a href="${ pageContext.servletContext.contextPath }/manager/userlist"><img id="managerheaderimg" src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO-icon.png" alt="A-HO아이콘"></a>
+                <button id="logout" type="button" class="btn btn-lg" style="height: 65px; float: right;"><h6>로그아웃</h6></button>
             </div>
         </div>
     </header>
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="블랙리스트.html">
+                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/blacklist">
                     <span data-feather="shopping-cart"></span>
                     블랙리스트
                     </a>
@@ -109,6 +109,11 @@
                 <br><br><br><br><br><br>
             </div>
         </nav>
-    
+        
+        <script>
+        	$("#logout").click(function() {
+				location.href="${ pageContext.servletContext.contextPath }";
+			})
+        </script>
 </body>
 </html>

@@ -42,6 +42,11 @@
         </div>
       </div>
     </header>
+    <script>
+    	if(${ sessionScope.loginUser.code } == 0) {
+    		location.replace("${ pageContext.servletContext.contextPath }/manager/userlist");
+    	}
+    </script>
   	</body>
 </html>
 

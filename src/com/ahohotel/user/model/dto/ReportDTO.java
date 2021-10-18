@@ -1,20 +1,24 @@
 package com.ahohotel.user.model.dto;
 
+import java.util.List;
+
 public class ReportDTO {
 	
 	private int reportCode;
 	private int userCode;
 	private int reserveCode;
-	private String reserveReason;
-	
+	private String reportCheck;
+	private String reportReason;
+
 	public ReportDTO() {
 	}
 
-	public ReportDTO(int reportCode, int userCode, int reserveCode, String reserveReason) {
+	public ReportDTO(int reportCode, int userCode, int reserveCode, String reportCheck, String reportReason) {
 		this.reportCode = reportCode;
 		this.userCode = userCode;
 		this.reserveCode = reserveCode;
-		this.reserveReason = reserveReason;
+		this.reportCheck = reportCheck;
+		this.reportReason = reportReason;
 	}
 
 	public int getReportCode() {
@@ -41,22 +45,32 @@ public class ReportDTO {
 		this.reserveCode = reserveCode;
 	}
 
-	public String getReserveReason() {
-		return reserveReason;
+	public String getReportCheck() {
+		return reportCheck;
 	}
 
-	public void setReserveReason(String reserveReason) {
-		this.reserveReason = reserveReason;
+	public void setReportCheck(String reportCheck) {
+		this.reportCheck = reportCheck;
+	}
+
+	public String getReportReason() {
+		return reportReason;
+	}
+
+	public void setReportReason(String reportReason) {
+		this.reportReason = reportReason;
 	}
 
 	@Override
 	public String toString() {
 		return "ReportDTO [reportCode=" + reportCode + ", userCode=" + userCode + ", reserveCode=" + reserveCode
-				+ ", reserveReason=" + reserveReason + "]";
+				+ ", reportCheck=" + reportCheck + ", reportReason=" + reportReason + "]";
 	}
 	
 	
+
 	
+
 	
 
 }
