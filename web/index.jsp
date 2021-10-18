@@ -10,7 +10,7 @@
 <body>
 	
 	
-	<jsp:forward page="/WEB-INF/view/reserve/reserve.jsp"/>
+	<jsp:forward page="/WEB-INF/view/common/mainPage.jsp"/>
 	
 	
 </body>
