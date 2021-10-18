@@ -13,6 +13,7 @@ public class SelectCriteria implements java.io.Serializable {
 	private int endRow;					//DB 조회 시 최신글부터 조회해야 하는 행의 마지막 수
 	private String searchCondition;		//검색 조건
 	private String searchValue;			//검색어
+	private String blackList; 			//블랙리스트
 	
 	public SelectCriteria() {}
 
@@ -30,6 +31,23 @@ public class SelectCriteria implements java.io.Serializable {
 		this.endRow = endRow;
 		this.searchCondition = searchCondition;
 		this.searchValue = searchValue;
+	}
+	
+	public SelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount, int maxPage, int startPage,
+			int endPage, int startRow, int endRow, String searchCondition, String searchValue, String blackList) {
+		super();
+		this.pageNo = pageNo;
+		this.totalCount = totalCount;
+		this.limit = limit;
+		this.buttonAmount = buttonAmount;
+		this.maxPage = maxPage;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.startRow = startRow;
+		this.endRow = endRow;
+		this.searchCondition = searchCondition;
+		this.searchValue = searchValue;
+		this.blackList = blackList;
 	}
 
 	public int getPageNo() {
@@ -120,12 +138,23 @@ public class SelectCriteria implements java.io.Serializable {
 		this.searchValue = searchValue;
 	}
 
+	public String getBlackList() {
+		return blackList;
+	}
+
+	public void setBlackList(String blackList) {
+		this.blackList = blackList;
+	}
+
 	@Override
 	public String toString() {
 		return "SelectCriteria [pageNo=" + pageNo + ", totalCount=" + totalCount + ", limit=" + limit
 				+ ", buttonAmount=" + buttonAmount + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
 				+ endPage + ", startRow=" + startRow + ", endRow=" + endRow + ", searchCondition=" + searchCondition
-				+ ", searchValue=" + searchValue + "]";
+				+ ", searchValue=" + searchValue + ", blackList=" + blackList + "]";
 	}
+
+
+	
 	
 }

@@ -121,7 +121,7 @@
 	                    <th>최근 신고 사유</th>
 	                </tr>
 	                <c:forEach items="${ reportReserveList }" var="review">
-                   		<tr>
+                   		<tr onclick="location.href='${ pageContext.servletContext.contextPath }/manager/reportlist?currentPage=1&searchCondition=reservecode&searchValue=${ user.code }'">
                             <td>${ review.reserveCode }</td>
                             <td>${ review.review }</td>
                             <td>${ review.reviewDate }</td>
@@ -172,11 +172,20 @@
 		});
 	
         function blackoff() {
-            var result = confirm("이 회원의 이용 정지(블랙리스트)를 해제 하시겠습니까?");
+        	if("${user.blackListYN}" == "Y"){
+        		var result = confirm("이 회원의 이용 정지(블랙리스트)를 해제 하시겠습니까?");
+        		if(result) {
+        			location.href="${ pageContext.servletContext.contextPath }/manager/blacklistupadte?blacklistcancle="+"${user.id}";
+        		}
+        	}
         }
 
         function blackon() {
             var result = prompt("블랙리스트 사유 작성");
+            if(result != null) {
+            	console.log(result);
+    			location.href="${ pageContext.servletContext.contextPath }/manager/blacklistupadte?blacklistreason="+result+"&userId="+"${user.id}";	
+    		}
         }
     </script>
 </body>

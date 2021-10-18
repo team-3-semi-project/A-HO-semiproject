@@ -53,7 +53,7 @@ public class UserDetail extends HttpServlet {
 				for (int j = 0; j < reportL.size(); j++) {
 					ReportDTO report = reportL.get(j);
 					if(report.getReportCode() != 0) {
-						reserve.setLatelyReportReason(report.getReserveReason());
+						reserve.setLatelyReportReason(report.getReportReason());
 						k += 1;
 					}
 				}

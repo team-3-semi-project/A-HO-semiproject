@@ -6,6 +6,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.user.model.dao.AhoUserDAO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
+import com.ahohotel.user.model.dto.ReportDTO;
+import com.ahohotel.user.model.dto.ReportListDTO;
 
 import static com.ahohotel.common.mybatis.Template.getSqlSession;
 
@@ -115,6 +117,8 @@ public class AhoUserService {
 		
 		int result = userDAO.selectUserTotalCount(session, searchMap);
 		
+		session.close();
+		
 		return result;
 	}
 
@@ -136,6 +140,78 @@ public class AhoUserService {
 		session.close();
 		
 		return userDetail;
+	}
+
+	public int selectReportTotalCount(Map<String, String> searchMap) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = userDAO.selectReportTotalCount(session, searchMap);
+		
+		session.close();
+		
+		return result;
+	}
+
+	public List<ReportListDTO> selectReporList(SelectCriteria selectCriteria) {
+		SqlSession session = getSqlSession();
+		
+		List<ReportListDTO> reportList = userDAO.selectReporList(session, selectCriteria);
+		
+		session.close();
+		
+		return reportList;
+	}
+
+	public boolean checkReport(String managerCheck, Map<String, String> reportMap) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = userDAO.checkReport(session, reportMap);
+		
+		if(result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		
+		return isSuccess;
+	}
+
+	public boolean updateBlackList(Map<String, String> blackListMap) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = userDAO.updateBlackList(session, blackListMap);
+		
+		if(result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		
+		return isSuccess;
+	}
+
+	public boolean blackListCancle(String blacklistcancle) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = userDAO.blackListCancle(session, blacklistcancle);
+		
+		if(result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		
+		return isSuccess;
 	}
 
 }

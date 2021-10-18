@@ -14,10 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.ahohotel.common.paging.Pagenation;
 import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.user.model.dto.AhoUserDTO;
+import com.ahohotel.user.model.dto.ReportDTO;
+import com.ahohotel.user.model.dto.ReportListDTO;
 import com.ahohotel.user.model.service.AhoUserService;
 
-@WebServlet("/manager/userlist")
-public class UserList extends HttpServlet {
+@WebServlet("/manager/reportlist")
+public class ReportList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +28,6 @@ public class UserList extends HttpServlet {
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
 		String currentPage = request.getParameter("currentPage");
-		String black = (String) request.getAttribute("blackList");
 		int pageNo = 1;
 		
 		if(currentPage != null && !"".equals(currentPage)) {
@@ -36,24 +37,25 @@ public class UserList extends HttpServlet {
 		String searchCondition = request.getParameter("searchCondition");
 		String searchValue = request.getParameter("searchValue");
 		
+		
+		 if(searchCondition == null) { 
+			 searchCondition = "reportCheck"; 
+		}
+		 
+		
 		Map<String, String> searchMap = new HashMap<>();
 		searchMap.put("searchCondition", searchCondition);
 		searchMap.put("searchValue", searchValue);
-		
-		System.out.println("black is " + black);
-		
-		if(black != null && !"".equals(black)) {
-			searchMap.put("blackList", black);
-		}
 		
 		/* 전체 게시물 수가 필요하다.
 		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
 		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
 		 * */
-		AhoUserService userService = new AhoUserService();
-		int totalCount = userService.selectUserTotalCount(searchMap);
 		
-		System.out.println(totalCount);
+		AhoUserService userService = new AhoUserService();
+		int totalCount = userService.selectReportTotalCount(searchMap);
+		
+		System.out.println("totalReportCount : " + totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -69,19 +71,17 @@ public class UserList extends HttpServlet {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 		
-		if(black != null && !"".equals(black)) {
-			selectCriteria.setBlackList(black);
-		}
+		System.out.println(selectCriteria);
 		
 		/* 조회해온다 */
-		List<AhoUserDTO> userList = userService.selectUserList(selectCriteria);
+		List<ReportListDTO> reportList = userService.selectReporList(selectCriteria);
 		
-		System.out.println("userList : " + userList);
+		System.out.println("reportList : " + reportList);
 		
 		String path = "";
-		if(userList != null) {
-			path = "/WEB-INF/view/manager/userlist.jsp";
-			request.setAttribute("userList", userList);
+		if(reportList != null) {
+			path = "/WEB-INF/view/manager/reportlist.jsp";
+			request.setAttribute("reportList", reportList);
 			request.setAttribute("selectCriteria", selectCriteria);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
@@ -91,5 +91,6 @@ public class UserList extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
+
 
 }
