@@ -29,24 +29,31 @@ public class UserAccountSelectServlet extends HttpServlet {
 		AhoUserDTO userDTO = new UserAccountService().selectUserAccount(userCode);
 //		System.out.println(userDTO);
 		
-		String userId = userDTO.getId();
-		String userPw = userDTO.getPw();
-		String userName = userDTO.getName();
-		String userEmail = userDTO.getEmail();
-		Date birth = userDTO.getBirth();
-		String userPhone = userDTO.getPhone();
-		
-		SimpleDateFormat sdformat = new SimpleDateFormat("YYYY-MM-dd");
-		String userBirth = sdformat.format(birth);
-//		System.out.println(userBirth);
+		String path = "";
+		if (userDTO != null) {
+			String userId = userDTO.getId();
+			String userPw = userDTO.getPw();
+			String userName = userDTO.getName();
+			String userEmail = userDTO.getEmail();
+			Date birth = userDTO.getBirth();
+			String userPhone = userDTO.getPhone();
+			
+			SimpleDateFormat sdformat = new SimpleDateFormat("YYYY-MM-dd");
+			String userBirth = sdformat.format(birth);
+//			System.out.println(userBirth);
 
-		String path = "/WEB-INF/view/mypage/useraccount/userAccountSelect.jsp";
-		request.setAttribute("userId", userId);
-		request.setAttribute("userPw", userPw);
-		request.setAttribute("userName", userName);
-		request.setAttribute("userEmail", userEmail);
-		request.setAttribute("userPhone", userPhone);
-		request.setAttribute("userBirth", userBirth);
+			path = "/WEB-INF/view/mypage/useraccount/userAccountSelect.jsp";
+			request.setAttribute("userId", userId);
+			request.setAttribute("userPw", userPw);
+			request.setAttribute("userName", userName);
+			request.setAttribute("userEmail", userEmail);
+			request.setAttribute("userPhone", userPhone);
+			request.setAttribute("userBirth", userBirth);
+			
+		} else {
+			path = "/WEB-INF/view/common/failed.jsp";
+			request.setAttribute("message", "회원정보 조회 실패!");
+		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
