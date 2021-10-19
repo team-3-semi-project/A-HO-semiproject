@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="HotelDAO">
+	<resultMap type="com.ahohotel.hotelserch.model.dto.HotelListDTO" id="hotelResultMap">
+		<id property="hotelCode" column="HOTEL_CODE"/>
+		<result property="hotelName" column="HOTEL_NAME"/>
+		<result property="hotelStar" column="HOTEL_STAR"/>
+		<result property="hotelUserAvg" column="HOTEL_USER_AVG"/>
+		<result property="hotelPhone" column="HOTEL_PHONE"/>
+		<result property="hotelAddress" column="HOTEL_ADDRESS"/>
+		<result property="hotelOpen" column="HOTEL_OPEN"/>
+		<result property="checkIn" column="CHECK_IN"/>
+		<result property="checkOut" column="CHECK_OUT"/>
+		<collection property="room" resultMap="roomResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.hotelserch.model.dto.RoomListDTO" id="roomResultMap">
+		<id property="roomCode" column="ROOM_CODE"/>
+		<result property="hotelCode" column="HOTEL_CODE"/>
+		<result property="roomName" column="ROOM_NAME"/>
+		<result property="price" column="ROOM_PRICE"/>
+		<result property="count" column="ROOM_COUNT"/>
+		<result property="roomPerson" column="ROOM_PERSON"/>
+		<collection property="roomPhoto" resultMap="roomPhotoResultMap"/>
+		<collection property="reserve" resultMap="reserveResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.user.model.dto.ReserveAndReportDTO" id="reserveResultMap">
+		<id property="reserveCode" column="RESERVE_CODE"/>
+		<result property="userCode" column="USER_CODE"/>
+		<result property="roomCode" column="ROOM_CODE"/>
+		<result property="paymentDate" column="PAYMENT_DATE"/>
+		<result property="usePoint" column="USE_POINT"/>
+		<result property="price" column="PRICE"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="review" column="REVIEW"/>
+		<result property="score" column="SCORE"/>
+		<result property="reviewDate" column="REVIEW_DATE"/>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.hotelserch.model.dto.RoomPhotoDTO" id="roomPhotoResultMap">
+		<id property="roomPhotoCode" column="RO_PHOTO_CODE"/>
+		<result property="roomCode" column="ROOM_CODE"/>
+		<result property="originalFile" column="RO_ORIGINAL_FILE"/>
+		<result property="filename" column="RO_FILE_NAME"/>
+		<result property="filePath" column="RO_FILE"/>
+	</resultMap>
+	
+
+	<select id="searchHotel" resultMap="hotelResultMap">
+	    SELECT
+	           A.HOTEL_CODE
+	         , A.HOTEL_NAME
+	         , A.HOTEL_STAR
+	         , A.HOTEL_USER_AVG
+	         , A.HOTEL_PHONE
+	         , A.HOTEL_ADDRESS
+	         , A.HOTEL_OPEN
+	         , A.CHECK_IN
+	         , A.CHECK_OUT
+	      FROM HOTEL A
+	     WHERE A.HOTEL_OPEN = 'Y'
+	 </select>
+	 
+	 <select id="selectHotelList" resultMap="hotelResultMap" parameterType="hashmap">
+	 	SELECT 
+		       A.HOTEL_CODE
+		     , A.HOTEL_NAME
+		     , B.ROOM_CODE
+		     , B.HOTEL_CODE
+		     , B.ROOM_NAME
+		     , B.ROOM_PRICE
+		     , B.ROOM_COUNT
+		     , B.ROOM_PERSON
+		     , C.RO_PHOTO_CODE
+		     , C.RO_FILE
+		  FROM HOTEL A
+		  LEFT OUTER JOIN ROOM B ON(A.HOTEL_CODE = B.HOTEL_CODE)
+		  LEFT OUTER JOIN ROOM_PHOTO C ON(B.ROOM_CODE = C.ROOM_CODE)
+		 WHERE A.HOTEL_CODE = #{ hotelCode }
+		 <![CDATA[
+		 AND B.ROOM_PERSON >= #{ person }
+		 ]]> 
+	 </select>
+	 
+	 <select id="selectRoomReserve" resultType="_int" parameterType="hashmap">
+	 	SELECT
+		       COUNT(*)
+		  FROM ROOM A
+		  LEFT OUTER JOIN RESERVE B ON(A.ROOM_CODE = B.ROOM_CODE)
+		 WHERE A.ROOM_CODE = #{ roomCode }
+		   AND B.END_DATE > #{ startdate }
+		   <![CDATA[
+		   AND B.END_DATE <= ]]> #{ enddate }
+	 </select>
+	 
+	 
+</mapper>
