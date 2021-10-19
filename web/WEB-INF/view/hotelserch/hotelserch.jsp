@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@
 		</div>
 	</div>
 	<c:if test="${ !empty requestScope.noneSelect }">
-		<h1 class="text-center"> ${ requestScope.noneSelect } </h1>
+		<h1 class="text-center" style="margin-top: 40px; margin-bottom: 40px;"> ${ requestScope.noneSelect } </h1>
 	</c:if>
 	<c:if test="${ !empty requestScope.roomList }">
 		<c:set var="badplus" value="30000"></c:set>
@@ -79,12 +80,13 @@
 			        </div>
 			        <div class="col p-4 d-flex flex-column" style="z-index:1">
 			          <h3 class="mb-0">${ room.roomName }</h3><br>
-			          <p class="card-text mb-auto">1박 ${ room.price }~</p>
+			          
+			          <p class="card-text mb-auto">1박 <fmt:formatNumber value="${ room.price }" pattern="#,###"/>원~</p>
 				          <div class="dropdown">
 							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">예약하기</button>
 							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							    <button class="dropdown-item" onclick="basiceserve(${ room.roomCode })" value="${ room.roomCode }" >기본 1박당 ${ room.price }</button>
-							    <button class="dropdown-item" onclick="addreserve(${ room.roomCode })" value="${ room.roomCode }" >배드 추가 1박당 ${ room.price + badplus }</button>
+							    <button class="dropdown-item" onclick="basiceserve(${ room.roomCode })" value="${ room.roomCode }" >기본 1박당 <fmt:formatNumber value="${ room.price }" pattern="#,###"/>원</button>
+							    <button class="dropdown-item" onclick="addreserve(${ room.roomCode })" value="${ room.roomCode }" >배드 추가 1박당 <fmt:formatNumber value="${ room.price + badplus }" pattern="#,###"/>원</button>
 							  </div>
 							</div>
 			        </div>
@@ -171,24 +173,32 @@
 	});
 	
 	function basiceserve(a) {
-		$("#hotel").val($('#searchHotel').val());
-		$("#addBed").val("basic");
-		$("#roomCode").val(a);
-		
-		$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
-		$("#select-form").submit();
-		
+		if(${ empty sessionScope.loginUser }) {
+			alert("로그인 후 예약 가능합니다.")
+			location.href = "${ pageContext.servletContext.contextPath }/user/login";
+		} else {
+			$("#hotel").val($('#searchHotel').val());
+			$("#addBed").val("basic");
+			$("#roomCode").val(a);
+			
+			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+			$("#select-form").submit();			
+		}
 	}
 	
 	
 	function addreserve(a) {
-		$("#hotel").val($('#searchHotel').val());
-		$("#addBed").val("add");
-		$("#roomCode").val(a);
-		
-	 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
-		$("#select-form").submit();
-		
+		if(${ empty sessionScope.loginUser }) {
+			alert("로그인 후 예약 가능합니다.")
+			location.href = "${ pageContext.servletContext.contextPath }/user/login";
+		} else {
+			$("#hotel").val($('#searchHotel').val());
+			$("#addBed").val("add");
+			$("#roomCode").val(a);
+			
+		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+			$("#select-form").submit();			
+		}
 	}
 	
 	
