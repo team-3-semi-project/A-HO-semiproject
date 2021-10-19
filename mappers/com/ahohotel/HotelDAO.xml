@@ -82,6 +82,7 @@
 		 <![CDATA[
 		 AND B.ROOM_PERSON >= #{ person }
 		 ]]> 
+		 ORDER BY B.ROOM_PRICE
 	 </select>
 	 
 	 <select id="selectRoomReserve" resultType="_int" parameterType="hashmap">
