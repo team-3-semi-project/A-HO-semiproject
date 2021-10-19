@@ -33,7 +33,7 @@
         text-decoration: none;
       }
       #cen {
-        text-align: center;
+        text-align: left;
         margin-left: 40%;
       }
       #col{
@@ -56,6 +56,91 @@
       #logoleft {
         float: left;
       }
+      
+      .slider{
+		    width: 640px;
+		    height: 480px;
+		    position: relative;
+		    margin: 0 auto;
+		}
+	 .slider input[type=radio]{
+	      display: none;
+	  }
+	  
+	  ul.imgs{
+		    padding: 0;
+		    margin: 0;
+	  }
+	  ul.imgs li{
+		    position: absolute; /* 슬라이드가 겹쳐서 모여야 하므로 absolute 속성으로 배치 */
+		    opacity: 0; /* 체크한 라디오박스 순서의 슬라이드만 표시되도록 기본 투명도 설정 */
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+	  }
+	  .bullets{
+		    position: absolute;
+		    left: 50%; /* 가로로 가운데 정렬 */
+		    transform: translateX(-50%);
+		    bottom: 20px; /* 슬라이드 밑에서 20px 간격 띄움 */
+		    z-index: 2; /* 슬라이드 위에 보이도록 레이어 순위를 높임 */
+		}
+		.bullets label{
+		    display: inline-block; /* 한 줄로 불릿 나열*/
+		    border-radius: 50%; /* 원형 불릿으로 처리 */
+		    background-color: rgba(0,0,0,0.55);
+		    width: 20px; /* 불릿 너비 */
+		    height: 20px; /* 불릿 높이 */
+		    cursor: pointer;
+		}
+		.slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1){
+		    background-color: #fff;
+		}
+		.slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2){
+		    background-color: #fff;
+		}
+		.slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3){
+		    background-color: #fff;
+		}
+		.slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4){
+		    background-color: #fff;
+		}
+		.slider input[type=radio]:nth-child(5):checked~.bullets>label:nth-child(5){
+		    background-color: #fff;
+		}
+		.slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+		    opacity: 1;
+		    transition: 1s;
+		    z-index: 1;
+		}
+		.slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+		    opacity: 1;
+		    transition: 1s;
+		    z-index: 1;
+		}
+		.slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+		    opacity: 1;
+		    transition: 1s;
+		    z-index: 1;
+		}
+		.slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+		    opacity: 1;
+		    transition: 1s;
+		    z-index: 1;
+		}
+		.slider input[type=radio]:nth-child(5):checked~ul.imgs>li:nth-child(5){
+		    opacity: 1;
+		    transition: 1s;
+		    z-index: 1;
+		}
+		ul.imgs li{
+		    position: absolute;
+		    opacity: 0;
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+		    transition-delay: 0.9s; /* 트랜지션 지연 시간 지정 */
+		}
     </style>
    
   </head>
@@ -85,75 +170,58 @@
   </div>
   <br>
 
-
-  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+  	<div class="slider">
+    <input type="radio" name="slide" id="slide1" checked>
+    <input type="radio" name="slide" id="slide2">
+    <input type="radio" name="slide" id="slide3">
+    <input type="radio" name="slide" id="slide4">
+    <input type="radio" name="slide" id="slide5">
+    <ul id="imgholder" class="imgs">
+        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/강원.jpg;" width="700px"></li>
+        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/부산.jpg;" width="700px"></li>
+        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/서울.jpg;" width="700px"></li>
+        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인천.jpg;" width="700px"></li>
+        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/제주.jpg;" width="700px"></li>
+    </ul>
+    <div class="bullets">
+        <label for="slide1">&nbsp;</label>
+        <label for="slide2">&nbsp;</label>
+        <label for="slide3">&nbsp;</label>
+        <label for="slide4">&nbsp;</label>
+        <label for="slide5">&nbsp;</label>
     </div>
   </div>
-
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">World</strong>
-          <h3 class="mb-0">Featured post</h3>
-          <div class="mb-1 text-muted">Nov 12</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-success">Design</strong>
-          <h3 class="mb-0">Post title</h3>
-          <div class="mb-1 text-muted">Nov 11</div>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+  <br>
+<hr>
 <main role="main" class="container">
   <div class="row">
-    <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        From the Firehose
-      </h3>
-
+    <div class="blog-main">
       <div class="blog-post">
-        <h2 class="blog-post-title">Sample blog post</h2>
-        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+        <h2 class="blog-post-title" style="color:#D6B534">IntroDuce A-HO HOTEL</h2>
+        <h5 class="blog-post-meta" style="color:#D6B534"><strong>A-HO 호텔에서 얻을 수 있는 특별한 경험</strong></h5>
 
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+        <p>A-HO 호텔은 고객분들에게 최고의 경험을 제공하기 위해 다음과 같은 서비스를 제공하고 있습니다.</p>
         <hr>
-        <p>Yeah, she dances to her own beat. Oh, no. You could've been the greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a reason why all the doors are closed. Open up your heart and just let it begin. So très chic, yeah, she's a classic.</p>
-        <blockquote>
-          <p>Bikinis, zucchinis, Martinis, no weenies. I know there will be sacrifice but that's the price. <strong>This is how we do it</strong>. I'm not sticking around to watch you go down. You think you're so rock and roll, but you're really just a joke. I know one spark will shock the world, yeah yeah. Can't replace you with a million rings.</p>
-        </blockquote>
-        <p>Trying to connect the dots, don't know what to tell my boss. Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine. Glitter all over the room <em>pink flamingos</em> in the pool. </p>
-        <h2>Heading</h2>
-        <p>Suiting up for my crowning battle. If you only knew what the future holds. Bring the beat back. Peach-pink lips, yeah, everybody stares.</p>
-        <h3>Sub-heading</h3>
-        <p>You give a hundred reasons why, and you say you're really gonna try. Straight stuntin' yeah we do it like that. Calling out my name. ‘Cause I, I’m capable of anything.</p>
-        <pre><code>Example code block</code></pre>
-        <p>Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine.</p>
-        <h3>Sub-heading</h3>
-        <p>You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out.</p>
+		<img src="${ pageContext.servletContext.contextPath }/resources/common-Img/반려동물.jpg;" style="width: 50%; height: auto;">
+        <h2 style="color:#D6B534">WITH PET</h2>
+        <p>소중한 경험을 반려동물과 함께 보내세요</p>
+        <hr>
+        <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/클래식.jpg;" style="width: 50%; height: auto;">
+        <h2 style="color:#D6B534">CLASSIC</h2>
+        <p>매주 토요일 아름다운 클래식 연주를 들어보세요</p>
+        <hr>
+        <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/수영장헬스장.png;" style="width: 50%; height: auto;">
+        <h2 style="color:#D6B534">FACILITIES</h2>
+        <p>최고의 시설에서 휴양을 즐겨보세요</p>
+        <hr>
+	</div>
+   </div>
+  </div>
+</main>
+	<main role="main" class="container"></main>
+	 <div class="row">
+    <div class="col-md-8 blog-main">
+      <div class="blog-post">
         <ul>
           <li>Got a motel and built a fort out of sheets.</li>
           <li>Your kiss is cosmic, every move is magic.</li>
@@ -193,43 +261,15 @@
         <p>Don't need apologies. Boy, you're an alien your touch so foreign, it's <em>supernatural</em>, extraterrestrial. Talk about our future like we had a clue. I can feel a phoenix inside of me.</p>
       </div><!-- /.blog-post -->
 
-      <nav class="blog-pagination">
-        <a class="btn btn-outline-primary" href="#">Older</a>
-        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-      </nav>
-
     </div><!-- /.blog-main -->
 
     <aside class="col-md-4 blog-sidebar">
-      <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by? Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.</p>
-      </div>
-
       <div class="p-4">
-        <h4 class="font-italic">Archives</h4>
-        <ol class="list-unstyled mb-0">
-          <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
-          <li><a href="#">January 2014</a></li>
-          <li><a href="#">December 2013</a></li>
-          <li><a href="#">November 2013</a></li>
-          <li><a href="#">October 2013</a></li>
-          <li><a href="#">September 2013</a></li>
-          <li><a href="#">August 2013</a></li>
-          <li><a href="#">July 2013</a></li>
-          <li><a href="#">June 2013</a></li>
-          <li><a href="#">May 2013</a></li>
-          <li><a href="#">April 2013</a></li>
-        </ol>
-      </div>
-
-      <div class="p-4">
-        <h4 class="font-italic">Elsewhere</h4>
+        <h5 class="font-italic">A-HO 소식 받기</h5>
         <ol class="list-unstyled">
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Facebook</a></li>
+          <li><a href="https://www.instagram.com/shillahotels/">Instagram</a></li>
+          <li><a href="https://twitter.com/Twitter">Twitter</a></li>
+          <li><a href="https://www.facebook.com/theshillahotels">Facebook</a></li>
         </ol>
       </div>
     </aside><!-- /.blog-sidebar -->
