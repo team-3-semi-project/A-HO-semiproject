@@ -142,6 +142,7 @@
 		    margin: 0;
 		    transition-delay: 0.9s; /* 트랜지션 지연 시간 지정 */
 		}
+
     </style>
    
   </head>
@@ -277,7 +278,7 @@
         <p>A-HO의 다양한 소식을 받아보세요.</p>
         <ol class="list-unstyled">
         <br>
-	        <table style="text-align:center;">
+	        <table>
 	        	<tr>
 	         		 <td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인스타그램.png;" style="width: 30%; height: auto;"></td>
 	         		 <td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/페이스북.png;" style="width: 30%; height: auto;"></td>
@@ -307,6 +308,7 @@
        
       </div><!-- /.blog-post -->
 	</main>
+	
 
 	<jsp:include page="footer.jsp"/>
 
