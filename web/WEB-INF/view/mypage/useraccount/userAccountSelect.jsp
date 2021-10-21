@@ -31,25 +31,25 @@
                     <input type="text" class="form-control" id="userId" name="userId" value="${ requestScope.userId }" readonly>
                     <br>
                     <label for="pw">비밀번호 <sub>&nbsp;&nbsp;영문 대 소문+숫자+특수문자 8~12자리</sub> </label>  
-                    <input type="password" class="form-control" id="password" name="pw" value="" >
+                    <input type="password" class="form-control" id="password" name="pw" value="" required>
                     <label class="password-error" id="password-error"></label>
-                    <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" value="" placeholder="비밀번호 확인">
+                    <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" value="" placeholder="비밀번호 확인" required="required">
                     <label class="passwordchek-error" id="passwordchek-error"></label>
                     <br>
                     <hr>
                     <label for="name">이름 <sub>&nbsp;&nbsp;한글로 입력</sub></label>  
-                    <input type="text" class="form-control" id="name" name="name" value="${ requestScope.userName }">
+                    <input type="text" class="form-control" id="name" name="name" value="${ requestScope.userName }" required>
                     <label class="name-error" id="name-error"></label>
                     <br>
                     <label for="email">이메일 <sub>&nbsp;&nbsp;예)user01@greedy.com</sub></label>  
-                    <input type="text" class="form-control" id="email" name="email" value="${ requestScope.userEmail }">
+                    <input type="text" class="form-control" id="email" name="email" value="${ requestScope.userEmail }" required>
                     <label class="email-error" id="email-error"></label>
                     <br>
                     <label for="birthday">생년월일</label>  
-                    <input type="date" class="form-control" id="bday" name="birthday" value="${ requestScope.userBirth }">
+                    <input type="date" class="form-control" id="bday" name="birthday" value="${ requestScope.userBirth }" required>
                     <br>
                     <label for="phone">전화번호 <sub>&nbsp;&nbsp; '-' 없이 입력</sub></label>  
-                    <input type="text" class="form-control" id="phone" name="phone" value="${ requestScope.userPhone }">
+                    <input type="text" class="form-control" id="phone" name="phone" value="${ requestScope.userPhone }" required>
                     <label class="phone-error" id="phone-error"></label>
                     <br><br>
                   </div>
