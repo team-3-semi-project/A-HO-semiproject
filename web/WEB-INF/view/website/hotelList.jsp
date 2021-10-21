@@ -110,7 +110,7 @@
             </c:if>
               <div class="card-body">
               <div>
-                <p style="margin-left: 5px; float: left;" id="cardbody">성 호텔</p><p style="float: right; margin-right: 20px;">고객 평점 : </p>
+                <p style="margin-left: 5px; float: left;" id="cardbody">성 호텔</p><p style="float: right; margin-right: 20px;">고객 평점 : <c:out value="${ requestScope.totalScore }"/> </p>
               </div>
                 <br clear="both">
                 <div class="col-sm-5" style="height: 400px; float: left;" >
@@ -175,7 +175,7 @@
                     <h6 style="float: left; margin-left: 10px; margin-top: 10px;"><c:out value=" ${ review.room.roomName } ${ review.ahoUser.name }"/></h6>
                     
                     <c:if test="${ !empty sessionScope.loginUser }">
-                    <button type="button" style="float: right; margin-right: 20px; margin-top: 10px;" class="btn btn-secondary" value="${ review.userCode }">신고하기</button>
+                    <button type="button" style="float: right; margin-right: 20px; margin-top: 10px;" class="btn btn-secondary" value="${ review.reserveCode }" onclick="reportGo(${ review.reserveCode })">신고하기</button>
                     </c:if>
                     <br clear="both">
                     
@@ -210,6 +210,10 @@
                   </div>
                      </c:if>
                     </c:forEach>
+                
+               	 
+		</div>
+               	 <br>
                   </div>
                   
 
@@ -252,6 +256,12 @@
 		}		
 	};
 	
+	function reportGo(e){
+		var reserveCode = e;
+		
+		location.href = '${ pageContext.servletContext.contextPath}/report?reserveCode=' + reserveCode;
+		
+	}
 	
  </script>
 

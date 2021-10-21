@@ -1,7 +1,9 @@
 package com.ahohotel.hotellist.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ahohotel.common.paging.Pagenation;
+import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.hotellist.model.dto.HotelAndHotelPhotoDTO;
 import com.ahohotel.hotellist.model.dto.HotelReviewListDTO;
 import com.ahohotel.hotellist.model.service.HotelListService;
@@ -35,12 +39,27 @@ public class HotelListServlet extends HttpServlet {
 		/* 호텔페이지 리뷰부분 SELECT */
 		List<HotelReviewListDTO> hotelReviewList = hotelService.selectHotelReview(hotelNum);
 		
+		
+		double total = 0;
+		double count = 0;
+		
+		for (HotelReviewListDTO ho : hotelReviewList) {
+			if(ho.getReview() != null) {
+				total += ho.getScore();
+				count++;
+			}
+		}
+		
+		double totalScore = total/count ;
+		
+		
 		String path = "";
 		if (hotel != null) {
 			path = "/WEB-INF/view/website/hotelList.jsp";
 			request.setAttribute("mainPhoto", mainPhoto);
 			request.setAttribute("hotel", hotel);
 			request.setAttribute("hotelReview", hotelReviewList);
+			request.setAttribute("totalScore", totalScore);
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

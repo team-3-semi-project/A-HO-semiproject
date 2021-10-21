@@ -12,6 +12,7 @@ import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
+import com.ahohotel.user.model.dto.ReportDTO;
 public class ReserveService {
 
 	private final ReserveDAO reserveDAO;
@@ -111,6 +112,34 @@ public class ReserveService {
 		} else {
 			session.rollback();
 		}
+		
+		return result;
+	}
+
+	public ReserveDTO selectReserve(int reserveCode) {
+		
+		SqlSession session = getSqlSession();
+		
+		ReserveDTO reserve = reserveDAO.selectReserve(session, reserveCode);
+		
+		session.close();
+		
+		return reserve;
+	}
+
+	public int insertReport(ReportDTO report) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = reserveDAO.insertReport(session, report);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
 		
 		return result;
 	}

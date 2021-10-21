@@ -9,6 +9,7 @@ import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
+import com.ahohotel.user.model.dto.ReportDTO;
 
 public class ReserveDAO {
 
@@ -45,6 +46,16 @@ public class ReserveDAO {
 	public int insertReviewPhoto(SqlSession session, ReviewPhotoDTO reviewPhotoDTO) {
 	
 		return session.insert("ReserveDAO.insertReviewPhoto", reviewPhotoDTO);
+	}
+
+	public ReserveDTO selectReserve(SqlSession session, int reserveCode) {
+		
+		return session.selectOne("ReserveDAO.selectReserve", reserveCode);
+	}
+
+	public int insertReport(SqlSession session, ReportDTO report) {
+		
+		return session.insert("ReserveDAO.insertReport", report);
 	}
 
 }
