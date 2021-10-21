@@ -193,6 +193,8 @@ public class BookServlet extends HttpServlet {
 			path2 = "/WEB-INF/view/common/failed.jsp";
 			request.setAttribute("message", "예약내역에 따른 회원정보 수정 실패!");
 		}
+		
+		response.sendRedirect(request.getContextPath());
 
 	}
 

@@ -5,6 +5,29 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<style>
+		.box-radio-input input[type="radio"]{
+		  display:none;
+		}
+		
+		.box-radio-input input[type="radio"] + span{
+		  display:inline-block;
+		  background:none;
+		  border:1px solid #dfdfdf;  
+		  padding:0px 10px;
+		  text-align:center;
+		  height:35px;
+		  line-height:33px;
+		  font-weight:500;
+		  cursor:pointer;
+		}
+		
+		.box-radio-input input[type="radio"]:checked + span{
+		  border:1px solid #23a3a7;
+		  background:#23a3a7;
+		  color:#fff;
+		}
+	</style>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +35,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <title>A-HO</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>  
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+</head> 
 <body>
 
   	<jsp:include page="../common/header.jsp"></jsp:include>
   	<!-- --------------------------------------------------------------------------------------------- -->
 
 	<main class="container">
-	    <form action="${ pageContext.servletContext.contextPath }/book" method="post">
+	    <form id="pay-form" action="${ pageContext.servletContext.contextPath }/book" method="post">
 	        <div class="row">
 	            <div class="col-sm-8">
 	                <div class="card">
@@ -93,10 +118,6 @@
 	                            		});
 	                            	</script>
 		                            <br>
-	                            	<!-- <div>
-	                            		<label for="userName">반려동물 특이사항</label>  
-	                            		<input type="text" class="form-control" id="userName" name="userName" placeholder="반려동물 특이사항 입력란">
-	                            	</div> -->
 	                            </div>
 	                            <br>
 	                            <hr>
@@ -147,9 +168,7 @@
 	                            <div>
 	                            	<h4>결제 수단 선택</h4>
 		                            <br>
-		                            <button class="btn btn-outline-secondary">카드</button>
-		                            <button class="btn btn-outline-secondary">현금</button>
-		                            <button class="btn btn-outline-secondary">카카오페이</button>
+									<label class="box-radio-input"><input type="radio" name="pgMethod" value="kakaopay" checked><span>카카오페이</span></label>
 	                            </div>
 	                            <br>
 	                            <br>
@@ -201,12 +220,12 @@
 	                        </div>
 	                        <br>
 	                        <div>
-	                            <mark><input type="checkbox" style="zoom: 1.3;">&nbsp;&nbsp;<label for=""><strong>결제약관 동의</strong>&nbsp;&nbsp;</label></mark>
-	                            <p><small>해당 가격은 세금, 봉사료, 청소비가 포함된 금액입니다. 결제 완료 후 예약자명으로 체크인이 가능합니다.</small></p>
+	                            <!-- <mark><input type="checkbox" style="zoom: 1.3;">&nbsp;&nbsp;<label for=""><strong>결제약관 동의</strong>&nbsp;&nbsp;</label></mark> -->
+	                            <p><small><mark>해당 가격은 세금, 봉사료, 청소비가 포함된 금액입니다. 결제 완료 후 예약자명으로 체크인이 가능합니다.</mark></small></p>
 	                        </div>
 	                    </div>
 	                    <div class="text-right">
-	                        <button type="submit" class="btn btn-primary" style="width: 100%; height: 70px; font-size: 2em;"><strong>결제하기</strong></button>
+	                        <button type="button" class="btn btn-primary" id="finish" style="width: 100%; height: 70px; font-size: 2em;"><strong>결제하기</strong></button>
 	                    </div>
 	                </div> 
 	            </div>
@@ -216,6 +235,62 @@
 	    <br>
 	    <br>
 	    <br>
+	    <script>
+		    $("#finish").click(function() {
+		    	var IMP = window.IMP; // 생략가능
+		    	IMP.init('imp74195802'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		    	var msg;
+		        
+		    	IMP.request_pay({
+		    		pg : 'kakaopay',
+		        	pay_method : 'card',
+		            merchant_uid : 'merchant_' + new Date().getTime(),
+		            name : 'AHO호텔 예약 결제',
+		            amount : 100,
+		            buyer_email : '971215wldnjs@naver.com',
+		            buyer_name : '김지원',
+		            buyer_tel : '01096542201',
+		            buyer_addr : '대한민국',
+		            buyer_postcode : '123-456',
+		            //m_redirect_url : 'http://www.naver.com'
+		        }, function(rsp) {
+		            if ( rsp.success ) {
+		                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+		                jQuery.ajax({
+		                    url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+		                    type: 'POST',
+		                    dataType: 'json',
+		                    data: {
+		                        imp_uid : rsp.imp_uid
+		                        //기타 필요한 데이터가 있으면 추가 전달
+		                    }
+		                }).done(function(data) {
+		                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+		                    if ( everythings_fine ) {
+		                        msg = '결제가 완료되었습니다.';
+		                        msg += '\n고유ID : ' + rsp.imp_uid;
+		                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+		                        msg += '\결제 금액 : ' + rsp.paid_amount;
+		                        msg += '카드 승인번호 : ' + rsp.apply_num;
+		                        
+		                        alert(msg);
+		                    } else {
+		                        //[3] 아직 제대로 결제가 되지 않았습니다.
+		                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+		                    }
+		                });
+		                //성공시 이동할 페이지
+		                document.getElementById("pay-form").submit();
+		            } else {
+		                msg = '결제에 실패하였습니다.';
+		                msg += '에러내용 : ' + rsp.error_msg;
+		                //실패시 이동할 페이지
+		                location.href="<%=request.getContextPath()%>";
+		                alert(msg);
+		            }
+				});
+		    });
+    	</script>
 	</main>
 
 	<!-- --------------------------------------------------------------------------------------------- -->
