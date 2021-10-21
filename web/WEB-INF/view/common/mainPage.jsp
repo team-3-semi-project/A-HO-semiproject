@@ -5,6 +5,8 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=">
+    
     <title>메인홈페이지</title>
 
     <!-- Bootstrap core CSS -->
@@ -12,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
     <style>
-      
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -257,7 +259,7 @@
         	<tr>
         		<td style="line-height:0;"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/요리.jpg;" style="width: 100%; height: auto;"></td>
         		<td style="text-align:center; background-color:gray; color:white;"><p>세븐스퀘어<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;세븐스퀘어는 각국의 음식을 통해&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;세븐스퀘어는 각국의 음식을 통해&nbsp;&nbsp;&nbsp;
 							다양한 세대가 만나는 '삶'의 공간을
 							지향하는 라이프스타일 레스토랑입니다.</p>
 			</tr>
@@ -278,7 +280,7 @@
         <p>A-HO의 다양한 소식을 받아보세요.</p>
         <ol class="list-unstyled">
         <br>
-	        <table>
+	        <table style="text-align:center">
 	        	<tr>
 	         		 <td><a href="https://www.instagram.com/shillahotels/"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인스타그램.png;" style="width: 30%; height: auto;"></td></a>
 	         		 <td><a href="https://www.facebook.com/theshillahotels"> <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/페이스북.png;" style="width: 30%; height: auto;"></td></a>
