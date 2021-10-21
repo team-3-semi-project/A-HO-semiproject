@@ -11,9 +11,13 @@ public class HotelListDTO {
 	private String hotelPhone;
 	private String hotelAddress;
 	private String hotelOpen;
-	private Date checkIn;
-	private Date checkOut;
+	private String checkIn;
+	private String checkOut;
+	private double latitude;
+	private double longitude;
+	private String introduce;
 	private List<RoomListDTO> room;
+	private List<HotelPhotoDTO> hotelPhoto;
 	
 	
 	public HotelListDTO() {
@@ -22,7 +26,8 @@ public class HotelListDTO {
 
 
 	public HotelListDTO(int hotelCode, String hotelName, String hotelStar, int hotelUserAvg, String hotelPhone,
-			String hotelAddress, String hotelOpen, Date checkIn, Date checkOut, List<RoomListDTO> room) {
+			String hotelAddress, String hotelOpen, String checkIn, String checkOut, double latitude, double longitude,
+			String introduce, List<RoomListDTO> room, List<HotelPhotoDTO> hotelPhoto) {
 		this.hotelCode = hotelCode;
 		this.hotelName = hotelName;
 		this.hotelStar = hotelStar;
@@ -32,7 +37,11 @@ public class HotelListDTO {
 		this.hotelOpen = hotelOpen;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.introduce = introduce;
 		this.room = room;
+		this.hotelPhoto = hotelPhoto;
 	}
 
 
@@ -106,23 +115,53 @@ public class HotelListDTO {
 	}
 
 
-	public Date getCheckIn() {
+	public String getCheckIn() {
 		return checkIn;
 	}
 
 
-	public void setCheckIn(Date checkIn) {
+	public void setCheckIn(String checkIn) {
 		this.checkIn = checkIn;
 	}
 
 
-	public Date getCheckOut() {
+	public String getCheckOut() {
 		return checkOut;
 	}
 
 
-	public void setCheckOut(Date checkOut) {
+	public void setCheckOut(String checkOut) {
 		this.checkOut = checkOut;
+	}
+
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 
 
@@ -136,12 +175,23 @@ public class HotelListDTO {
 	}
 
 
+	public List<HotelPhotoDTO> getHotelPhoto() {
+		return hotelPhoto;
+	}
+
+
+	public void setHotelPhoto(List<HotelPhotoDTO> hotelPhoto) {
+		this.hotelPhoto = hotelPhoto;
+	}
+
+
 	@Override
 	public String toString() {
 		return "HotelListDTO [hotelCode=" + hotelCode + ", hotelName=" + hotelName + ", hotelStar=" + hotelStar
 				+ ", hotelUserAvg=" + hotelUserAvg + ", hotelPhone=" + hotelPhone + ", hotelAddress=" + hotelAddress
-				+ ", hotelOpen=" + hotelOpen + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", room=" + room
-				+ "]";
+				+ ", hotelOpen=" + hotelOpen + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", introduce=" + introduce + ", room=" + room
+				+ ", hotelPhoto=" + hotelPhoto + "]";
 	}
 
 	

@@ -11,7 +11,11 @@
 		<result property="hotelOpen" column="HOTEL_OPEN"/>
 		<result property="checkIn" column="CHECK_IN"/>
 		<result property="checkOut" column="CHECK_OUT"/>
+		<result property="introduce" column="HOTEL_INTRODUCE"/>
+		<result property="latitude" column="LATITUDE"/>
+		<result property="longitude" column="LONGITUDE"/>
 		<collection property="room" resultMap="roomResultMap"/>
+		<collection property="hotelPhoto" resultMap="hotelPhotoResultMap"/>
 	</resultMap>
 	
 	<resultMap type="com.ahohotel.hotelserch.model.dto.RoomListDTO" id="roomResultMap">
@@ -45,6 +49,14 @@
 		<result property="originalFile" column="RO_ORIGINAL_FILE"/>
 		<result property="filename" column="RO_FILE_NAME"/>
 		<result property="filePath" column="RO_FILE"/>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.hotelserch.model.dto.HotelPhotoDTO" id="hotelPhotoResultMap">
+		<id property="photoCode" column="H_PHOTO_CODE"/>
+		<result property="hotelCode" column="HOTEL_CODE"/>
+		<result property="originalFile" column="H_ORIGINAL_FILE"/>
+		<result property="filename" column="H_FILE_NAME"/>
+		<result property="filePath" column="H_FILE"/>
 	</resultMap>
 	
 
@@ -95,6 +107,98 @@
 		   <![CDATA[
 		   AND B.END_DATE <= ]]> #{ enddate }
 	 </select>
+	 
+	 <select id="selectHotel" resultMap="hotelResultMap">
+		 SELECT 
+		        A.HOTEL_CODE
+		      , A.HOTEL_NAME
+		      , A.HOTEL_STAR
+		      , A.HOTEL_USER_AVG
+		      , A.HOTEL_PHONE
+		      , A.HOTEL_ADDRESS
+		      , A.HOTEL_OPEN
+		      , A.CHECK_IN
+		      , A.CHECK_OUT
+		      , A.HOTEL_INTRODUCE
+		      , A.LATITUDE
+		      , A.LONGITUDE
+		      , B.ROOM_CODE
+		      , B.HOTEL_CODE
+		      , B.ROOM_NAME
+		      , B.ROOM_PRICE
+		      , B.ROOM_COUNT
+		      , B.ROOM_PERSON
+		      , C.H_PHOTO_CODE
+		      , C.H_FILE
+		      , D.RO_PHOTO_CODE
+		      , D.RO_FILE
+		   FROM HOTEL A
+		   LEFT OUTER JOIN ROOM B ON(A.HOTEL_CODE = B.HOTEL_CODE)
+		   LEFT OUTER JOIN HOTEL_PHOTO C ON(A.HOTEL_CODE = C.HOTEL_CODE)
+		   LEFT OUTER JOIN ROOM_PHOTO D ON(B.ROOM_CODE = D.ROOM_CODE)
+		  WHERE A.HOTEL_CODE = #{ code }
+	 </select>
+	 
+	 <select id="selectHotelbyName" resultType="_int">
+		 SELECT 
+		        A.HOTEL_CODE
+		   FROM HOTEL A
+		  WHERE A.HOTEL_NAME = #{ hotelName }
+	 </select>
+	 
+	 <insert id="insertHotel" parameterType="com.ahohotel.hotelserch.model.dto.HotelListDTO">
+	 	INSERT
+			   INTO HOTEL
+		 	 (
+			   HOTEL_CODE
+			 , HOTEL_NAME
+			 , HOTEL_STAR
+			 , HOTEL_PHONE
+			 , HOTEL_ADDRESS
+			 , HOTEL_OPEN
+			 , CHECK_IN
+			 , CHECK_OUT
+			 , HOTEL_INTRODUCE
+			 , LATITUDE
+		     , LONGITUDE
+			 )
+			 VALUES
+			 (
+			   SEQ_HOTEL_CODE.NEXTVAL
+			 , #{ hotelName }
+			 , #{ hotelStar }
+			 , #{ hotelPhone }
+			 , #{ hotelAddress }
+			 , #{ hotelOpen }
+			 , #{ checkIn }
+			 , #{ checkOut }
+			 , #{ introduce }
+			 , #{ latitude }
+			 , #{ longitude }
+			 )
+	 </insert>
+	 
+	 <insert id="insertHotelPhoto" parameterType="com.ahohotel.hotelserch.model.dto.HotelPhotoDTO">
+	 	INSERT
+			   INTO HOTEL_PHOTO A
+		 	 (
+			   A.H_PHOTO_CODE
+			 , A.HOTEL_CODE
+			 , A.H_ORIGINAL_FILE
+			 , A.H_FILE_NAME
+			 , A.H_FILE
+			 , H_THUMBNAIL_YN
+			 )
+			 VALUES
+			 (
+			   SEQ_HOTEL_PHOTO_CODE.NEXTVAL
+			 , #{ hotelCode }
+			 , #{ originalFile }
+			 , #{ fileName }
+			 , #{ filePath }
+			 , #{ thumbnail_YN }
+			 )
+	 </insert>
 	 
 	 
 </mapper>

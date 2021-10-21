@@ -66,9 +66,6 @@ public class SearchHotelServlet extends HttpServlet {
 		List<RoomListDTO> roomList = hotelService.selectHotelList(selectHotel);
 		
 		if(roomList != null) {
-			
-			String jsonString = new Gson().toJson(roomList);
-			
 			request.setAttribute("roomList", roomList);
 			request.setAttribute("selectCriteria", selectHotel);
 		} else {
