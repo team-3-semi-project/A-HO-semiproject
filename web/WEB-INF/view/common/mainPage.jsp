@@ -280,9 +280,9 @@
         <br>
 	        <table>
 	        	<tr>
-	         		 <td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인스타그램.png;" style="width: 30%; height: auto;"></td>
-	         		 <td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/페이스북.png;" style="width: 30%; height: auto;"></td>
-	         		 <td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/트위터.png;" style="width: 30%; height: auto;"></td>
+	         		 <td><a href="https://www.instagram.com/shillahotels/"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인스타그램.png;" style="width: 30%; height: auto;"></td></a>
+	         		 <td><a href="https://www.facebook.com/theshillahotels"> <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/페이스북.png;" style="width: 30%; height: auto;"></td></a>
+	         		 <td><a href="https://twitter.com/Twitter"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/트위터.png;" style="width: 30%; height: auto;"></td></a>
 	          	</tr>
 	          	<tr>
 	          		  <td><a href="https://www.instagram.com/shillahotels/">Instagram</a></td>
@@ -304,6 +304,7 @@
 		<div class="col-md-8 blog-main">
       <div class="blog-post">
         <h2 class="blog-post-title" style="color:#D6B534"><strong>코로나19 방역 안내</strong></h2>
+        <p>A-HO호텔은 고객분들의 안전을 위해 최선을 다하고 있습니다.</p>
 		<img src="${ pageContext.servletContext.contextPath }/resources/common-Img/코로나19.jpg;" style="width: 150%; height: auto;">
        
       </div><!-- /.blog-post -->
@@ -312,7 +313,8 @@
 
 	<jsp:include page="footer.jsp"/>
 
-
-    
+	
   </body>
+ 
+  
 </html>
