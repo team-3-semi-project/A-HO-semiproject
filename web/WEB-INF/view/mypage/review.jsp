@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
 <title>예약내역조회</title>
 
@@ -23,6 +22,12 @@
 
 .star {
 display: none;
+}
+
+.obj {
+  margin-left: 20px;
+  width: 100px;
+  height: 100px;
 }
 
 .reviewB {
@@ -64,8 +69,9 @@ display: none;
                     <p class="card-text" style="float: right; margin-right: 20px;"><small class="text-muted"><fmt:formatDate value="${ reserve.startDate }" type="date" pattern="yyyy-MM-dd 15시"/> ~ <fmt:formatDate value="${ reserve.endDate }" type="date" pattern="yyyy-MM-dd 11시"/></small>
                   	<br clear="both">
                   </div>
-                  	<label for="imgup" style="margin-left: 20px;">파일 : &nbsp; </label><input type="file" name="uploadImg" id="imgup" multiple="multiple">
+                  	<label for="imgup" style="margin-left: 20px;">파일 : &nbsp; </label><input type="file" name="uploadImg" id="imgup" multiple="multiple" onchange="loadImg()">
                   <br>
+                  <div id="preview"></div>
                   <textarea name="reviewText" id="reviewText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
                   <input type="radio" name="reserveCode" value="${ reserve.reserveCode }" style="display: none;" checked="checked">
                   <button type="reset" class="reviewB" id="reviewCancle">취소</button> <button type="button" class="reviewB" id="reviewOk">확인</button>
@@ -141,6 +147,40 @@ display: none;
         		document.getElementById("reviewForm").submit();
         	}
         });
+        
+		function loadImg() {
+        	
+        	var fileInput = document.querySelector("#imgup");
+        	var files = fileInput.files;
+          	var preview = document.getElementById("preview");
+        	
+        	if (files){
+        		
+	        	for (var i = 0; i < files.length; i++) {
+	        	  var file = files[i];
+	              const img = document.createElement("img");
+	              img.classList.add("obj");
+	              img.file = file;
+              
+
+             	  preview.appendChild(img);
+
+             	  const reader = new FileReader();
+              
+             	  reader.onload = function(e) {
+                
+                  img.src = e.target.result;
+              }
+              
+              reader.readAsDataURL(file);
+              
+	        	}
+	        	
+            $("#imgup").click(function(){
+              $("#preview").children().remove();
+            })
+        	}
+        };
         
       </script>
   </main>
