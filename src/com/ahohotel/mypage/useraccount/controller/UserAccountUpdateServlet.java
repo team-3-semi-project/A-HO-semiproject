@@ -1,9 +1,9 @@
 package com.ahohotel.mypage.useraccount.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
