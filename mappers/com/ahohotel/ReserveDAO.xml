@@ -49,6 +49,9 @@
    		<result property="open" column="HOTEL_OPEN"/>
    		<result property="checkIn" column="CHECK_IN"/>
    		<result property="checkOut" column="CHECK_OUT"/>
+   		<result property="introduce" column="CHECK_OUT"/>
+   		<result property="latitude" column="LATITUDE"/>
+   		<result property="longitude" column="LONGITUDE"/>
    </resultMap>
    
    <resultMap type="com.ahohotel.mypage.reserve.model.dto.RoomDTO" id="roomResultMap">

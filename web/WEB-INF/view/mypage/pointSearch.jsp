@@ -57,7 +57,7 @@
                     <tbody>
                     
                     <c:forEach var="pointSelect" items="${ requestScope.reserveList }" varStatus="num">
-                    	<c:set var="plusePoint" value="${ Integer.valueOf(pointSelect.price * 0.05) }"/>
+                    	<c:set var="plusePoint" value="${ Integer.valueOf(pointSelect.price * 0.01) }"/>
                       
                       <tr>
                         <th scope="row">${ num.index + 1 }</th>
