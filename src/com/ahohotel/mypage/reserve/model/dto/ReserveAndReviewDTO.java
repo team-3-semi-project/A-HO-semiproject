@@ -1,13 +1,12 @@
-package com.ahohotel.mypage.model.dto;
+package com.ahohotel.mypage.reserve.model.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
+public class ReserveAndReviewDTO implements Serializable{
 
-public class ReserveSearchPointDTO implements Serializable{
-
-	private static final long serialVersionUID = 2030322266576900721L;
-
+	private static final long serialVersionUID = -5301074341926655206L;
+	
 	private int reserveCode;
 	private int userCode;
 	private int roomCode;
@@ -19,18 +18,15 @@ public class ReserveSearchPointDTO implements Serializable{
 	private String review;
 	private int score;
 	private java.util.Date reviewDate;
-	private HotelDTO hotel;
-	private RoomDTO room;
+	private String option;
+	private ReviewPhotoDTO photo;
 	
-	/* 포인트 소멸일자용 변수(테이블에는 없음) */
-	private java.util.Date endPointDate;
-	
-	public ReserveSearchPointDTO() {
+	public ReserveAndReviewDTO() {
 	}
 
-	public ReserveSearchPointDTO(int reserveCode, int userCode, int roomCode, Date paymentDate, int usePoint, int price,
-			Date startDate, Date endDate, String review, int score, Date reviewDate, HotelDTO hotel,
-			RoomDTO room) {
+	public ReserveAndReviewDTO(int reserveCode, int userCode, int roomCode, Date paymentDate, int usePoint, int price,
+			Date startDate, Date endDate, String review, int score, Date reviewDate, String option,
+			ReviewPhotoDTO photo) {
 		this.reserveCode = reserveCode;
 		this.userCode = userCode;
 		this.roomCode = roomCode;
@@ -42,8 +38,8 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.review = review;
 		this.score = score;
 		this.reviewDate = reviewDate;
-		this.hotel = hotel;
-		this.room = room;
+		this.option = option;
+		this.photo = photo;
 	}
 
 	public int getReserveCode() {
@@ -134,38 +130,29 @@ public class ReserveSearchPointDTO implements Serializable{
 		this.reviewDate = reviewDate;
 	}
 
-	public HotelDTO getHotel() {
-		return hotel;
+	public String getOption() {
+		return option;
 	}
 
-	public void setHotel(HotelDTO hotel) {
-		this.hotel = hotel;
+	public void setOption(String option) {
+		this.option = option;
 	}
 
-	public RoomDTO getRoom() {
-		return room;
+	public ReviewPhotoDTO getPhoto() {
+		return photo;
 	}
 
-	public void setRoom(RoomDTO room) {
-		this.room = room;
+	public void setPhoto(ReviewPhotoDTO photo) {
+		this.photo = photo;
 	}
 
-	public java.util.Date getendPointDate() {
-		return endPointDate;
-	}
-
-	public void setendPointDate(java.util.Date endPointDate) {
-		this.endPointDate = endPointDate;
-	}
-	
 	@Override
 	public String toString() {
-		return "ReserveSearchPointDTO [reserveCode=" + reserveCode + ", userCode=" + userCode + ", roomCode=" + roomCode
+		return "ReserveAndReviewDTO [reserveCode=" + reserveCode + ", userCode=" + userCode + ", roomCode=" + roomCode
 				+ ", paymentDate=" + paymentDate + ", usePoint=" + usePoint + ", price=" + price + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", review=" + review + ", score=" + score + ", reviewDate="
-				+ reviewDate + ", hotel=" + hotel + ", room=" + room + "]";
+				+ reviewDate + ", option=" + option + ", photo=" + photo + "]";
 	}
-	
 	
 	
 }

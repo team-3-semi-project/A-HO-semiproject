@@ -1,8 +1,7 @@
-package com.ahohotel.mypage.controller;
+package com.ahohotel.mypage.reserve.point.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ahohotel.mypage.model.dto.ReserveSearchPointDTO;
-import com.ahohotel.mypage.model.service.ReserveService;
+import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
+import com.ahohotel.mypage.reserve.model.service.ReserveService;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 
 @WebServlet("/mypage/point")
@@ -26,15 +25,15 @@ public class PointSearchServlet extends HttpServlet {
 		
 		ReserveService reserveService = new ReserveService();
 		
-		List<ReserveSearchPointDTO> reserveList = reserveService.searchPoint(searchUserNo);
+		List<ReserveSearchListDTO> reserveList = reserveService.searchPoint(searchUserNo);
 		
-		for (ReserveSearchPointDTO reserveSearchPointDTO : reserveList) {
+		for (ReserveSearchListDTO reserveSearchPointDTO : reserveList) {
 			System.out.println(reserveSearchPointDTO);
 			
 		}
 		
 		/* 포인트 소멸 일자 넣기 위한 반복문 */
-		for (ReserveSearchPointDTO reserve : reserveList) {
+		for (ReserveSearchListDTO reserve : reserveList) {
 			long time = reserve.getPaymentDate().getTime() + 31536000000L;  // 1년을 Millisecond으로 변환시킨 것
 //			System.out.println(reserve.getPaymentDate().getTime());
 //			System.out.println(time);

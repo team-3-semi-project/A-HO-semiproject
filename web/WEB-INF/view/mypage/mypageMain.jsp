@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <div class="card" style="width: 30rem;">
                                 <div class="card-body">
-                                  <p class="card-text"><a href="">예약 내역</a></p>
+                                  <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/reserve">예약 내역</a></p>
                                 </div>
                               </div>
                         </div>

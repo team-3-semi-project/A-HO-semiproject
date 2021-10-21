@@ -7,7 +7,7 @@
 		<result property="hotelName" column="HOTEL_NAME"/>
 	</resultMap>
 	
-	<resultMap type="com.ahohotel.mypage.model.dto.RoomDTO" id="bookingRoomResultMap">
+	<resultMap type="com.ahohotel.book.model.dto.RoomDTO" id="bookingRoomResultMap">
 		<id property="roomCode" column="ROOM_CODE"/>
 		<result property="hotelCode" column="HOTEL_CODE"/>
 		<result property="roomName" column="ROOM_NAME"/>

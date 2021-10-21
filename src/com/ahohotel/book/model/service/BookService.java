@@ -7,7 +7,7 @@ import com.ahohotel.book.model.dto.AhoUserAndVipDTO;
 import com.ahohotel.book.model.dto.BookDTO;
 import com.ahohotel.book.model.dto.BookingHotelDTO;
 import com.ahohotel.book.model.dto.PetDTO;
-import com.ahohotel.mypage.model.dto.RoomDTO;
+import com.ahohotel.book.model.dto.RoomDTO;
 
 import static com.ahohotel.common.mybatis.Template.getSqlSession;
 

@@ -19,7 +19,11 @@
 					successMessage = "***에 성공하셨습니다!";
 					movePath = "${ pageContext.servletContext.contextPath }";
 					break;
-
+				
+				case "insertReview" :
+					successMessage = "리뷰 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/mypage/reserve";
+					break;
 			}
 
 			alert(successMessage);

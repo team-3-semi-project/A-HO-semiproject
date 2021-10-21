@@ -87,15 +87,15 @@
                 </h6>
                 <ul class="nav flex-column mb-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/hotelinsert">
                     <span data-feather="file-text"></span>
                     신규 호텔 등록
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/hotel">
                     <span data-feather="file-text"></span>
-                    호텔 정보 수정
+                    호텔 목록(수정)
                     </a>
                 </li>
                 <br><br><br><br><br><br>

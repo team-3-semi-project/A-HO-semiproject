@@ -1,4 +1,4 @@
-package com.ahohotel.mypage.model.dto;
+package com.ahohotel.mypage.reserve.model.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,12 +18,13 @@ public class ReserveDTO implements Serializable{
 	private String review;
 	private int score;
 	private java.util.Date reviewDate;
+	private String option;
 	
 	public ReserveDTO() {
 	}
 
 	public ReserveDTO(int reserveCode, int userCode, int roomCode, Date paymentDate, int usePoint, int price,
-			Date startDate, Date endDate, String review, int score, Date reviewDate) {
+			Date startDate, Date endDate, String review, int score, Date reviewDate, String option) {
 		this.reserveCode = reserveCode;
 		this.userCode = userCode;
 		this.roomCode = roomCode;
@@ -35,6 +36,7 @@ public class ReserveDTO implements Serializable{
 		this.review = review;
 		this.score = score;
 		this.reviewDate = reviewDate;
+		this.option = option;
 	}
 
 	public int getReserveCode() {
@@ -125,13 +127,22 @@ public class ReserveDTO implements Serializable{
 		this.reviewDate = reviewDate;
 	}
 
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
 	@Override
 	public String toString() {
 		return "ReserveDTO [reserveCode=" + reserveCode + ", userCode=" + userCode + ", roomCode=" + roomCode
 				+ ", paymentDate=" + paymentDate + ", usePoint=" + usePoint + ", price=" + price + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", review=" + review + ", score=" + score + ", reviewDate="
-				+ reviewDate + "]";
+				+ reviewDate + ", option=" + option + "]";
 	}
+
 	
 	
 }

@@ -48,7 +48,7 @@
                     <thead class="thead-dark">
                       <tr align="center">
                         <th scope="col">#</th>
-                        <th scope="col">날짜</th>
+                        <th scope="col">결제 날짜</th>
                         <th scope="col" colspan="2">이용내역</th>
                         <th scope="col">적립포인트</th>
                         <th scope="col">사용포인트</th>
@@ -61,7 +61,7 @@
                       
                       <tr>
                         <th scope="row">${ num.index + 1 }</th>
-                        <td><fmt:formatDate value="${ pointSelect.paymentDate }" type="date" pattern="yyyy/MM/dd (E)"/></td>
+                        <td><fmt:formatDate value="${ pointSelect.paymentDate }" type="date" pattern="yyyy-MM-dd (E)"/></td>
                         <td colspan="2"><c:out value="${ pointSelect.hotel.hoName }"/> <c:out value="${ pointSelect.room.roomName }"/></td>
                         <td data-toggle="tooltip" title="포인트 소멸 일자 : <c:out value="${pointSelect.endPointDate }"/>">+ <c:out value="${ pageScope.plusePoint }"/></td>
                         <td><c:out value="- ${ pointSelect.usePoint }"/></td>
