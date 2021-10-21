@@ -170,6 +170,9 @@
       <li class="nav-item mt-auto">
         <a class="nav-link" href="notice">공지사항</a>
       </li>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="book">test(예약 연습용)</a>
+      </li>
     </ul>
   </div>
   <br>

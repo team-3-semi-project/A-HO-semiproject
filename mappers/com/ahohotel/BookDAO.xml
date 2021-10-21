@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BookDAO">
+	
+	<resultMap type="com.ahohotel.book.model.dto.BookingHotelDTO" id="bookingHotelResultMap">
+		<id property="hotelCode" column="HOTEL_CODE"/>
+		<result property="hotelName" column="HOTEL_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.book.model.dto.RoomDTO" id="bookingRoomResultMap">
+		<id property="roomCode" column="ROOM_CODE"/>
+		<result property="hotelCode" column="HOTEL_CODE"/>
+		<result property="roomName" column="ROOM_NAME"/>
+		<result property="price" column="ROOM_PRICE"/>
+		<result property="count" column="ROOM_COUNT"/>
+	</resultMap>
+	
+	<resultMap type="com.ahohotel.book.model.dto.AhoUserAndVipDTO" id="bookingUserAndVipResultMap">
+		<id property="userCode" column="USER_CODE"/>
+		<result property="vipCode" column="VIP_CODE"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="userPhone" column="USER_PHONE"/>
+		<result property="point" column="POINT"/>
+		<result property="grade" column="GRADE"/>
+		<result property="vipSale" column="VIP_SALE"/>
+		<result property="gradestandard" column="GRADE_STANDARD"/>
+	</resultMap>
+	
+	<!-- 예약하는 호텔정보 조회 -->
+	<select id="selectBookingHotel" resultMap="bookingHotelResultMap">
+		SELECT
+		       A.HOTEL_CODE
+		     , A.HOTEL_NAME
+		  FROM HOTEL A
+		 WHERE A.HOTEL_CODE = #{ hotelCode }
+	</select>
+	
+	<!-- 예약하는 객실정보 조회 -->
+	<select id="selectBookingRoom" resultMap="bookingRoomResultMap">
+		SELECT
+		       A.ROOM_CODE
+		     , A.HOTEL_CODE
+		     , A.ROOM_NAME
+		     , A.ROOM_PRICE
+		     , A.ROOM_COUNT
+		  FROM ROOM A
+		 WHERE A.ROOM_CODE =  #{ roomCode }
+	</select>
+	
+	<!-- 예약하는 사용자 정보 조회 -->
+	<select id="selectBookingUserAndVip" resultMap="bookingUserAndVipResultMap">
+		SELECT
+		       A.USER_CODE
+		     , A.VIP_CODE
+		     , A.USER_NAME
+		     , A.USER_PHONE
+		     , A.POINT
+		     , B.GRADE
+		     , B.VIP_SALE
+		     , B.GRADE_STANDARD
+		  FROM AHOUSER A
+		  JOIN VIP B ON (A.VIP_CODE = B.VIP_CODE)
+		  WHERE A.USER_CODE = #{ userCode }
+	</select>
+	
+	<!-- 예약내역 삽입 -->
+	<insert id="insertBook">
+		INSERT
+          INTO RESERVE A
+        (
+          A.RESERVE_CODE
+        , A.USER_CODE
+        , A.ROOM_CODE
+        , A.RESERVE_NAME
+        , A.RESERVE_PHONE
+        , A.START_DATE
+        , A.END_DATE
+        , A.PERSON_NUM
+        , A.ROOM_OPTION
+        , A.USE_POINT
+        , A.PRICE
+        )
+        VALUES 
+        (
+          SEQ_RESERVE_CODE.NEXTVAL
+        , #{ userCode }
+        , #{ roomCode }
+        , #{ reserveName }
+        , #{ reservePhone }
+        , #{ startDate }
+        , #{ endDate }
+        , #{ personNum }
+        , #{ roomOption }
+        , #{ usePoint }
+        , #{ price }
+        )
+        <selectKey keyProperty="bookCode" resultType="Integer" order="AFTER">
+        	SELECT
+        	       SEQ_RESERVE_CODE.CURRVAL
+        	  FROM DUAL
+        </selectKey>
+	</insert>
+	
+	<!-- 예약내역에 따른 반려동물 내역 삽입 -->
+	<insert id="insertPet">
+		INSERT
+          INTO PET A
+        (
+          A.PET_CODE
+        , A.RESERVE_CODE
+        , A.PET_KINDS
+        , A.PET_SIZE
+        , A.PET_ISSUE
+        )
+        VALUES 
+        (
+          SEQ_PET_CODE.NEXTVAL
+        , #{ bookCode }
+        , #{ petKinds }
+        , #{ petSize }
+        , #{ petIssue }
+        )
+	</insert>
+	
+	<!-- 회원이 지금까지 총 결제한 금액 조회 -->
+	<select id="selectAllPriceSum" resultType="_int">
+		SELECT 
+		       SUM(PRICE) 
+		  FROM RESERVE 
+		 WHERE USER_CODE = #{ userCode }
+	</select>
+	
+	<!-- vip 등급 기준 조회 -->
+	<select id="selectVipStandard" resultType="_int">
+		SELECT
+		       A.GRADE_STANDARD
+		  FROM VIP A
+		 WHERE A.VIP_CODE = #{ vipCode }
+	</select>
+	
+	<!-- 예약에 따른 회원점보(등급, 포인트) 수정 -->
+	<update id="updateUserInfo">
+		UPDATE
+		       AHOUSER A
+		   SET A.VIP_CODE = #{ updateVipCode }
+		     , A.POINT = #{ updatePoint }
+		 WHERE A.USER_CODE = #{ userCode }
+	</update>
+	
+</mapper>
