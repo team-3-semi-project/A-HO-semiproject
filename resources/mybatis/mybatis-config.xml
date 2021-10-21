@@ -23,5 +23,6 @@
 		<mapper resource="com/ahohotel/InquiryDAO.xml"/>
 		<mapper resource="com/ahohotel/HotelDAO.xml"/>
 		<mapper resource="com/ahohotel/HotelListDAO.xml"/>
+		<mapper resource="com/ahohotel/BookDAO.xml"/>
 	</mappers>
 </configuration>
