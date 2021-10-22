@@ -64,7 +64,7 @@
             				<img id="contentImg3" width="115" height="70" <c:if test="${ !empty hotel.hotelPhoto[3].filePath}">src="${ pageContext.servletContext.contextPath }${hotel.hotelPhoto[3].filePath}"</c:if>>
             			</div>
             			<div class="thumbnail-file-area">
-							<input required="required" type="file" hidden id="thumbnailImg1" name="titleimg" onchange="loadImg(this,1)">
+							<input type="file" hidden id="thumbnailImg1" name="titleimg" onchange="loadImg(this,1)">
 							<input type="file" hidden id="thumbnailImg2" name="thumbnailImg1" onchange="loadImg(this,2)">
 							<input type="file" hidden id="thumbnailImg3" name="thumbnailImg2" onchange="loadImg(this,3)">
 							<input type="file" hidden id="thumbnailImg4" name="thumbnailImg3" onchange="loadImg(this,4)">
@@ -104,7 +104,6 @@
                 </form>
             </article>
         </section>
-        <button id="test1" >테스트</button>
         <div id="plusdiv" class="section col-md-auto ml-sm-auto col-lg-3 px-md-4"></div>
 </body>
 
@@ -129,10 +128,6 @@
 	$contentImgArea3.onclick = function() {
 		document.getElementById("thumbnailImg4").click();
 	}
-	
-	$("#test1").click(function() {
-		console.log($("#titleImgCode").val());
-	})
 	
 	/* " 이미지 미리보기 관련 함수(File API 활용하기) */
 	function loadImg(value, num) {

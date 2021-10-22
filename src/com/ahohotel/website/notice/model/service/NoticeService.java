@@ -69,6 +69,60 @@ public class NoticeService {
 		
 		return noticeDetail;
 	}
+	
+	public boolean deleteNotice(String code) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = noticeDAO.deleteNotice(session, code);
+		
+		if (result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return isSuccess;
+	}
+
+	public boolean updateNotice(NoticeDTO notice) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = noticeDAO.updateNotice(session, notice);
+		
+		if (result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return isSuccess;
+	}
+
+	public boolean insertNotice(NoticeDTO notice) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = noticeDAO.insertNotice(session, notice);
+		
+		if (result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return isSuccess;
+	}
 
 
 }

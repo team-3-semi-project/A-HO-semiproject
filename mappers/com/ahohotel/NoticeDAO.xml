@@ -92,4 +92,34 @@
 			 WHERE A.NOTICE_CODE = #{ no }
 	</select>
 	
+	<update id="updateNotice" parameterType="com.ahohotel.website.notice.model.dto.NoticeDTO">
+		UPDATE 
+	 	       NOTICE A
+	 	   SET A.NOTICE_TITLE = #{ noticeTitle }
+			 , A.NOTICE_CONTENT = #{ noticeContent }
+		 WHERE A.NOTICE_CODE = #{ noticeCode }
+	</update>
+	
+	<delete id="deleteNotice" parameterType="java.lang.String">
+		DELETE
+		  FROM NOTICE A
+		 WHERE A.NOTICE_CODE = #{ noticeCode }
+	</delete>
+	
+	<insert id="insertNotice" parameterType="com.ahohotel.website.notice.model.dto.NoticeDTO">
+		INSERT
+			   INTO NOTICE A
+		 	 (
+			   A.NOTICE_CODE
+		     , A.NOTICE_TITLE
+		     , A.NOTICE_CONTENT
+			 )
+			 VALUES
+			 (
+			   SEQ_NOTICE_CODE.NEXTVAL
+			 , #{ noticeTitle }
+			 , #{ noticeContent }
+			 )
+	</insert>
+	
 </mapper>
