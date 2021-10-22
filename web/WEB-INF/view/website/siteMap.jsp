@@ -31,9 +31,7 @@
                   <h3>회사 정보</h3>
                   <br>
                   <a href="${ pageContext.servletContext.contextPath }/website/company"><p>회사 소개</p></a>
-                  <a href=""><p>공지 사항</p></a>
-                  <a href=""><p>사이트 맵</p></a>
-                  <a href=""><p>약관 및 정책</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/sitemap"><p>사이트 맵</p></a>
                 </div>
                 <div class="card-body" style="text-align: center;">
                   <h3>호텔 정보</h3>
@@ -47,8 +45,9 @@
                 <div class="card-body" style="text-align: center;">
                   <h3>고객센터</h3>
                   <br>
+                  <a href="${ pageContext.servletContext.contextPath }/termsOfUse"><p>공지 사항</p></a>
                   <a href="${ pageContext.servletContext.contextPath }/website/oftenOQ"><p>자주하는 질문</p></a>
-                  <a href=""><p>1:1문의 작성</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/termsOfUse"><p>약관 및 정책</p></a>
                 </div>
               </div>
             </div>
