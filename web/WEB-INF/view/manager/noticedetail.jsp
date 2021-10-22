@@ -19,9 +19,7 @@
 		            <input required type="text" name="title" style="height: 50px;" id="title" class="form-control" value="${ notice.noticeTitle }">
 		            <br>
 		            <h3 class="text-center">내용</h3>
-		            <textarea required name="content" id="content" style="height: 400px" form="notice-form" >
-		            	${ notice.noticeContent }
-		            </textarea>
+		            <textarea required name="content" id="content" style="height: 400px" form="notice-form">${ notice.noticeContent }</textarea>
 		            <br>
 		            <input type="hidden" name="code" id="code" value="${ notice.noticeCode }">
 		            <input type="hidden" name="delete" id="delete" value="">

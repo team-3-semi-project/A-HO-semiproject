@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.ahohotel.common.paging.SelectCriteria;
+import com.ahohotel.mypage.inquiry.model.Service.InquiryService;
 import com.ahohotel.mypage.inquiry.model.dto.InquiryDTO;
 import com.ahohotel.mypage.inquiry.model.dto.InquiryFileDTO;
 import com.ahohotel.mypage.inquiry.model.dto.SelectCriteriaWithUserCode;
@@ -65,6 +66,16 @@ public class InquiryDAO {
 	public List<InquiryDTO> selectQuestionList(SqlSession session, SelectCriteria selectCriteria) {
 		
 		return session.selectList("InquiryDAO.selectQuestionList", selectCriteria);
+	}
+	
+	public InquiryDTO selectQuestionDetail(SqlSession session, int code) {
+		
+		return session.selectOne("InquiryDAO.selectQuestionDetail", code);
+	}
+
+	public int updateQuestion(SqlSession session, InquiryDTO question) {
+		
+		return session.update("InquiryDAO.updateQuestion", question);
 	}
 	 
 }
