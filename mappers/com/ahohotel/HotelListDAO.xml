@@ -92,6 +92,21 @@
 		<result property="blackListReason" column="BLACKLIST_REASON"/>
 	</resultMap>
    
+   <resultMap type="com.ahohotel.mypage.reserve.model.dto.HotelDTO" id="hotelMap">
+		<id property="hoCode" column="HOTEL_CODE"/>
+		<result property="hoName" column="HOTEL_NAME"/>
+		<result property="hoStar" column="HOTEL_STAR"/>
+		<result property="userStar" column="HOTEL_USER_AVG"/>
+		<result property="hoPhone" column="HOTEL_PHONE"/>
+		<result property="hoAddress" column="HOTEL_ADDRESS"/>
+		<result property="open" column="HOTEL_OPEN"/>
+		<result property="checkIn" column="CHECK_IN"/>
+		<result property="checkOut" column="CHECK_OUT"/>
+		<result property="introduce" column="HOTEL_INTRODUCE"/>
+		<result property="latitude" column="LATITUDE"/>
+		<result property="longitude" column="LONGITUDE"/>
+	</resultMap>
+   
 	<!-- 호텔 정보 조회 -->
 	<select id="searchHotel" resultMap="hotelResultMap">
 	    SELECT
@@ -175,4 +190,12 @@
 		  FROM REVIEW_PHOTO A
 	     WHERE A.RESERVE_CODE = #{ reservePhoto }
 	</select>
+	
+	<select id="selectAllHotel" resultMap="hotelMap">
+		SELECT
+		       A.HOTEL_CODE
+		     , A.HOTEL_NAME
+		  FROM HOTEL A
+	</select>
+	
 </mapper>

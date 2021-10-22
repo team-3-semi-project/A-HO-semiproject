@@ -21,8 +21,13 @@
 					break;
 				
 				case "insertReview" :
-					successMessage = "리뷰 성공";
+					successMessage = "리뷰작성 성공";
 					movePath = "${ pageContext.servletContext.contextPath }/mypage/reserve";
+					break;
+					
+				case "insertReport" :
+					successMessage = "신고 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/hotel/list";
 					break;
 			}
 

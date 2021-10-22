@@ -55,11 +55,9 @@
             <div class="card">
                 
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/hotel/list?no=1">A-HO 서울</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/hotel/list?no=2">A-HO 부산</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/hotel/list?no=3">A-HO 인천</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/hotel/list?no=4">A-HO 제주</a></li>
-                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/hotel/list?no=5">A-HO 강원</a></li>
+                	<c:forEach var="hotelList" items="${ requestScope.hotelList }">
+                  		<li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/hotel/list?no=${ hotelList.hoCode }"><c:out value="${ hotelList.hoName }"/></a></li>
+                	</c:forEach>
                 </ul>
                 
             </div> 
@@ -110,7 +108,7 @@
             </c:if>
               <div class="card-body">
               <div>
-                <p style="margin-left: 5px; float: left;" id="cardbody">성 호텔</p><p style="float: right; margin-right: 20px;">고객 평점 : </p>
+                <p style="margin-left: 5px; float: left;" id="cardbody">성 호텔</p><p style="float: right; margin-right: 20px;">고객 평점 : <c:out value="${ requestScope.totalScore }"/> </p>
               </div>
                 <br clear="both">
                 <div class="col-sm-5" style="height: 400px; float: left;" >
@@ -175,7 +173,12 @@
                     <h6 style="float: left; margin-left: 10px; margin-top: 10px;"><c:out value=" ${ review.room.roomName } ${ review.ahoUser.name }"/></h6>
                     
                     <c:if test="${ !empty sessionScope.loginUser }">
-                    <button type="button" style="float: right; margin-right: 20px; margin-top: 10px;" class="btn btn-secondary" value="${ review.userCode }">신고하기</button>
+                    	<c:set var="user" value="${ review.ahoUser.code }"/>
+                    	<c:set var="login" value="${ sessionScope.loginUser.code }"/>
+                    	
+                    	<c:if test="${ user ne login}">
+                    	<button type="button" style="float: right; margin-right: 20px; margin-top: 10px;" class="btn btn-secondary" value="${ review.reserveCode }" onclick="reportGo(${ review.reserveCode })">신고하기</button>
+                    	</c:if>
                     </c:if>
                     <br clear="both">
                     
@@ -210,6 +213,10 @@
                   </div>
                      </c:if>
                     </c:forEach>
+                
+               	 
+		</div>
+               	 <br>
                   </div>
                   
 
@@ -252,6 +259,12 @@
 		}		
 	};
 	
+	function reportGo(e){
+		var reserveCode = e;
+		
+		location.href = '${ pageContext.servletContext.contextPath}/report?reserveCode=' + reserveCode;
+		
+	}
 	
  </script>
 
