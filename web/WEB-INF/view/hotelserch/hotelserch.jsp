@@ -181,7 +181,7 @@
 			$("#addBed").val("basic");
 			$("#roomCode").val(a);
 			
-			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/book");
 			$("#select-form").submit();			
 		}
 	}
@@ -196,7 +196,7 @@
 			$("#addBed").val("add");
 			$("#roomCode").val(a);
 			
-		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/book");
 			$("#select-form").submit();			
 		}
 	}
