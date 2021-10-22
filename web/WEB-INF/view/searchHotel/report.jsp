@@ -31,6 +31,7 @@ display: none;
 }
 
 .reviewB {
+  margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
   float: right;

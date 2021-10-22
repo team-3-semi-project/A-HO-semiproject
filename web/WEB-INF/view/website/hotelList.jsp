@@ -92,7 +92,7 @@
           
             <div class="card" style="width: 100%;">
             <c:if test="${ !empty requestScope.mainPhoto }">
-            	<img src="${ pageContext.servletContext.contextPath }/resources/${ requestScope.mainPhoto.fileName}" class="card-img-top" alt="...">
+            	<img src="${ pageContext.servletContext.contextPath }${ requestScope.mainPhoto.file}" class="card-img-top" alt="...">
             	<div class="card-img-overlay">
                 <br>
                 <h1 style="text-align: center; color: white; font-weight: 800; font-style: italic;"><c:out value="${ requestScope.hotel.hoName }"/></h1>
@@ -124,12 +124,12 @@
                     </ul>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="${ requestScope.mainPhoto.file }${ requestScope.mainPhoto.fileName}" alt="" class="rounded">
+                        <img src="${ pageContext.servletContext.contextPath }${ requestScope.mainPhoto.file}" alt="" class="rounded">
                       </div>
                       
                       <c:forEach var="photoSize" items="${ requestScope.hotel.hoPhoto }">
                       <div class="carousel-item">
-                        <img src="${ photoSize.file }${ photoSize.fileName }" alt="" class="rounded">   
+                        <img src="${ pageContext.servletContext.contextPath }${ photoSize.file }" alt="" class="rounded">   
                       </div>
                       </c:forEach>
                       
