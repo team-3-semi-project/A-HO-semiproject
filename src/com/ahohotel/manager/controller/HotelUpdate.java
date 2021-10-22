@@ -44,7 +44,6 @@ public class HotelUpdate extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("titleImgCode"));
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
@@ -129,26 +128,26 @@ public class HotelUpdate extends HttpServlet {
 							int height = 0;
 							if("titleimg".equals(filedName)) {
 								fileMap.put("fileType", "N");
-								fileMap.put("photoCode", request.getParameter("titleImgCode"));
+								fileMap.put("photoCode", "1");
 								
 								/* 썸네일로 변환 할 사이즈를 지정한다. */
 								width = 350;
 								height = 200;
 							} else if("thumbnailImg1".equals(filedName)) {
 								fileMap.put("fileType", "Y");
-								fileMap.put("photoCode", request.getParameter("subImgCode1"));
+								fileMap.put("photoCode", "2");
 								
 								width = 120;
 								height = 100;
 							} else if("thumbnailImg2".equals(filedName)) {
 								fileMap.put("fileType", "Y");
-								fileMap.put("photoCode", request.getParameter("subImgCode2"));
+								fileMap.put("photoCode", "3");
 								
 								width = 120;
 								height = 100;
 							} else if("thumbnailImg3".equals(filedName)) {
 								fileMap.put("fileType", "Y");
-								fileMap.put("photoCode", request.getParameter("subImgCode3"));
+								fileMap.put("photoCode", "4");
 								
 								width = 120;
 								height = 100;
@@ -160,7 +159,7 @@ public class HotelUpdate extends HttpServlet {
 									.toFile(thumbnailDirectory + "thumbnail_" + randomFileName);
 							
 							/* 나중에 웹서버에서 접근 가능한 경로 형태로 썸네일의 저장 경로도 함께 저장한다. */
-							fileMap.put("thumbnailPath", "/resources/upload/thumbnail/thumbnail_" + randomFileName);
+							fileMap.put("FilePath", "/resources/hotel-img/" + randomFileName);
 							
 							fileList.add(fileMap);
 							
@@ -175,6 +174,31 @@ public class HotelUpdate extends HttpServlet {
 //						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
+					}
+				}
+				
+				
+				for(int i = 0; i < fileList.size(); i++) {
+					if(fileList.get(i).get("photoCode").equals("1")) {
+						fileList.get(i).put("Code", parameter.get("titleImgCode"));
+					} else if(fileList.get(i).get("photoCode").equals("2")) {
+						if(parameter.get("subImgCode1") != null && !"".equals(parameter.get("subImgCode1"))) {
+							fileList.get(i).put("Code", parameter.get("subImgCode1"));
+						} else {
+							fileList.get(i).put("Code", "0");
+						}
+					} else if(fileList.get(i).get("photoCode").equals("3")) {
+						if(parameter.get("subImgCode2") != null && !"".equals(parameter.get("subImgCode2")) ) {
+							fileList.get(i).put("Code", parameter.get("subImgCode2"));
+						} else {
+							fileList.get(i).put("Code", "0");
+						}
+					} else if(fileList.get(i).get("photoCode").equals("4")) {
+						if(parameter.get("subImgCode3") != null && !"".equals(parameter.get("subImgCode3")) ) {
+							fileList.get(i).put("Code", parameter.get("subImgCode3"));
+						} else {
+							fileList.get(i).put("Code", "0");
+						}
 					}
 				}
 				
@@ -203,14 +227,10 @@ public class HotelUpdate extends HttpServlet {
 					
 					HotelPhotoDTO tempFileInfo = new HotelPhotoDTO();
 					
-					/* -------------------------------------------------------------- */ 
-					int a = Integer.parseInt(file.get("photoCode"));
-					
-					
-					tempFileInfo.setPhotoCode(a);
+					tempFileInfo.setPhotoCode(Integer.parseInt(file.get("Code")));
 					tempFileInfo.setOriginalFile(file.get("originFileName"));
-					tempFileInfo.setFileName(file.get("savedFileName"));
-					tempFileInfo.setFilePath(file.get("savePath"));
+					tempFileInfo.setFileName(file.get("originFileName"));
+					tempFileInfo.setFilePath(file.get("FilePath"));
 					tempFileInfo.setThumbnail_YN(file.get("fileType"));
 					
 					list.add(tempFileInfo);
@@ -219,24 +239,15 @@ public class HotelUpdate extends HttpServlet {
 				System.out.println("thumbnail board : " + thumbnail);
 				
 				/* 서비스 메소드를 요청한다. */
-				int result = 0;
-				if(parameter.get("hotelCide") != null) {
-					/* result = new HotelService().UpdateHotel(thumbnail); */
-				} else {
-					result = new HotelService().insertHotel(thumbnail);
-				}
+				int result = new HotelService().updateHotel(thumbnail);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
-				String path = "";
-				if(result > 0) {
-					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertThumbnail");
-				} else {
-					path = "/WEB-INF/views/common/failed.jsp";
+				if(result <= 0) {
 					request.setAttribute("message", "썸네일 게시판 등록 실패!");
+					request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
+				} else {
+					response.sendRedirect(request.getContextPath() + "/manager/hotel");
 				}
-				
-				request.getRequestDispatcher(path).forward(request, response);
 				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.

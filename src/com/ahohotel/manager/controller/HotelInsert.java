@@ -189,16 +189,12 @@ public class HotelInsert extends HttpServlet {
 					int result = new HotelService().insertHotel(thumbnail);
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
-				String path = "";
-				if(result > 0) {
-					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertThumbnail");
-				} else {
-					path = "/WEB-INF/views/common/failed.jsp";
+				if(result <= 0) {
 					request.setAttribute("message", "썸네일 게시판 등록 실패!");
+					request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
+				} else {
+					response.sendRedirect(request.getContextPath() + "/manager/hotel");
 				}
-				
-				request.getRequestDispatcher(path).forward(request, response);
 				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.

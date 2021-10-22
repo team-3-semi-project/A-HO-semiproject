@@ -87,5 +87,34 @@ public class HotelService {
 		
 		return result;
 	}
+	
+	public int updateHotel(HotelListDTO thumbnail) {
+		SqlSession session = getSqlSession();
+		
+		int result = 0;
+		
+		int hotelresult = dao.updateHotel(session, thumbnail);
+		
+		List<HotelPhotoDTO> fileList = thumbnail.getHotelPhoto();
+		
+		int photoresult = 0;
+		for(int i = 0; i < fileList.size(); i++) {
+			if(fileList.get(i).getPhotoCode() == 0) {
+				fileList.get(i).setHotelCode(thumbnail.getHotelCode());
+				photoresult += dao.insertHotelPhoto(session, fileList.get(i));
+			} else {
+				photoresult += dao.updateHotelPhoto(session, fileList.get(i));
+			}
+		}
+		
+		if(hotelresult > 0 && photoresult == fileList.size()) {
+			session.commit();
+			result = 1;
+		} else {
+			session.rollback();
+		}
+		
+		return result;
+	}
 
 }

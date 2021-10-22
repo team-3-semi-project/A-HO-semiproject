@@ -60,15 +60,9 @@
                     </a>
                 </h6>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/noticelist">
                     <span data-feather="users"></span>
                     공지사항 관리
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2"></span>
-                    자주묻는질문 관리
                     </a>
                 </li>
                 <li class="nav-item">
@@ -98,15 +92,16 @@
                     호텔 목록(수정)
                     </a>
                 </li>
-                <br><br><br><br><br><br>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/roomlist">
                     <span data-feather="file-text"></span>
-                    통계정보
+                    객실 관리
                     </a>
                 </li>
+                <br><br><br><br><br><br>
                 </ul>
                 <br><br><br><br><br><br>
+                <br>
             </div>
         </nav>
         
