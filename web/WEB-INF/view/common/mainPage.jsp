@@ -174,14 +174,14 @@
         <a class="nav-link" href="#">룸목록</a>
       </li>
       <li class="nav-item mt-auto">
-        <a class="nav-link" href="#" style="font-size: 20px"><strong>호텔예약</strong></a>
+        <a class="nav-link" href="hotelserch" style="font-size: 20px"><strong>호텔예약</strong></a>
       </li>
       <li class="nav-item mt-auto">
         <a class="nav-link" href="notice">공지사항</a>
       </li>
-      <li class="nav-item mt-auto">
+<!--       <li class="nav-item mt-auto">
         <a class="nav-link" href="book">test(예약 연습용)</a>
-      </li>
+      </li> -->
     </ul>
   </div>
   <br>
