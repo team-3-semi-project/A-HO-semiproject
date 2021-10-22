@@ -45,6 +45,15 @@ public class HotelDAO {
 		return session.insert("HotelDAO.insertHotelPhoto", hotelPhotoDTO);
 	}
 	
+	public int updateHotel(SqlSession session, HotelListDTO thumbnail) {
+		
+		return session.update("HotelDAO.updateHotel", thumbnail);
+	}
+
+	public int updateHotelPhoto(SqlSession session, HotelPhotoDTO hotelPhotoDTO) {
+
+		return session.update("HotelDAO.updateHotelPhoto", hotelPhotoDTO);
+	}
 	
 
 }

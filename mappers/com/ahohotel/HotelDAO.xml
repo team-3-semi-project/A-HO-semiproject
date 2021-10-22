@@ -200,5 +200,85 @@
 			 )
 	 </insert>
 	 
+	 <update id="updateHotel" parameterType="com.ahohotel.hotelserch.model.dto.HotelListDTO">
+	 	UPDATE 
+	 	       HOTEL
+	 	   SET HOTEL_NAME = #{ hotelName }
+			 , HOTEL_STAR = #{ hotelStar }
+			 , HOTEL_PHONE = #{ hotelPhone }
+			 , HOTEL_ADDRESS = #{ hotelAddress }
+			 , HOTEL_OPEN = #{ hotelOpen }
+			 , CHECK_IN = #{ checkIn }
+			 , CHECK_OUT = #{ checkOut }
+			 , HOTEL_INTRODUCE = #{ introduce }
+			 , LATITUDE = #{ latitude }
+		     , LONGITUDE = #{ longitude }
+		 WHERE HOTEL_CODE = #{ hotelCode }
+	 </update>
+	 
+	 <update id="updateHotelPhoto" parameterType="com.ahohotel.hotelserch.model.dto.HotelPhotoDTO">
+		 UPDATE 
+	 	       HOTEL_PHOTO
+	 	   SET H_ORIGINAL_FILE = #{ originalFile }
+			 , H_FILE_NAME = #{ fileName }
+			 , H_FILE = #{ filePath }
+			 , H_THUMBNAIL_YN = #{ thumbnail_YN }
+		 WHERE H_PHOTO_CODE = #{ photoCode }
+	 </update>
+	 
+	 <select id="selectRoomTotalCount" resultType="_int" parameterType="hashmap">
+ 		SELECT 
+               COUNT(*)
+          FROM ROOM A
+          <where>
+	          <if test="searchCondition == 'roomName'">
+		      	  AND A.ROOM_CODE LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+	    	  <if test="searchCondition == 'hotelName'">
+		          AND A.HOTEL_CODE LIKE '%' || #{ searchValue } || '%'
+	    	  </if>
+          </where>
+ 	</select>
+ 	
+ 	<select id="selectRoomList" resultMap="roomResultMap">
+         SELECT 
+               A.RNUM
+             , A.ROOM_CODE
+			 , A.HOTEL_CODE
+			 , A.ROOM_NAME
+			 , A.ROOM_PRICE
+			 , A.ROOM_COUNT
+			 , A.ROOM_PERSON
+          FROM (SELECT ROWNUM RNUM
+                     , B.ROOM_CODE
+					 , B.HOTEL_CODE
+					 , B.ROOM_NAME
+					 , B.ROOM_PRICE
+					 , B.ROOM_COUNT
+					 , B.ROOM_PERSON
+                  FROM (SELECT C.ROOM_CODE
+							 , C.HOTEL_CODE
+							 , C.ROOM_NAME
+							 , C.ROOM_PRICE
+							 , C.ROOM_COUNT
+							 , C.ROOM_PERSON
+                          FROM ROOM C
+    					<where>
+					        <if test="searchCondition == 'roomName'">
+						      	  AND A.ROOM_CODE LIKE '%' || #{ searchValue } || '%'
+					    	</if>
+					    	<if test="searchCondition == 'hotelName'">
+						          AND A.HOTEL_CODE LIKE '%' || #{ searchValue } || '%'
+					    	</if>
+				        </where>
+                         ORDER BY C.HOTEL_CODE
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+         WHERE A.RNUM >= #{ startRow }  
+	</select>
+	 
 	 
 </mapper>
