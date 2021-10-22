@@ -10,11 +10,20 @@
     <title>메인홈페이지</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/website.css">
 
-    <style>
+    <style type="text/css">
 
+		@font-face {
+		    font-family: 'Pretendard-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		    font-weight: 400;
+		    font-style: normal;
+		}
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -148,7 +157,7 @@
     </style>
    
   </head>
-  <body>
+  <body style="font-family: 'Pretendard-Regular';">
   
 	<jsp:include page="header.jsp"/>
   <div class="container"> 
@@ -165,41 +174,76 @@
         <a class="nav-link" href="#">룸목록</a>
       </li>
       <li class="nav-item mt-auto">
-        <a class="nav-link" href="hotelserch" style="font-size: 20px"><strong>호텔예약</strong></a>
+        <a class="nav-link" href="#" style="font-size: 20px"><strong>호텔예약</strong></a>
       </li>
       <li class="nav-item mt-auto">
         <a class="nav-link" href="notice">공지사항</a>
       </li>
-      <!-- <li class="nav-item mt-auto">
+      <li class="nav-item mt-auto">
         <a class="nav-link" href="book">test(예약 연습용)</a>
-      </li> -->
+      </li>
     </ul>
   </div>
   <br>
 
-  	<div class="slider">
-    <input type="radio" name="slide" id="slide1" checked>
-    <input type="radio" name="slide" id="slide2">
-    <input type="radio" name="slide" id="slide3">
-    <input type="radio" name="slide" id="slide4">
-    <input type="radio" name="slide" id="slide5">
-    <ul id="imgholder" class="imgs">
-        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/강원.jpg;" width="700px"></li>
-        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/부산.jpg;" width="700px"></li>
-        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/서울.jpg;" width="700px"></li>
-        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인천.jpg;" width="700px"></li>
-        <li><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/제주.jpg;" width="700px"></li>
-    </ul>
-    <div class="bullets">
-        <label for="slide1">&nbsp;</label>
-        <label for="slide2">&nbsp;</label>
-        <label for="slide3">&nbsp;</label>
-        <label for="slide4">&nbsp;</label>
-        <label for="slide5">&nbsp;</label>
-    </div>
-  </div>
-  <br>
+  	<div>
+	          <div id="demo" class="carousel slide" data-ride="carousel">
+	            <ul class="carousel-indicators">
+	              <li data-target="#demo" data-slide-to="0" class="active"></li>
+	              <li data-target="#demo" data-slide-to="1"></li>
+	              <li data-target="#demo" data-slide-to="2"></li>
+	              <li data-target="#demo" data-slide-to="3"></li>
+	              <li data-target="#demo" data-slide-to="4"></li>
+	            </ul>
+	            <div class="carousel-inner">
+	              <div class="carousel-item active">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/서울.jpg;" alt="A-Ho 서울점">
+	                <div class="carousel-caption">
+	                  <h3>A-HO 서울점</h3>
+	                  <p>아름다운 야경이 일품인 서울점</p>
+	                </div>   
+	              </div>
+	              <div class="carousel-item">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인천.jpg;" alt="A-Ho 인천점">
+	                <div class="carousel-caption">
+	                  <h3>A-Ho 인천점</h3>
+	                  <p>서해와 인접해있고 항구를 한눈에 내려다 볼 수 있는 것이 장점인 인천점</p>
+	                </div>   
+	              </div>
+	              <div class="carousel-item">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/부산.jpg;" alt="A-HO 부산점">
+	                <div class="carousel-caption">
+	                  <h3>A-HO 부산점</h3>
+	                  <p>해운대 해수욕장과 인접해 있어 바다에서 즐기기 딱 좋은 부산점</p>
+	                </div>   
+	              </div>
+	              <div class="carousel-item">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/강원.jpg;" alt="A-HO 강원점">
+	                <div class="carousel-caption">
+	                  <h3>A-HO 강원점</h3>
+	                  <p>산속 맑은 공기를 마시며 휴양하기 좋은 강원점</p>
+	                </div>   
+	              </div>
+	              <div class="carousel-item">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/제주.jpg;" alt="A-HO 제주점">
+	                <div class="carousel-caption">
+	                  <h3>A-HO 제주점</h3>
+	                  <p>한라산과 제주 앞바다를 모두 즐길 수 있는 제주점</p>
+	                </div>   
+	              </div>
+	            </div>
+	            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+	              <span class="carousel-control-prev-icon"></span>
+	            </a>
+	            <a class="carousel-control-next" href="#demo" data-slide="next">
+	              <span class="carousel-control-next-icon"></span>
+	            </a>
+	          </div>
+	  
+	        </div>
 <hr>
+	      </div>
+  <br>
 <main role="main" class="container">
   <div class="row">
     <div class="blog-main">
@@ -210,13 +254,13 @@
 			<td style="color:white"><p>A-HO 호텔은 반려동물과 함께 소중한 추억을 쌓을 수 있는 호텔입니다.<br>
 				   활발한 아이들을 위한 넓은 활동 공간과 조용한 아이들을 위한 <br>휴식 공간이 마련되어 있습니다.<br>
 				   호텔 주변의 멋진 자연과 함께 소중한 추억을 선사해드립니다.</p></td>
-			<td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/로비.jpg;" style="width: 100%; height: 50; vertical-align:middle;" ></td>
+			<td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/로비.jpg;" style="width: 130%; height: 50; vertical-align:middle;" ></td>
 		</table>
 
 	</div>
-        <hr>
    </div>
   </div>
+        <hr>
 </main>
 <main role="main" class="container">
   <div class="row">
@@ -257,7 +301,7 @@
         <table cellspacing="0" cellpadding="0" border="0">
         	<tr>
         		<td  style="line-height:0;"colspan="2"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/셰프.jpg;" style="width: 100%; height: auto;">
-        		<td  style="line-height:0;"colspan="2" rowspan="2"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/다이닝.jpg;" style="width: 324%; height: auto;"></td>
+        		<td  style="line-height:0;"colspan="2" rowspan="2"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/다이닝.jpg;" style="width: 310%; height: auto;"></td>
         	</tr>
         	<tr>
         		<td style="line-height:0;"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/요리.jpg;" style="width: 100%; height: auto;"></td>
@@ -272,8 +316,8 @@
       </div><!-- /.blog-post -->
       </div>
       </div>
-      </main>
 <hr>
+      </main>
  
 <main role="main" class="container">
 	 <div class="row">
@@ -283,7 +327,7 @@
         <p>A-HO의 다양한 소식을 받아보세요.</p>
         <ol class="list-unstyled">
         <br>
-	        <table style="text-align:center">
+	        <table>
 	        	<tr>
 	         		 <td><a href="https://www.instagram.com/shillahotels/"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/인스타그램.png;" style="width: 30%; height: auto;"></td></a>
 	         		 <td><a href="https://www.facebook.com/theshillahotels"> <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/페이스북.png;" style="width: 30%; height: auto;"></td></a>
@@ -304,8 +348,8 @@
     </div><!-- /.blog-main -->
 </main>
 
+	<main role="main" class="container">
 <hr>
-	<main>
 		<div class="col-md-8 blog-main">
       <div class="blog-post">
         <h2 class="blog-post-title" style="color:#D6B534"><strong>코로나19 방역 안내</strong></h2>
