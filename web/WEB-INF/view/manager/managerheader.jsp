@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/questionlist">
                     <span data-feather="layers"></span>
                     1:1 문의 관리
                     </a>

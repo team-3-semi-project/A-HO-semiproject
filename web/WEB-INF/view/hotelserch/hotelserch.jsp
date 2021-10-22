@@ -182,6 +182,7 @@
 			$("#roomCode").val(a);
 			
 			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+			$("#select-form").attr("method", "get");
 			$("#select-form").submit();			
 		}
 	}
@@ -197,6 +198,7 @@
 			$("#roomCode").val(a);
 			
 		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+		 	$("#select-form").attr("method", "get");
 			$("#select-form").submit();			
 		}
 	}
