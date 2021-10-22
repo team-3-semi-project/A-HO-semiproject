@@ -31,13 +31,15 @@ public class BookServlet extends HttpServlet {
 		AhoUserDTO user = (AhoUserDTO) request.getSession().getAttribute("loginUser");
 		int userCode = user.getCode();
 		
-		/* 임시데이터 */
-		int hotelCode = 2;											//호텔 코드
-		int roomCode = 7;											//객실 코드
-		String checkIn = "2021-10-21";						//체크인 날짜
-		String checkOut = "2021-10-24";						//체크아웃 날짜
-		int roomPerson = 3;											//숙박인원
-		String roomOption = "Y";									//침대추가 여부
+		/* 호텔 검색에서 넘어온 데이터 */
+		int hotelCode = Integer.valueOf(request.getParameter("hotel"));
+		int roomCode = Integer.valueOf(request.getParameter("roomCode"));
+		String checkIn = request.getParameter("startdate");
+		String checkOut = request.getParameter("enddate");
+		int adult = Integer.valueOf(request.getParameter("adult"));
+		int kid = Integer.valueOf(request.getParameter("kids"));;
+		int roomPerson = adult + kid;
+		String roomOption = request.getParameter("addBed");;
 		
 
 		/* 예약하려는 호텔정보 조회 */
