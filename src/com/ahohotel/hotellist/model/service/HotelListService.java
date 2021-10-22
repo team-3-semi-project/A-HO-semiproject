@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.ahohotel.hotellist.model.dao.HotelListDAO;
 import com.ahohotel.hotellist.model.dto.HotelAndHotelPhotoDTO;
 import com.ahohotel.hotellist.model.dto.HotelReviewListDTO;
+import com.ahohotel.mypage.reserve.model.dto.HotelDTO;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 
@@ -65,6 +66,17 @@ public class HotelListService {
 		session.close();
 		
 		return hotelReviewList;
+	}
+
+	public List<HotelDTO> selectAllHotel() {
+		
+		SqlSession session = getSqlSession();
+		
+		List<HotelDTO> hotelList = hotelDAO.selectAllHotel(session);
+		
+		session.close();
+		
+		return hotelList;
 	}
 	
 	

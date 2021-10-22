@@ -1,9 +1,7 @@
 package com.ahohotel.hotellist.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,11 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ahohotel.common.paging.Pagenation;
-import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.hotellist.model.dto.HotelAndHotelPhotoDTO;
 import com.ahohotel.hotellist.model.dto.HotelReviewListDTO;
 import com.ahohotel.hotellist.model.service.HotelListService;
+import com.ahohotel.mypage.reserve.model.dto.HotelDTO;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
 
 @WebServlet("/hotel/list")
@@ -28,6 +25,11 @@ public class HotelListServlet extends HttpServlet {
 		
 		/* 호텔 정보 부분 SELECT */
 		HotelListService hotelService = new HotelListService();
+		
+		List<HotelDTO> hotelList = hotelService.selectAllHotel();
+		
+		System.out.println("호텔목록" + hotelList);
+		
 		HotelPhotoDTO mainPhoto = hotelService.selectMainPhoto(hotelNum);
 		
 		System.out.println(mainPhoto);
@@ -60,6 +62,7 @@ public class HotelListServlet extends HttpServlet {
 			request.setAttribute("hotel", hotel);
 			request.setAttribute("hotelReview", hotelReviewList);
 			request.setAttribute("totalScore", totalScore);
+			request.setAttribute("hotelList", hotelList);
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

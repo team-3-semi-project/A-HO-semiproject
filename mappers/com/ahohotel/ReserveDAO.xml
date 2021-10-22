@@ -188,6 +188,7 @@
   	<select id="selectReserve" resultMap="reserveResultMap">
   		SELECT
   		       A.REVIEW
+  		     , A.RESERVE_CODE
   		  FROM RESERVE A
   		 WHERE A.RESERVE_CODE = #{ reserveCode }
   	</select>

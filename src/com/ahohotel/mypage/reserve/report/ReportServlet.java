@@ -20,13 +20,13 @@ public class ReportServlet extends HttpServlet {
 		
 		int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
 		System.out.println(reserveCode);
-		String path = "/WEB-INF/view/searchHotel/report.jsp";
 		
 		ReserveService reserveService = new ReserveService();
 		ReserveDTO reserve = reserveService.selectReserve(reserveCode);
 		
-		request.setAttribute("reserveCode", reserveCode);
 		request.setAttribute("reserve", reserve);
+		
+		String path = "/WEB-INF/view/searchHotel/report.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	

@@ -60,12 +60,14 @@ display: none;
                 <div style="border: 1px solid black;">
                   <br>
                   <div style="margin-left: 20px; margin-right: 20px;">
-                  <label for="reportHead">제목 : <input type="text" id="reportHead" style="width: 600px"></label>
+                  <h2>리뷰내역</h2>
+                  <textarea rows="40" cols="20" disabled="disabled" style="width: 100%"><c:out value="${ requestScope.reserve.review }"></c:out></textarea>
                   </div>
                   <br>
                   <div id="preview"></div>
                   <textarea name="reportText" id="reportText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
-                  <input type="radio" name="reserveCode" value="${ requestScope.reserveCode }" style="display: none;" checked="checked">
+                  <input type="radio" name="reserveCode" value="${ requestScope.reserve.reserveCode }" style="display: none;" checked="checked">
+                  <br>
                   <button type="reset" class="reviewB" id="reportCancle">취소</button> <button type="button" class="reviewB" id="reportOk">확인</button>
                 </div>
                
@@ -75,25 +77,17 @@ display: none;
         </div>
       </div>
       <script>
-      var reportHeadFlag = false;
       var retextFlag = false;
       	
       $("#reportOk").click(function(){
-    	    const reportHead = $('#reportHead').val();
 	        const reportArea = $('#reportText').val();
-	        
-	        if(reportHead != ""){
-	        	reportHeadFlag = true;
-	        }
         	
 	        if(reportArea != ""){
 	        	retextFlag = true;
 	        }
 	        
-        	if(!reportHeadFlag){
+        	if(!retextFlag){
         		alert('신고사유를 작성해주세요');
-        	} else if(!retextFlag){
-        		alert('사유를 작성해주세요');
         	} else {
         		document.getElementById("reportForm").submit();
         	}

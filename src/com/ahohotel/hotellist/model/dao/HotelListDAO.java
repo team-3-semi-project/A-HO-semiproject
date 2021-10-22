@@ -8,6 +8,7 @@ import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.hotellist.model.dto.HotelAndHotelPhotoDTO;
 import com.ahohotel.hotellist.model.dto.HotelListDTO;
 import com.ahohotel.hotellist.model.dto.HotelReviewListDTO;
+import com.ahohotel.mypage.reserve.model.dto.HotelDTO;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 
@@ -41,6 +42,11 @@ public class HotelListDAO {
 	public List<ReviewPhotoDTO> selectReviewPhoto(SqlSession session, int reservePhoto) {
 
 		return session.selectList("HotelListDAO.selectReviewPhoto", reservePhoto);
+	}
+
+	public List<HotelDTO> selectAllHotel(SqlSession session) {
+
+		return session.selectList("HotelListDAO.selectAllHotel");
 	}
 
 	
