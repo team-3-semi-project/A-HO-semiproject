@@ -34,4 +34,22 @@ public class NoticeDAO {
 		return session.selectOne("NoticeDAO.selectNoticeDetail", no);
 	}
 
+
+	public int deleteNotice(SqlSession session, String code) {
+		
+		return session.delete("NoticeDAO.deleteNotice", code);
+	}
+
+
+	public int updateNotice(SqlSession session, NoticeDTO notice) {
+		
+		return session.update("NoticeDAO.updateNotice" ,notice);
+	}
+
+
+	public int insertNotice(SqlSession session, NoticeDTO notice) {
+		
+		return session.insert("NoticeDAO.insertNotice", notice);
+	}
+
 }
