@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.session.SqlSession;
 
+import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.mypage.inquiry.model.dao.InquiryDAO;
 import com.ahohotel.mypage.inquiry.model.dto.InquiryDTO;
 import com.ahohotel.mypage.inquiry.model.dto.InquiryFileDTO;
@@ -159,6 +160,29 @@ public class InquiryService {
 		session.close();
 		
 		return result;
+	}
+	
+	public int selectQuestionTotalCount(Map<String, String> searchMap) {
+		 
+		SqlSession session = getSqlSession();
+		
+		int totalCount = new InquiryDAO().selectQuestionTotalCount(session,searchMap);
+		  
+		session.close();
+		  
+		return totalCount; 
+	}
+	  
+	public List<InquiryDTO> selectQuestionList(SelectCriteria selectCriteria) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<InquiryDTO> questionList = new InquiryDAO().selectQuestionList(session, selectCriteria);
+		
+		session.close();
+		
+		return questionList;
+		
 	}
 
 

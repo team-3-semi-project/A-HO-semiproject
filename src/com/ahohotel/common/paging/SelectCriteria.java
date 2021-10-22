@@ -14,12 +14,12 @@ public class SelectCriteria implements java.io.Serializable {
 	private String searchCondition;		//검색 조건
 	private String searchValue;			//검색어
 	private String blackList; 			//블랙리스트
+	private String noAnswer; 			//1:1문의 답변 여부
 	
 	public SelectCriteria() {}
 
 	public SelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount, int maxPage, int startPage,
 			int endPage, int startRow, int endRow, String searchCondition, String searchValue) {
-		super();
 		this.pageNo = pageNo;
 		this.totalCount = totalCount;
 		this.limit = limit;
@@ -31,23 +31,6 @@ public class SelectCriteria implements java.io.Serializable {
 		this.endRow = endRow;
 		this.searchCondition = searchCondition;
 		this.searchValue = searchValue;
-	}
-	
-	public SelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount, int maxPage, int startPage,
-			int endPage, int startRow, int endRow, String searchCondition, String searchValue, String blackList) {
-		super();
-		this.pageNo = pageNo;
-		this.totalCount = totalCount;
-		this.limit = limit;
-		this.buttonAmount = buttonAmount;
-		this.maxPage = maxPage;
-		this.startPage = startPage;
-		this.endPage = endPage;
-		this.startRow = startRow;
-		this.endRow = endRow;
-		this.searchCondition = searchCondition;
-		this.searchValue = searchValue;
-		this.blackList = blackList;
 	}
 
 	public int getPageNo() {
@@ -146,15 +129,20 @@ public class SelectCriteria implements java.io.Serializable {
 		this.blackList = blackList;
 	}
 
+	public String getNoAnswer() {
+		return noAnswer;
+	}
+
+	public void setNoAnswer(String noAnswer) {
+		this.noAnswer = noAnswer;
+	}
+
 	@Override
 	public String toString() {
 		return "SelectCriteria [pageNo=" + pageNo + ", totalCount=" + totalCount + ", limit=" + limit
 				+ ", buttonAmount=" + buttonAmount + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
 				+ endPage + ", startRow=" + startRow + ", endRow=" + endRow + ", searchCondition=" + searchCondition
-				+ ", searchValue=" + searchValue + ", blackList=" + blackList + "]";
+				+ ", searchValue=" + searchValue + ", blackList=" + blackList + ", noAnswer=" + noAnswer + "]";
 	}
 
-
-	
-	
 }
