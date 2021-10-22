@@ -178,10 +178,11 @@
 			location.href = "${ pageContext.servletContext.contextPath }/user/login";
 		} else {
 			$("#hotel").val($('#searchHotel').val());
-			$("#addBed").val("basic");
+			$("#addBed").val("N");
 			$("#roomCode").val(a);
 			
-			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/book");
+			$("#select-form").attr("method", "get");
 			$("#select-form").submit();			
 		}
 	}
@@ -193,10 +194,11 @@
 			location.href = "${ pageContext.servletContext.contextPath }/user/login";
 		} else {
 			$("#hotel").val($('#searchHotel').val());
-			$("#addBed").val("add");
+			$("#addBed").val("Y");
 			$("#roomCode").val(a);
 			
-		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/test");
+		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/book");
+		 	$("#select-form").attr("method", "get");
 			$("#select-form").submit();			
 		}
 	}
