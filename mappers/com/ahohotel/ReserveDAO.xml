@@ -49,6 +49,9 @@
    		<result property="open" column="HOTEL_OPEN"/>
    		<result property="checkIn" column="CHECK_IN"/>
    		<result property="checkOut" column="CHECK_OUT"/>
+   		<result property="introduce" column="CHECK_OUT"/>
+   		<result property="latitude" column="LATITUDE"/>
+   		<result property="longitude" column="LONGITUDE"/>
    </resultMap>
    
    <resultMap type="com.ahohotel.mypage.reserve.model.dto.RoomDTO" id="roomResultMap">
@@ -82,6 +85,14 @@
   		<result property="file" column="H_FILE"/>
   		<result property="thumbnail" column="H_THUMBNAIL_YN"/>
   	</resultMap>
+  	
+  	<resultMap type="com.ahohotel.user.model.dto.ReportDTO" id="reportResultMap">
+		<id property="reportCode" column="REPORT_CODE"/>
+		<result property="userCode" column="USER_CODE"/>
+		<result property="reserveCode" column="RESERVE_CODE"/>
+		<result property="reportReason" column="REPORT_REASON"/>
+		<result property="reportCheck" column="REPORT_CHECK"/>
+	</resultMap>
   	
   	<select id="searchPoint" resultMap="reserveListResultMap">
   		SELECT
@@ -171,6 +182,34 @@
   		, #{ originalFile }
   		, #{ fileName }
   		, #{ filePath }
+  		)
+  	</insert>
+  	
+  	<select id="selectReserve" resultMap="reserveResultMap">
+  		SELECT
+  		       A.REVIEW
+  		     , A.RESERVE_CODE
+  		  FROM RESERVE A
+  		 WHERE A.RESERVE_CODE = #{ reserveCode }
+  	</select>
+  	
+  	<insert id="insertReport">
+  		INSERT
+  		  INTO AHOREPORT A
+  		(
+  		  A.REPORT_CODE
+  		, A.USER_CODE
+  		, A.RESERVE_CODE
+  		, A.REPORT_REASON
+  		, A.REPORT_CHECK
+  		)
+  		VALUES
+  		(
+  		  SEQ_REPORT_CODE.NEXTVAL
+  		, #{ userCode }
+  		, #{ reserveCode }
+  		, #{ reportReason }
+  		, 'N'
   		)
   	</insert>
   	

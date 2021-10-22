@@ -1,10 +1,14 @@
-package com.ahohotel.mypage.reserve.model.dto;
+package com.ahohotel.hotellist.model.dto;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
-public class HotelDTO implements Serializable{
+import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
 
-	private static final long serialVersionUID = 4372775888779667332L;
+public class HotelAndHotelPhotoDTO implements Serializable{
+
+	private static final long serialVersionUID = 1079777028530925659L;
 	
 	private int hoCode;
 	private String hoName;
@@ -19,11 +23,14 @@ public class HotelDTO implements Serializable{
 	private double latitude;
 	private double longitude;
 	
-	public HotelDTO() {
+	private List<HotelPhotoDTO> hoPhoto;
+	
+	public HotelAndHotelPhotoDTO() {
 	}
 
-	public HotelDTO(int hoCode, String hoName, String hoStar, String userStar, String hoPhone, String hoAddress,
-			String open, String checkIn, String checkOut, String introduce, double latitude, double longitude) {
+	public HotelAndHotelPhotoDTO(int hoCode, String hoName, String hoStar, String userStar, String hoPhone,
+			String hoAddress, String open, String checkIn, String checkOut, String introduce, double latitude,
+			double longitude, List<HotelPhotoDTO> hoPhoto) {
 		this.hoCode = hoCode;
 		this.hoName = hoName;
 		this.hoStar = hoStar;
@@ -36,6 +43,7 @@ public class HotelDTO implements Serializable{
 		this.introduce = introduce;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.hoPhoto = hoPhoto;
 	}
 
 	public int getHoCode() {
@@ -110,6 +118,14 @@ public class HotelDTO implements Serializable{
 		this.checkOut = checkOut;
 	}
 
+	public List<HotelPhotoDTO> getHoPhoto() {
+		return hoPhoto;
+	}
+
+	public void setHoPhoto(List<HotelPhotoDTO> hoPhoto) {
+		this.hoPhoto = hoPhoto;
+	}
+
 	public String getIntroduce() {
 		return introduce;
 	}
@@ -136,12 +152,12 @@ public class HotelDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "HotelDTO [hoCode=" + hoCode + ", hoName=" + hoName + ", hoStar=" + hoStar + ", userStar=" + userStar
-				+ ", hoPhone=" + hoPhone + ", hoAddress=" + hoAddress + ", open=" + open + ", checkIn=" + checkIn
-				+ ", checkOut=" + checkOut + ", introduce=" + introduce + ", latitude=" + latitude + ", longitude="
-				+ longitude + "]";
+		return "HotelAndHotelPhotoDTO [hoCode=" + hoCode + ", hoName=" + hoName + ", hoStar=" + hoStar + ", userStar="
+				+ userStar + ", hoPhone=" + hoPhone + ", hoAddress=" + hoAddress + ", open=" + open + ", checkIn="
+				+ checkIn + ", checkOut=" + checkOut + ", introduce=" + introduce + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", hoPhoto=" + hoPhoto + "]";
 	}
-	
+
 	
 	
 }

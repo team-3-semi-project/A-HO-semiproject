@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="HotelListDAO">
 	<resultMap type="com.ahohotel.hotellist.model.dto.HotelListDTO" id="hotelResultMap">
 		<id property="code" column="HOTEL_NO"/>
 		<result property="hotelCode" column="HOTEL_CODE"/>
@@ -14,7 +14,99 @@
 		<result property="checkOut" column="CHECK_OUT"/>
 	</resultMap>
 	
+	<resultMap type="com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO" id="hotelPhotoDTO">
+		<id property="photoCode" column="H_PHOTO_CODE"/>
+		<result property="hotelCode" column="HOTEL_CODE"/>
+		<result property="originFile" column="H_ORIGINAL_FILE"/>
+		<result property="fileName" column="H_FILE_NAME"/>
+		<result property="file" column="H_FILE"/>
+		<result property="thumbnail" column="H_THUMBNAIL_YN"/>
+	</resultMap>
 	
+	<resultMap type="com.ahohotel.hotellist.model.dto.HotelAndHotelPhotoDTO" id="hoResultMap">
+   		<id property="hoCode" column="HOTEL_CODE"/>
+   		<result property="hoName" column="HOTEL_NAME"/>
+   		<result property="hoStar" column="HOTEL_STAR"/>
+   		<result property="userStar" column="HOTEL_USER_AVG"/>
+   		<result property="hoPhone" column="HOTEL_PHONE"/>
+   		<result property="hoAddress" column="HOTEL_ADDRESS"/>
+   		<result property="open" column="HOTEL_OPEN"/>
+   		<result property="checkIn" column="CHECK_IN"/>
+   		<result property="checkOut" column="CHECK_OUT"/>
+   		<result property="introduce" column="HOTEL_INTRODUCE"/>
+   		<result property="latitude" column="LATITUDE"/>
+   		<result property="longitude" column="LONGITUDE"/>
+   </resultMap>
+   
+   <resultMap type="com.ahohotel.hotellist.model.dto.HotelReviewListDTO" id="reserveListResultMap">
+	  	<id property="reserveCode" column="RESERVE_CODE"/>
+	  	<result property="userCode" column="USER_CODE"/>
+	  	<result property="roomcode" column="ROOM_CODE"/>
+	  	<result property="paymentDate" column="PAYMENT_DATE"/>
+	  	<result property="usePoint" column="USE_POINT"/>
+	  	<result property="price" column="PRICE"/>
+	  	<result property="startDate" column="START_DATE"/>
+	  	<result property="endDate" column="END_DATE"/>
+	  	<result property="review" column="REVIEW"/>
+	  	<result property="score" column="SCORE"/>
+	  	<result property="reviewDate" column="REVIEW_DATE"/>
+	  	<result property="option" column="ROOM_OPTION"/>
+	  	
+	  	<association property="room" resultMap="roomResultMap"/>
+	  	<association property="ahoUser" resultMap="memberResultMap"/>
+	  	<association property="reviewPhotoList" resultMap="reviewPhotoResultMap"/>
+   </resultMap>
+   
+   <resultMap type="com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO" id="reviewPhotoResultMap">
+   		<id property="reservePCode" column="RE_PHOTO_CODE"/>
+   		<result property="reserveCode" column="RESERVE_CODE"/>
+   		<result property="originalFile" column="RE_ORIGINAL_FILE"/>
+   		<result property="fileName" column="RE_FILE_NAME"/>
+   		<result property="filePath" column="RE_FILE"/>
+   </resultMap>
+   
+   <resultMap type="com.ahohotel.mypage.reserve.model.dto.RoomDTO" id="roomResultMap">
+   		<id property="roomCode" column="ROOM_CODE"/>
+   		<result property="hotelCode" column="HOTEL_CODE"/>
+   		<result property="roomName" column="ROOM_NAME"/>
+   		<result property="price" column="ROOM_PRICE"/>
+   		<result property="count" column="ROOM_COUNT"/>
+   </resultMap>
+   
+   <resultMap type="com.ahohotel.user.model.dto.AhoUserDTO" id="memberResultMap">
+		<id property="code" column="USER_CODE"/>
+		<result property="vipCode" column="VIP_CODE"/>
+		<result property="id" column="USER_ID"/>
+		<result property="pw" column="USER_PW"/>
+		<result property="name" column="USER_NAME"/>
+		<result property="email" column="USER_EMAIL"/>
+		<result property="phone" column="USER_PHONE"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="gender" column="GENDER"/>
+		<result property="point" column="POINT"/>
+		<result property="allPoint" column="ALL_POINT"/>
+		<result property="joinDate" column="JOIN_DATE"/>
+		<result property="outDate" column="OUT_DATE"/>
+		<result property="outYN" column="OUT_YN"/>
+		<result property="blackListYN" column="BLACKLIST_YN"/>
+		<result property="blackListReason" column="BLACKLIST_REASON"/>
+	</resultMap>
+   
+   <resultMap type="com.ahohotel.mypage.reserve.model.dto.HotelDTO" id="hotelMap">
+		<id property="hoCode" column="HOTEL_CODE"/>
+		<result property="hoName" column="HOTEL_NAME"/>
+		<result property="hoStar" column="HOTEL_STAR"/>
+		<result property="userStar" column="HOTEL_USER_AVG"/>
+		<result property="hoPhone" column="HOTEL_PHONE"/>
+		<result property="hoAddress" column="HOTEL_ADDRESS"/>
+		<result property="open" column="HOTEL_OPEN"/>
+		<result property="checkIn" column="CHECK_IN"/>
+		<result property="checkOut" column="CHECK_OUT"/>
+		<result property="introduce" column="HOTEL_INTRODUCE"/>
+		<result property="latitude" column="LATITUDE"/>
+		<result property="longitude" column="LONGITUDE"/>
+	</resultMap>
+   
 	<!-- 호텔 정보 조회 -->
 	<select id="searchHotel" resultMap="hotelResultMap">
 	    SELECT
@@ -32,5 +124,78 @@
 	
 	</select>
 	
-
+	<!-- 호텔 메인 이미지 조회 -->
+	<select id="selectMainPhoto" resultMap="hotelPhotoDTO">
+	    SELECT
+	           A.H_ORIGINAL_FILE
+	         , A.H_FILE_NAME
+	         , A.H_FILE
+	         , A.HOTEL_CODE
+	         , A.H_PHOTO_CODE
+	      FROM HOTEL_PHOTO A
+	     WHERE A.HOTEL_CODE = #{ hotelNum }
+	       AND A.H_THUMBNAIL_YN = 'N'     
+	</select>
+	
+	<!-- 호텔페이지에 보여줄 정보 -->
+	<select id="selectHotelPage" resultMap="hoResultMap">
+		SELECT
+		       A.HOTEL_NAME
+		     , A.HOTEL_STAR
+		     , A.HOTEL_ADDRESS
+		     , A.HOTEL_PHONE
+		     , A.HOTEL_CODE
+		     , A.HOTEL_INTRODUCE
+		     , A.LATITUDE
+		     , A.LONGITUDE
+		  FROM HOTEL A
+		 WHERE A.HOTEL_CODE = #{ hotelNum }
+	</select>
+	
+	<select id="selectHotelPhoto" resultMap="hotelPhotoDTO">
+		SELECT
+  		       A.H_ORIGINAL_FILE
+	         , A.H_FILE_NAME
+	         , A.H_FILE
+	         , A.HOTEL_CODE
+	         , A.H_PHOTO_CODE
+	      FROM HOTEL_PHOTO A
+	     WHERE A.HOTEL_CODE = #{ hotelNum }
+	       AND A.H_THUMBNAIL_YN = 'Y'
+	</select>
+	
+	<select id="selectHotelReview" resultMap="reserveListResultMap">
+	    SELECT
+           	   A.USER_CODE
+             , A.RESERVE_CODE
+             , A.REVIEW
+             , A.SCORE
+             , A.REVIEW_DATE
+             , B.ROOM_NAME
+             , C.USER_NAME
+          FROM RESERVE A
+          JOIN ROOM B ON(A.ROOM_CODE = B.ROOM_CODE)
+          JOIN AHOUSER C ON (A.USER_CODE = C.USER_CODE)
+         WHERE B.HOTEL_CODE = #{ hotelNum }
+         ORDER BY A.REVIEW_DATE DESC
+	</select>
+	
+	<select id="selectReviewPhoto" resultMap="reviewPhotoResultMap">
+		SELECT
+		       A.RE_PHOTO_CODE
+		     , A.RESERVE_CODE
+		     , A.RE_ORIGINAL_FILE
+		     , A.RE_FILE_NAME
+		     , A.RE_FILE
+		  FROM REVIEW_PHOTO A
+	     WHERE A.RESERVE_CODE = #{ reservePhoto }
+	</select>
+	
+	<select id="selectAllHotel" resultMap="hotelMap">
+		SELECT
+		       A.HOTEL_CODE
+		     , A.HOTEL_NAME
+		  FROM HOTEL A
+	</select>
+	
 </mapper>

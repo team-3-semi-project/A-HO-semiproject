@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/website.css">
   
-  <title>회사소개</title>
+  <title>A-HO</title>
 </head>  
 
 	<jsp:include page="../common/header.jsp"/>
@@ -55,7 +55,7 @@
 	          <br>
 	          <h4 class="webHotel">서울, 인천, 부산, 강원, 제주 지역에 위치하여 각 호텔별로 특별한 서비스를 제공하고 있습니다. <br>
 	            또한 호텔 인근의 동물병원과 제휴를 맺어 긴급상황에 대처할 수 있으며 반려동물과 함께할수 있는 지역을 안내하고 있습니다.
-	            <button style="float: right; width: 30%;" id="goHotel">바로가기</button></h4>
+	            <button style="float: right; width: 30%;" id="goHotel" type="button" onclick="goReserve()">바로가기</button></h4>
 	            
 	        </div>
 	        <div class="col-md-5 order-md-1">
@@ -69,38 +69,33 @@
 	            </ul>
 	            <div class="carousel-inner">
 	              <div class="carousel-item active">
-	                <img src="img/A-HO.png" alt="A-Ho 서울점">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/seoulMain.jpg" alt="A-Ho 서울점">
 	                <div class="carousel-caption">
 	                  <h3>A-HO 서울</h3>
-	                  <p>We had such a great time in LA!</p>
 	                </div>   
 	              </div>
 	              <div class="carousel-item">
-	                <img src="img/A-HO-icon.png" alt="A-Ho 인천점">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/incheonMain.jpg" alt="A-Ho 인천점">
 	                <div class="carousel-caption">
 	                  <h3>A-Ho 인천점</h3>
-	                  <p>Thank you, Chicago!</p>
 	                </div>   
 	              </div>
 	              <div class="carousel-item">
-	                <img src="img/A-HO.png" alt="A-HO 부산점">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/abc.jpg" alt="A-HO 부산점">
 	                <div class="carousel-caption">
 	                  <h3>A-HO 부산점</h3>
-	                  <p>We love the Big Apple!</p>
 	                </div>   
 	              </div>
 	              <div class="carousel-item">
-	                <img src="img/A-HO.png" alt="A-HO 강원점">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/gangwonMain.jpg" alt="A-HO 강원점">
 	                <div class="carousel-caption">
 	                  <h3>A-HO 강원점</h3>
-	                  <p>We love the Big Apple!</p>
 	                </div>   
 	              </div>
 	              <div class="carousel-item">
-	                <img src="img/star-fill.svg" alt="A-HO 제주점">
+	                <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/jejuMain.jpg" alt="A-HO 제주점">
 	                <div class="carousel-caption">
 	                  <h3>A-HO 제주점</h3>
-	                  <p>We love the Big Apple!</p>
 	                </div>   
 	              </div>
 	            </div>
@@ -128,7 +123,7 @@
 	          </h4>
 	        </div>
 	        <div class="col-md-5">
-	          <img src="img/A-HO.png" alt="" id="companyImg">
+	          <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/p3-2.jpg" alt="" id="companyImg">
 	  
 	        </div>
 	      </div>
@@ -144,6 +139,14 @@
 
       
   </main>
+	
+	<script>
+		function goReserve(){
+			
+			location.href = "${ pageContext.servletContext.contextPath }/hotelserch"
+		}
+	</script>
+
 
   <!-- --------------------------------------------------------------------------------------------- -->
   

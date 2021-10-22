@@ -58,7 +58,7 @@ public class InsertReviewServlet extends HttpServlet {
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
 			
-			String fileUploadRoot = rootLocation + "/resources/upload/review-img";
+			String fileUploadRoot = rootLocation + "/resources/upload/review-img/";
 			
 			File directory = new File(fileUploadRoot);
 			
