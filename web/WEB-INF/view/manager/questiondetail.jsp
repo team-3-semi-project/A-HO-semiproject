@@ -40,10 +40,17 @@
 		            <br>
 		            <div id="secdiv">
 		            	<h5 class="text-center">이미지</h5>
-			            <div id="imgdiv">
-	           				<img id="titleImg" width="600" height="250" src="${ question.inquiryFileList[0].qFile }">
-	           			</div>
+		            	<c:if test="${ empty question.inquiryFileList[0].qFileName }"><h5 class="text-center">첨부파일 없습니다.</h5></c:if>
+			            	<c:if test="${ !empty question.inquiryFileList[0].qFileName }">
+			            		<c:forEach items="${ question.inquiryFileList }" var="inquiryPhoto">
+					            	<div id="imgdiv">
+				           				<img id="titleImg" width="600" height="250" src="${ pageContext.servletContext.contextPath }/resources/inquiry-img/${ inquiryPhoto.qFileName }"/>
+				           			</div>
+		                  		</c:forEach>
+			            	</c:if>
 		            </div>
+		            
+		            
 		            <br>
 		            <div id="secdiv">
 		            	<h5 class="text-center">답변</h5>
