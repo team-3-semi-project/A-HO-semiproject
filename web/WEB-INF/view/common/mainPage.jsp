@@ -168,7 +168,7 @@
 
     <ul class="nav justify-content-center">
       <li class="nav-item mt-auto">
-        <a class="nav-link active" href="#">호텔목록</a>
+        <a class="nav-link active" href="${ pageContext.servletContext.contextPath }/hotel/list?no=1">호텔목록</a>
       </li>
       <li class="nav-item mt-auto">
         <a class="nav-link" href="#">룸목록</a>
