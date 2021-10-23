@@ -34,6 +34,16 @@
 					successMessage = "리뷰 삭제 성공";
 					movePath = "${ pageContext.servletContext.contextPath }/mypage/myReview";
 					break;
+					
+				case "updateReview" :
+					successMessage = "리뷰 수정 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/mypage/myReview";
+					break;
+					
+				case "deleteReserve" :
+					successMessage = "예약 취소 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/mypage/reserve";
+					break;
 			}
 
 			alert(successMessage);

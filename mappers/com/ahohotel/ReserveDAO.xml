@@ -122,6 +122,24 @@
    		<result property="filePath" column="RE_FILE"/>
    </resultMap>
   	
+  	<resultMap type="com.ahohotel.mypage.reserve.model.dto.UserDTO" id="userResult">
+  		<id property="code" column="USER_CODE"/>
+   		<result property="vipCode" column="VIP_CODE"/>
+   		<result property="id" column="USER_ID"/>
+   		<result property="pw" column="USER_PW"/>
+   		<result property="name" column="USER_NAME"/>
+   		<result property="email" column="USER_EMAIL"/>
+   		<result property="phone" column="USER_PHONE"/>
+   		<result property="birth" column="BIRTH"/>
+   		<result property="gender" column="GENDER"/>
+   		<result property="point" column="POINT"/>
+   		<result property="joinDate" column="JOIN_DATE"/>
+   		<result property="outDate" column="OUT_DATE"/>
+   		<result property="outYN" column="OUT_YN"/>
+   		<result property="blackListYN" column="BLACKLIST_YN"/>
+   		<result property="blackListReason" column="BLACKLIST_REASON"/>
+  	</resultMap>
+  	
   	<select id="searchPoint" resultMap="reserveListResultMap">
   		SELECT
   		       A.PAYMENT_DATE
@@ -154,6 +172,7 @@
   		     , A.REVIEW
   		     , B.ROOM_NAME
   		     , C.HOTEL_NAME
+  		     , C.HOTEL_CODE
   		  FROM RESERVE A
   		  JOIN ROOM B ON (A.ROOM_CODE = B.ROOM_CODE)
   		  JOIN HOTEL C ON (B.HOTEL_CODE = C.HOTEL_CODE)
@@ -300,4 +319,34 @@
   		     , A.REVIEW_DATE = #{ reviewDate }
   		 WHERE A.RESERVE_CODE = #{ reserveCode }
   	</update>
+  	
+  	<select id="selectCancleReserve" resultMap="reserveResultMap">
+  		SELECT
+  		       A.USE_POINT
+  		     , A.USER_CODE
+  		     , A.RESERVE_CODE
+  		     , A.PRICE
+  		  FROM RESERVE A
+  		 WHERE A.RESERVE_CODE = #{ reserveCode }
+  	</select>
+  	
+  	<select id="selectUser" resultMap="userResult">
+  		SELECT
+  		       A.POINT
+  		  FROM AHOUSER A
+  		 WHERE A.USER_CODE = #{ user }
+  	</select>
+  	
+  	<update id="updatePoint">
+  		UPDATE
+  		       AHOUSER A
+  		   SET A.POINT = #{ point }
+  		 WHERE A.USER_CODE = #{ code }
+  	</update>
+  	
+  	<delete id="deleteReserve">
+  		DELETE
+  		  FROM RESERVE A
+  		 WHERE RESERVE_CODE = #{ reserveCode }
+  	</delete>
 </mapper>

@@ -32,7 +32,8 @@ public class MyReviewServlet extends HttpServlet {
 			path = "/WEB-INF/view/mypage/review/myReview.jsp";
 			request.setAttribute("reviewList", reviewList);
 		} else {
-			
+			path = "/WEB-INF/view/common/failed.jsp";
+			request.setAttribute("message", "리뷰 조회 실패!");
 		}
 		request.getRequestDispatcher(path).forward(request, response);
 		

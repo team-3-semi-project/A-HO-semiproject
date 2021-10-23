@@ -164,10 +164,10 @@ public class ReviewUpdate extends HttpServlet {
 				String path = "";
 				if (result > 0) {
 					path = "/WEB-INF/view/common/success.jsp";
-					request.setAttribute("successCode", "insertReview");
+					request.setAttribute("successCode", "updateReview");
 				} else {
 					path = "/WEB-INF/view/common/failed.jsp";
-					request.setAttribute("message", "리뷰 등록 실패!");
+					request.setAttribute("message", "리뷰 수정 실패!");
 				}
 				
 				request.getRequestDispatcher(path).forward(request, response);

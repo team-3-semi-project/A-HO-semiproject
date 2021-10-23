@@ -35,12 +35,10 @@ public class PointSearchServlet extends HttpServlet {
 		/* 포인트 소멸 일자 넣기 위한 반복문 */
 		for (ReserveSearchListDTO reserve : reserveList) {
 			long time = reserve.getPaymentDate().getTime() + 31536000000L;  // 1년을 Millisecond으로 변환시킨 것
-//			System.out.println(reserve.getPaymentDate().getTime());
-//			System.out.println(time);
+
 			java.util.Date endPointDate = new Date(time);
 			
 			reserve.setendPointDate(endPointDate);
-//			System.out.println("엔드"+reserve.getendPointDate());
 		}
 		
 		AhoUserDTO ahoUser = reserveService.searchMemberPoint(searchUserNo);	
@@ -53,8 +51,8 @@ public class PointSearchServlet extends HttpServlet {
 			request.setAttribute("reserveList", reserveList);
 			request.setAttribute("ahoUser", ahoUser);
 		} else {
-//			path = "/WEB-INF/view/common/failed.jsp";
-//			request.setAttribute("message", "공지사항 조회 실패!");
+			path = "/WEB-INF/view/common/failed.jsp";
+			request.setAttribute("message", "포인트 조회 실패!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

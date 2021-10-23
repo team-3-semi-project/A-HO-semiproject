@@ -9,6 +9,7 @@ import com.ahohotel.mypage.reserve.model.dto.MyReviewDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
+import com.ahohotel.mypage.reserve.model.dto.UserDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 import com.ahohotel.user.model.dto.ReportDTO;
 
@@ -87,6 +88,27 @@ public class ReserveDAO {
 	public int updateReview(SqlSession session, ReserveDTO review) {
 		
 		return session.update("ReserveDAO.updateReview", review);
+	}
+
+	public ReserveDTO selectCancleReserve(SqlSession session, int reserveCode) {
+
+		return session.selectOne("ReserveDAO.selectCancleReserve", reserveCode);
+	}
+
+	public UserDTO selectUser(SqlSession session, int user) {
+		
+		return session.selectOne("ReserveDAO.selectUser", user);
+	}
+
+
+	public int updatePoint(SqlSession session, UserDTO member) {
+
+		return session.update("ReserveDAO.updatePoint", member);
+	}
+
+	public int deleteReserve(SqlSession session, int reserveCode) {
+
+		return session.delete("ReserveDAO.deleteReserve", reserveCode);
 	}
 
 }

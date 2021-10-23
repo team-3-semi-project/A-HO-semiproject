@@ -54,6 +54,9 @@ public class ReviewDeleteServlet extends HttpServlet {
 		if (result > 0) {
 			path = "/WEB-INF/view/common/success.jsp";
 			request.setAttribute("successCode", "deleteReview");
+		} else {
+			path = "/WEB-INF/view/common/failed.jsp";
+			request.setAttribute("message", "리뷰 삭제 실패!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

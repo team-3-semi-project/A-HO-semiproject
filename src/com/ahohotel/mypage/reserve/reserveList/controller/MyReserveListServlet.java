@@ -33,8 +33,9 @@ public class MyReserveListServlet extends HttpServlet {
 		/* 호텔의 이미지가 없더라도 동작하기 위한 코드 */
 		for (ReserveSearchListDTO resertImg : reserveList) {
 			int hotelNum = 0;
-			
 			hotelNum = resertImg.getHotel().getHoCode();
+			System.out.println(hotelNum);
+			
 			hotelPhoto = reserveService.selectPhotoPath(hotelNum);
 			resertImg.setHotelPhoto(hotelPhoto);
 				
