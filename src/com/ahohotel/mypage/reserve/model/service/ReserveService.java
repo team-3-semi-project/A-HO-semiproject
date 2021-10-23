@@ -14,6 +14,7 @@ import com.ahohotel.mypage.reserve.model.dto.MyReviewDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
+import com.ahohotel.mypage.reserve.model.dto.UserDTO;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 import com.ahohotel.user.model.dto.ReportDTO;
 public class ReserveService {
@@ -116,6 +117,8 @@ public class ReserveService {
 			session.rollback();
 		}
 		
+		session.close();
+		
 		return result;
 	}
 
@@ -216,6 +219,69 @@ public class ReserveService {
 			session.rollback();
 		}
 		
+		session.close();
+		
+		return result;
+	}
+
+	public ReserveDTO selectCancleReserve(int reserveCode) {
+		
+		SqlSession session = getSqlSession();
+		
+		ReserveDTO reserve = reserveDAO.selectCancleReserve(session, reserveCode);
+		
+		session.close();
+		
+		return reserve;
+	}
+
+	public UserDTO selectUser(int user) {
+		
+		SqlSession session = getSqlSession();
+		
+		UserDTO aho = reserveDAO.selectUser(session, user);
+		
+		session.close();
+		
+		return aho;
+	}
+
+	public int updatePoint(int totalPoint, int user) {
+		
+		SqlSession session = getSqlSession();
+		
+		UserDTO member = new UserDTO();
+		member.setCode(user);
+		member.setPoint(totalPoint);
+		
+		int result = reserveDAO.updatePoint(session, member);
+		
+		System.out.println("결과는" + result);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int deleteReserve(int reserveCode) {
+
+		SqlSession session = getSqlSession();
+		
+		int result = reserveDAO.deleteReserve(session, reserveCode);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
 		return result;
 	}
 

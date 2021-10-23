@@ -54,7 +54,7 @@ public class ReportServlet extends HttpServlet {
 		
 		if (result > 0) {
 			path = "/WEB-INF/view/common/success.jsp";
-			request.setAttribute("successMessage", "insertReport");
+			request.setAttribute("successCode", "insertReport");
 		} else {
 			
 		}

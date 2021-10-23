@@ -8,12 +8,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=338511ad86aa00eb3c607241f8c5c8e3"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=338511ad86aa00eb3c607241f8c5c8e3&libraries=clusterer"></script>
   <style>
     #ddd {
         
@@ -245,6 +242,8 @@
   </main>
 
  <script>
+ 
+ 	/* 지도생성부분  */
  	var latitude = ${ requestScope.hotel.latitude};
  	var longitude = ${ requestScope.hotel.longitude};
  	var container = document.getElementById('map');
@@ -255,8 +254,20 @@
 
 	var map = new kakao.maps.Map(container, options);
 	
+	var markerPosition  = new kakao.maps.LatLng(latitude, longitude); 
+	
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition
+	});
+	marker.setMap(map);
+	
+	
+	
+	
+	/* 해당 호텔의 등급을 ★로 표시하기 위한 부분 */
 	const score = ${ requestScope.hotel.hoStar};
 	var inStar = document.getElementById("cardbody");
+	
 	
 	window.onload = function(){
 		for (var i = 0; i < score ; i++) {

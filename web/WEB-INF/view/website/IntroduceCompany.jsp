@@ -55,7 +55,7 @@
 	          <br>
 	          <h4 class="webHotel">서울, 인천, 부산, 강원, 제주 지역에 위치하여 각 호텔별로 특별한 서비스를 제공하고 있습니다. <br>
 	            또한 호텔 인근의 동물병원과 제휴를 맺어 긴급상황에 대처할 수 있으며 반려동물과 함께할수 있는 지역을 안내하고 있습니다.
-	            <button style="float: right; width: 30%;" id="goHotel" type="button" onclick="goReserve()">바로가기</button></h4>
+	            <button style="float: right; width: 30%;" id="goHotel" type="button" onclick="goReserve()" class="btn btn-secondary">바로가기</button></h4>
 	            
 	        </div>
 	        <div class="col-md-5 order-md-1">

@@ -39,7 +39,7 @@
                             <img src="${ pageContext.servletContext.contextPath }/resources/common-Img/A-HO.png" alt="호텔사진없음" width="100%" height="100%">
                           </c:if>
                           <c:if test="${ !empty reserved.hotelPhoto.file }">
-                          	<img src="${ pageContext.servletContext.contextPath }/${ reserved.hotelPhoto.file }" alt="..." width="100%" height="100%">
+                          	<img src="${ pageContext.servletContext.contextPath }${ reserved.hotelPhoto.file }" alt="..." width="100%" height="100%">
                           </c:if>
                           </div>
                           <div class="col-md-8">
@@ -56,11 +56,11 @@
                               
                               <p class="card-text"><small class="text-muted"><fmt:formatDate value="${ reserved.startDate }" type="date" pattern="yyyy-MM-dd 15시"/> ~ <fmt:formatDate value="${ reserved.endDate }" type="date" pattern="yyyy-MM-dd 11시"/></small>
                               <c:if test="${ reserved.startDate gt requestScope.today}">
-                              	<button style="float: right;">취소</button>
+                              	<button style="float: right;" onclick="reviewCancle(${ reserved.reserveCode})" class="btn btn-secondary">취소</button>
                               </c:if>
                               <c:if test="${ reserved.startDate lt requestScope.today}">
                               	<c:if test="${ empty reserved.review }">
-                              	<button style="float: right;" class="review" value="${ reserved.reserveCode }">리뷰</button>
+                              	<button style="float: right;" id="review" value="${ reserved.reserveCode }" class="btn btn-secondary">리뷰</button>
                               	</c:if>
                               </c:if>
                             </div>
@@ -78,11 +78,17 @@
               </c:if>
 
                       <script>
-                      	$(".review").click(function(){
+                      	$("#review").click(function(){
                       		const no = $(this).val();
                       		console.log(no);
                       		location.href = "${ pageContext.servletContext.contextPath }/mypage/review?no=" + no;
                       	});
+                      	
+                      	function reviewCancle(number) {
+                      		var num = number;
+                      		
+                      		location.href = "${ pageContext.servletContext.contextPath }/reserve/cancle?num=" + num;
+                      	}
                       </script>
             </div>
           </div>
