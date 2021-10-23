@@ -107,7 +107,7 @@
         
         <script>
         	$("#logout").click(function() {
-				location.href="${ pageContext.servletContext.contextPath }";
+				location.href="${ pageContext.servletContext.contextPath }/user/logout";
 			})
         </script>
 </body>

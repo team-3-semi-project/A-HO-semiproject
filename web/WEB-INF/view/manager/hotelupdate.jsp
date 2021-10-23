@@ -99,7 +99,7 @@
 	                    <p class="m-0">경도</p>
 	                    <input name="longitude" value="${hotel.longitude}">
 	                    <p class="m-0">호텔 소개</p>
-	                    <textarea form="infoForm" name="introduce">${hotel.introduce}</textarea>
+	                    <textarea form="insertform" name="introduce">${hotel.introduce}</textarea>
             		</div>
                 </form>
             </article>
