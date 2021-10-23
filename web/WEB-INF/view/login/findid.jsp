@@ -37,7 +37,7 @@
 			success: function(data) {
 				if(data == "입력하신 이메일로 해당 아이디를 보내드렸습니다. 확인 부탁드립니다.") {
 					alert(data);
-					location.replace("${ pageContext.servletContext.contextPath }");
+					location.replace("${ pageContext.servletContext.contextPath }/user/login");
 				} else {
 					alert(data);
 					window.location.href = '${ pageContext.servletContext.contextPath }/user/findid';
