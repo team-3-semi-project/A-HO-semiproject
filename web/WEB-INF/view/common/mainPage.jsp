@@ -156,19 +156,19 @@
 
     </style>
    
-  </head>
-  <body style="font-family: 'Pretendard-Regular';">
-  
 	<jsp:include page="header.jsp"/>
+  </head>
+  
+  <body>
   <div class="container"> 
 
  
 
-  <div id="ddd">
+  <div id="ddd" style="font-family: 'Pretendard-Regular';">
 
     <ul class="nav justify-content-center">
       <li class="nav-item mt-auto">
-        <a class="nav-link active" href="${ pageContext.servletContext.contextPath }/hotel/list?no=1">호텔목록</a>
+        <a class="nav-link active" href="#">호텔목록</a>
       </li>
       <li class="nav-item mt-auto">
         <a class="nav-link" href="#">룸목록</a>
@@ -187,7 +187,7 @@
   <br>
 
   	<div>
-	          <div id="demo" class="carousel slide" data-ride="carousel">
+	          <div id="demo" class="carousel slide" data-ride="carousel" style="font-family: 'Pretendard-Regular';">
 	            <ul class="carousel-indicators">
 	              <li data-target="#demo" data-slide-to="0" class="active"></li>
 	              <li data-target="#demo" data-slide-to="1"></li>
@@ -244,7 +244,7 @@
 <hr>
 	      </div>
   <br>
-<main role="main" class="container">
+<main role="main" class="container" style="font-family: 'Pretendard-Regular';">
   <div class="row">
     <div class="blog-main">
 		<h2 class="blog-post-title" style="color:#D6B534">ABOUT</h2>
@@ -262,7 +262,7 @@
   </div>
         <hr>
 </main>
-<main role="main" class="container">
+<main role="main" class="container" style="font-family: 'Pretendard-Regular';">
   <div class="row">
     <div class="blog-main">
       <div class="blog-post">
@@ -293,7 +293,7 @@
    </div>
   </div>
 </main>
-	<main role="main" class="container">
+	<main role="main" class="container" style="font-family: 'Pretendard-Regular';">
 	 <div class="row">
     <div class="col-md-8 blog-main">
       <div class="blog-post">
@@ -319,7 +319,7 @@
 <hr>
       </main>
  
-<main role="main" class="container">
+<main role="main" class="container" style="font-family: 'Pretendard-Regular';">
 	 <div class="row">
     <div class="col-md-8 blog-main">
       <div class="p-4">
@@ -348,7 +348,7 @@
     </div><!-- /.blog-main -->
 </main>
 
-	<main role="main" class="container">
+	<main role="main" class="container" style="font-family: 'Pretendard-Regular';">
 <hr>
 		<div class="col-md-8 blog-main">
       <div class="blog-post">

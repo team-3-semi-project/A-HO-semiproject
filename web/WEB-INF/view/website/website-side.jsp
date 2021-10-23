@@ -18,7 +18,7 @@
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/notice">공지 사항</a></li>
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/website/oftenOQ">자주하는 질문</a></li>
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/sitemap">사이트 맵</a></li>
-                  <li class="list-group-item"><a href="">약관 및 정책</a></li>
+                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/termsOfUse">약관 및 정책</a></li>
                 </ul>
             </div> 
         </div>

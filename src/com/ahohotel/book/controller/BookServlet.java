@@ -37,9 +37,10 @@ public class BookServlet extends HttpServlet {
 		String checkIn = request.getParameter("startdate");
 		String checkOut = request.getParameter("enddate");
 		int adult = Integer.valueOf(request.getParameter("adult"));
-		int kid = Integer.valueOf(request.getParameter("kids"));;
+		int kid = Integer.valueOf(request.getParameter("kids"));
 		int roomPerson = adult + kid;
-		String roomOption = request.getParameter("addBed");;
+		String roomOption = request.getParameter("addBed");
+		System.out.println(roomOption);
 		
 
 		/* 예약하려는 호텔정보 조회 */
@@ -58,7 +59,7 @@ public class BookServlet extends HttpServlet {
 		int days = calDateBetweenAandB(checkIn, checkOut);
 		int price = bookingRoomDTO.getPrice();
 		int roomOptionPrice = 0;
-		if (roomOption == "Y") {
+		if ("Y".equals(roomOption)) {
 			roomOptionPrice = 10000;
 		}
 		int sumPrice = (days * price) + roomOptionPrice;

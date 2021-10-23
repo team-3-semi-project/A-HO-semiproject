@@ -18,10 +18,10 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item"><a href="${ pageContext.servletContext.contextPath }/website/company" class="nav-link px-2 text-muted">회사소개</a></li>
           <li class="nav-item"><a href="${ pageContext.servletContext.contextPath }/sitemap" class="nav-link px-2 text-muted">사이트맵</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">고객센터</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">개인정보 처리방침</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">이용약관</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">청소년 보호정책</a></li>
+          <li class="nav-item"><a href="${ pageContext.servletContext.contextPath }/termsOfUse?tab=term1" class="nav-link px-2 text-muted">개인정보 처리방침</a></li>
+          <li class="nav-item"><a href="${ pageContext.servletContext.contextPath }/termsOfUse?tab=term2" class="nav-link px-2 text-muted">개인정보 수집약관</a></li>
+          <li class="nav-item"><a href="${ pageContext.servletContext.contextPath }/termsOfUse?tab=term3" class="nav-link px-2 text-muted">이용약관</a></li>
+          <li class="nav-item"><a href="${ pageContext.servletContext.contextPath }/termsOfUse?tab=term4" class="nav-link px-2 text-muted">청소년 보호정책</a></li>
         </ul>
         <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
       </footer>

@@ -10,6 +10,7 @@
 		<result property="inquiryContent" column="QUESTION_CONTENT" />
 		<result property="inquiryAnswer" column="QUESTION_ANSWER" />
 		<result property="inquiryDate" column="QUESTION_DATE" />
+		<result property="userId" column="USER_ID" />
 		<result property="inquiryCategory" column="QUESTION_CATEGORY" />
 	</resultMap>
 	
@@ -205,5 +206,105 @@
 		  FROM QUESTION_PHOTO A
 		 WHERE A.QUESTION_CODE = #{ inquiryCode }
 	</delete>
+	
+	<select id="selectQuestionTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+               COUNT(*)
+          FROM QUESTION A
+          JOIN AHOUSER B ON(A.USER_CODE = B.USER_CODE)
+    	<where>
+    		<if test="noAnswer == 'no'">
+	           AND A.QUESTION_ANSWER IS NULL 	
+			</if>
+			<if test="searchCondition == 'title'">
+	           AND A.QUESTION_TITLE LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+			<if test="searchCondition == 'category'">
+	           AND A.QUESTION_CATEGORY LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+			<if test="searchCondition == 'userid'">
+	           AND B.USER_ID LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+    	</where>
+	</select>
+	
+	<select id="selectQuestionList" resultMap="inquiryListMap">
+         SELECT 
+               A.RNUM
+             , A.QUESTION_CODE
+             , A.USER_CODE
+             , A.QUESTION_TITLE
+             , A.QUESTION_CONTENT
+             , A.QUESTION_ANSWER
+             , A.QUESTION_DATE
+             , A.QUESTION_CATEGORY
+             , A.USER_ID
+          FROM (SELECT ROWNUM RNUM
+                     , B.QUESTION_CODE
+                     , B.USER_CODE
+                     , B.QUESTION_TITLE
+                     , B.QUESTION_CONTENT
+                     , B.QUESTION_ANSWER
+                     , B.QUESTION_DATE
+                     , B.QUESTION_CATEGORY
+                     , B.USER_ID
+                  FROM (SELECT C.QUESTION_CODE
+                             , C.USER_CODE
+                             , C.QUESTION_TITLE
+                             , C.QUESTION_CONTENT
+                             , C.QUESTION_ANSWER
+                             , C.QUESTION_DATE
+                             , C.QUESTION_CATEGORY
+                             , D.USER_ID
+                          FROM QUESTION C
+                          JOIN AHOUSER D ON(C.USER_CODE = D.USER_CODE)
+    					<where>
+	    					<if test="noAnswer == 'no'">
+					           AND C.QUESTION_ANSWER IS NULL
+							</if>
+							<if test="searchCondition == 'title'">
+					           AND C.QUESTION_TITLE LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+							<if test="searchCondition == 'category'">
+					           AND C.QUESTION_CATEGORY LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+							<if test="searchCondition == 'userid'">
+					           AND D.USER_ID LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+    					</where>
+                         ORDER BY C.QUESTION_CODE DESC
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+         WHERE A.RNUM >= #{ startRow }  
+	</select>
+	
+	<select id="selectQuestionDetail" resultMap="inquiryResultMap">
+			SELECT
+			       A.QUESTION_CODE
+			     , A.USER_CODE
+			     , A.QUESTION_TITLE
+			     , A.QUESTION_CONTENT
+			     , A.QUESTION_ANSWER
+			     , A.QUESTION_DATE
+			     , A.QUESTION_CATEGORY
+			     , C.USER_ID
+			     , B.Q_PHOTO_CODE
+			     , B.Q_ORIGINAL_FILE
+			     , B.Q_FILE_NAME
+			     , B.Q_FILE
+			  FROM QUESTION A
+			  LEFT OUTER JOIN QUESTION_PHOTO B ON (A.QUESTION_CODE = B.QUESTION_CODE)
+			  LEFT OUTER JOIN AHOUSER C ON (A.USER_CODE = C.USER_CODE)
+			 WHERE A.QUESTION_CODE = #{ code }
+	</select>
+	
+	<update id="updateQuestion" parameterType="com.ahohotel.mypage.inquiry.model.dto.InquiryDTO">
+		UPDATE QUESTION A 
+		   SET A.QUESTION_ANSWER = #{ inquiryAnswer }
+		 WHERE A.QUESTION_CODE = #{ inquiryCode }
+	</update>
 	
 </mapper>

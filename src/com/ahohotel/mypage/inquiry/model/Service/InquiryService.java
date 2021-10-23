@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.session.SqlSession;
 
+import com.ahohotel.common.paging.SelectCriteria;
 import com.ahohotel.mypage.inquiry.model.dao.InquiryDAO;
 import com.ahohotel.mypage.inquiry.model.dto.InquiryDTO;
 import com.ahohotel.mypage.inquiry.model.dto.InquiryFileDTO;
@@ -159,6 +160,57 @@ public class InquiryService {
 		session.close();
 		
 		return result;
+	}
+	
+	public int selectQuestionTotalCount(Map<String, String> searchMap) {
+		 
+		SqlSession session = getSqlSession();
+		
+		int totalCount = new InquiryDAO().selectQuestionTotalCount(session,searchMap);
+		  
+		session.close();
+		  
+		return totalCount; 
+	}
+	  
+	public List<InquiryDTO> selectQuestionList(SelectCriteria selectCriteria) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<InquiryDTO> questionList = new InquiryDAO().selectQuestionList(session, selectCriteria);
+		
+		session.close();
+		
+		return questionList;
+		
+	}
+	
+	public InquiryDTO selectQuestionDetail(int code) {
+		
+		SqlSession session = getSqlSession();
+		
+		InquiryDTO inquiryDetail = new InquiryDAO().selectQuestionDetail(session, code);
+		
+		session.close();
+		
+		return inquiryDetail;
+	}
+	
+	public boolean updateQuestion(InquiryDTO question) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = new InquiryDAO().updateQuestion(session, question);
+		
+		if (result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+				
+		return isSuccess;
 	}
 
 
