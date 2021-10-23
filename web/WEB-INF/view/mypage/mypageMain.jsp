@@ -35,7 +35,7 @@
                     
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <div class="card" style="width: 30rem;">
+                            <div class="card" style="width: 90%;">
                                 <div class="card-body">
                                   <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/point">포인트</a></p>
                                 </div>
@@ -44,16 +44,16 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <div class="card" style="width: 30rem;">
+                            <div class="card" style="width: 90%;">
                                 <div class="card-body">
-                                  <p class="card-text"><a href="">찜 목록</a></p>
+                                  <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/inquiry">1:1 문의 내역</a></p>
                                 </div>
                               </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <div class="card" style="width: 30rem;">
+                            <div class="card" style="width: 90%;">
                                 <div class="card-body">
                                   <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/reserve">예약 내역</a></p>
                                 </div>
@@ -62,22 +62,14 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <div class="card" style="width: 30rem;">
+                            <div class="card" style="width: 90%;">
                                 <div class="card-body">
                                   <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/myReview">나의 후기</a></p>
                                 </div>
                               </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                            <div class="card" style="width: 63rem;">
-                                <div class="card-body">
-                                  <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/inquiry">1:1 문의 내역</a></p>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
