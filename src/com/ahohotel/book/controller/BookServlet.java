@@ -220,7 +220,7 @@ public class BookServlet extends HttpServlet {
 
 	        long calDateDays = (int) calDate / (24*60*60*1000); 
 	 
-	        days += (int) Math.abs(calDateDays);
+	        days += (int) Math.abs(calDateDays-1);
 	    } catch(ParseException e) {
 	        	e.printStackTrace();
 	    }

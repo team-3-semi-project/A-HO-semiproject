@@ -171,7 +171,7 @@
         <a class="nav-link active" href="${ pageContext.servletContext.contextPath }/hotel/list?no=1">호텔목록</a>
       </li>
       <li class="nav-item mt-auto">
-        <a class="nav-link" href="#">룸목록</a>
+        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/roomList">룸목록</a>
       </li>
       <li class="nav-item mt-auto">
         <a class="nav-link" href="${ pageContext.servletContext.contextPath }/hotelserch" style="font-size: 20px"><strong>호텔예약</strong></a>
@@ -248,10 +248,10 @@
   <div class="row">
     <div class="blog-main">
 		<h2 class="blog-post-title" style="color:#D6B534">ABOUT</h2>
-      <div class="blog-post" style="background-color:gray">
+      <div class="blog-post" style="background-color:rgb(73, 73, 73);">
 		
 		<table style="text-align:center;">
-			<td style="color:white"><p>A-HO 호텔은 반려동물과 함께 소중한 추억을 쌓을 수 있는 호텔입니다.<br>
+			<td style="color:white"><p>&nbsp;&nbsp;&nbsp;A-HO 호텔은 반려동물과 함께 소중한 추억을 쌓을 수 있는 호텔입니다.&nbsp;&nbsp;<br>
 				   활발한 아이들을 위한 넓은 활동 공간과 조용한 아이들을 위한 <br>휴식 공간이 마련되어 있습니다.<br>
 				   호텔 주변의 멋진 자연과 함께 소중한 추억을 선사해드립니다.</p></td>
 			<td><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/로비.jpg;" style="width: 130%; height: 50; vertical-align:middle;" ></td>
@@ -305,10 +305,10 @@
         	</tr>
         	<tr>
         		<td style="line-height:0;"><img src="${ pageContext.servletContext.contextPath }/resources/common-Img/요리.jpg;" style="width: 100%; height: auto;"></td>
-        		<td style="text-align:center; background-color:gray; color:white;"><p>세븐스퀘어<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;세븐스퀘어는 각국의 음식을 통해&nbsp;&nbsp;&nbsp;
-							다양한 세대가 만나는 '삶'의 공간을
-							지향하는 라이프스타일 레스토랑입니다.</p>
+        		<td style="text-align:center; background-color:rgb(73, 73, 73); color:white;"><p>세븐스퀘어<br>
+							&nbsp;&nbsp;세븐스퀘어는 각국의 음식을 통해&nbsp;
+							&nbsp;&nbsp;다양한 세대가 만나는 '삶'의 공간을&nbsp;
+							&nbsp;&nbsp;지향하는 라이프스타일 레스토랑입니다.&nbsp;</p>
 			</tr>
         </table>
         
