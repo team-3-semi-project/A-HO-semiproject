@@ -184,6 +184,34 @@ public class InquiryService {
 		return questionList;
 		
 	}
+	
+	public InquiryDTO selectQuestionDetail(int code) {
+		
+		SqlSession session = getSqlSession();
+		
+		InquiryDTO inquiryDetail = new InquiryDAO().selectQuestionDetail(session, code);
+		
+		session.close();
+		
+		return inquiryDetail;
+	}
+	
+	public boolean updateQuestion(InquiryDTO question) {
+		SqlSession session = getSqlSession();
+		boolean isSuccess = false;
+		
+		int result = new InquiryDAO().updateQuestion(session, question);
+		
+		if (result > 0) {
+			isSuccess = true;
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+				
+		return isSuccess;
+	}
 
 
 }

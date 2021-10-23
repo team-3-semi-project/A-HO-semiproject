@@ -14,7 +14,7 @@
             <table class="table table-hover" id="table">
                 <div id="tablecaption" class="row">
                  <div class="col-2"></div>
-                 <h2 class="col-8">공지사항 관리</h2>
+                 	<h2 class="col-8">공지사항 관리</h2>
                  <div class="col-2"><button class="btn-primary" id="insertnoticebtn" style="width: 150px; height: 40px">공지사항 등록</button></div>
                 </div>
                     <thead>

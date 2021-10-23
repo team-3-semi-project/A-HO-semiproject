@@ -66,5 +66,15 @@ public class InquiryDAO {
 		
 		return session.selectList("InquiryDAO.selectQuestionList", selectCriteria);
 	}
+	
+	public InquiryDTO selectQuestionDetail(SqlSession session, int code) {
+		
+		return session.selectOne("InquiryDAO.selectQuestionDetail", code);
+	}
+
+	public int updateQuestion(SqlSession session, InquiryDTO question) {
+		
+		return session.update("InquiryDAO.updateQuestion", question);
+	}
 
 }

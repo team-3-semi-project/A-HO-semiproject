@@ -70,7 +70,7 @@
 		<h1 class="text-center" style="margin-top: 40px; margin-bottom: 40px;"> ${ requestScope.noneSelect } </h1>
 	</c:if>
 	<c:if test="${ !empty requestScope.roomList }">
-		<c:set var="badplus" value="30000"></c:set>
+		<c:set var="badplus" value="10000"></c:set>
 		<c:forEach items="${ requestScope.roomList }" var="room" varStatus="st">>
 			<div class="row justify-content-md-center" id="roomdetail" style="margin-top: 10px;">
 				<div class="col-md-6" >
@@ -178,7 +178,7 @@
 			location.href = "${ pageContext.servletContext.contextPath }/user/login";
 		} else {
 			$("#hotel").val($('#searchHotel').val());
-			$("#addBed").val("N");
+			$("#addBed").val("basic");
 			$("#roomCode").val(a);
 			
 			$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/book");
@@ -194,7 +194,7 @@
 			location.href = "${ pageContext.servletContext.contextPath }/user/login";
 		} else {
 			$("#hotel").val($('#searchHotel').val());
-			$("#addBed").val("Y");
+			$("#addBed").val("add");
 			$("#roomCode").val(a);
 			
 		 	$("#select-form").attr("action", "${ pageContext.servletContext.contextPath }/book");

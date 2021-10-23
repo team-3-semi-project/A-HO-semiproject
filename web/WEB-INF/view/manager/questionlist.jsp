@@ -12,7 +12,7 @@
 	
 	<article class="tb col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <table class="table table-hover text-center" id="table">
-                <div id="tablecaption"><h2>1:1문의 관리</h2></div>
+                <div id="tablecaption"><h2 class="text-center">1:1문의 관리</h2></div>
                     <thead>
                         <tr>
                             <th scope="col">문의코드</th>
