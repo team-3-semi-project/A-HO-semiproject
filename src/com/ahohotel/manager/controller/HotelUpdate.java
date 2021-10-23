@@ -265,6 +265,8 @@ public class HotelUpdate extends HttpServlet {
 				
 				if(cnt == fileList.size()) {
 					System.out.println("업로드에실패한 모든 사진 삭제 완료!");
+					request.setAttribute("message", "호텔 수정 실패!");
+					request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
 					e.printStackTrace();
 				} else {
 					e.printStackTrace();

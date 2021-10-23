@@ -190,8 +190,8 @@ public class HotelInsert extends HttpServlet {
 				
 				/* 성공 실패 페이지를 구분하여 연결한다. */
 				if(result <= 0) {
-					request.setAttribute("message", "썸네일 게시판 등록 실패!");
-					request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
+					request.setAttribute("message", "호텔 등록 실패!");
+					request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
 				} else {
 					response.sendRedirect(request.getContextPath() + "/manager/hotel");
 				}
@@ -212,6 +212,8 @@ public class HotelInsert extends HttpServlet {
 				
 				if(cnt == fileList.size()) {
 					System.out.println("업로드에실패한 모든 사진 삭제 완료!");
+					request.setAttribute("message", "호텔 등록 실패!");
+					request.getRequestDispatcher("/WEB-INF/view/common/failed.jsp").forward(request, response);
 					e.printStackTrace();
 				} else {
 					e.printStackTrace();
