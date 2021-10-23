@@ -39,7 +39,7 @@ display: none;
 </head>
 <body>
 
-  <jsp:include page="../common/header.jsp"/>
+  <jsp:include page="../../common/header.jsp"/>
   <!-- --------------------------------------------------------------------------------------------- -->
 
 
@@ -50,7 +50,7 @@ display: none;
 
     <div class="row">
     
-        <jsp:include page="mypage-side.jsp"/>
+        <jsp:include page="../mypage-side.jsp"/>
 
         <div class="col-sm-9" >
           <div class="card" style="width: 50rem;">
@@ -192,7 +192,7 @@ display: none;
   <!-- --------------------------------------------------------------------------------------------- -->
   
   
-  <jsp:include page="../common/footer.jsp"/>
+  <jsp:include page="../../common/footer.jsp"/>
 
   
 </body>

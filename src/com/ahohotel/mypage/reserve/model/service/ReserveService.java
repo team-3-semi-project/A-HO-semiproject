@@ -4,10 +4,13 @@ import static com.ahohotel.common.mybatis.Template.getSqlSession;
 
 import java.util.List;
 
+import javax.mail.Session;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.ahohotel.mypage.reserve.model.dao.ReserveDAO;
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
+import com.ahohotel.mypage.reserve.model.dto.MyReviewDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
@@ -140,6 +143,78 @@ public class ReserveService {
 		}
 		
 		session.close();
+		
+		return result;
+	}
+
+	public List<MyReviewDTO> selectMyReviewList(int user) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<MyReviewDTO> reviewList = reserveDAO.selectMyReviewList(session, user);
+		
+		for (MyReviewDTO review : reviewList) {
+			
+			List<ReviewPhotoDTO> reviewPhoto = reserveDAO.selectMyReviewPhoto(session, review.getReserveCode());
+			
+			review.setReviewPhoto(reviewPhoto);
+		}
+		
+		session.close();
+		
+		return reviewList;
+	}
+
+	public int deleteReview(int reserveCode) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = reserveDAO.deleteReview(session, reserveCode);
+		
+		int rePhotoresult = reserveDAO.deletReviewPhoto(session, reserveCode);
+		
+		System.out.println("rePhoto" + rePhotoresult);
+		
+		if (result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		session.close();
+		
+		return result;
+	}
+
+	public List<ReviewPhotoDTO> selectReviewPhoto(int reserveCode) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<ReviewPhotoDTO> rePhoto = reserveDAO.selectReviewPhoto(session, reserveCode);
+		
+		session.close();
+		
+		return rePhoto;
+	}
+
+	public int updateReview(ReserveDTO review, List<ReviewPhotoDTO> reviewPhoto) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = 0;
+		
+		int reviewResult = reserveDAO.updateReview(session, review);
+		
+		int rePhotoResult = 0;
+		for (int i = 0; i < reviewPhoto.size(); i++) {
+			rePhotoResult += reserveDAO.insertReviewPhoto(session, reviewPhoto.get(i));
+		}
+		
+		if (reviewResult > 0 && rePhotoResult == reviewPhoto.size()) {
+			session.commit();
+			result = 1;
+		} else {
+			session.rollback();
+		}
 		
 		return result;
 	}

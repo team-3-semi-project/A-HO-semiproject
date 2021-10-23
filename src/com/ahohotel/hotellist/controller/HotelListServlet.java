@@ -42,8 +42,8 @@ public class HotelListServlet extends HttpServlet {
 		List<HotelReviewListDTO> hotelReviewList = hotelService.selectHotelReview(hotelNum);
 		
 		
-		double total = 0;
-		double count = 0;
+		int total = 0;
+		int count = 0;
 		
 		for (HotelReviewListDTO ho : hotelReviewList) {
 			if(ho.getReview() != null) {
@@ -52,8 +52,13 @@ public class HotelListServlet extends HttpServlet {
 			}
 		}
 		
-		double totalScore = total/count ;
+		double totalScore = 0;
+		if (total != 0 && count !=0) {
+			totalScore = total/(double)count;
+		}
 		
+		
+		System.out.println("total" + totalScore);
 		
 		String path = "";
 		if (hotel != null) {

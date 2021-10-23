@@ -1,4 +1,4 @@
-package com.ahohotel.mypage.reserve.reserveList.controller;
+package com.ahohotel.mypage.myreview;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,33 +25,32 @@ import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
 import com.ahohotel.mypage.reserve.model.service.ReserveService;
 import com.ahohotel.user.model.dto.AhoUserDTO;
 
-@WebServlet("/mypage/review")
-public class InsertReviewServlet extends HttpServlet {
+@WebServlet("/review/update")
+public class ReviewUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int reserveNum = Integer.parseInt(request.getParameter("no"));
-		System.out.println(reserveNum);
+		int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
 		
 		ReserveService reserveService = new ReserveService();
-		ReserveSearchListDTO reserve = reserveService.selectOneReserve(reserveNum);
-
-		System.out.println(reserve);
 		
-		String path = "";
-		if (reserve != null) {
-			path = "/WEB-INF/view/mypage/review/review.jsp";
-			request.setAttribute("reserve", reserve);
-		} else {
-			
-		}
+		ReserveSearchListDTO reserve = reserveService.selectOneReserve(reserveCode);
+		
+		System.out.println("예약번호" + reserve);
+		
+		String path = "/WEB-INF/view/mypage/review/myReviewUpdate.jsp";
+		request.setAttribute("reserve", reserve);
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
+		ReserveService reserveService = new ReserveService();
+		
 		
 		if (ServletFileUpload.isMultipartContent(request)) {
 			
@@ -119,6 +118,25 @@ public class InsertReviewServlet extends HttpServlet {
 				
 				int reserveCode = Integer.valueOf(parameter.get("reserveCode"));
 				
+				
+				List<ReviewPhotoDTO> rePhotoo = reserveService.selectReviewPhoto(reserveCode);
+				
+				int cnt = 0;
+				for (int i = 0; i < rePhotoo.size(); i++) {
+					File deletFile = new File(fileUploadRoot + "/" + rePhotoo.get(i).getFileName());
+					
+					boolean isDeleted = deletFile.delete();
+					
+					if (isDeleted) {
+						cnt++;
+					}
+					
+				}
+				int result1 = reserveService.deleteReview(reserveCode);
+				
+				
+				
+				
 				ReserveDTO review = new ReserveDTO();
 				review.setUserCode(((AhoUserDTO) request.getSession().getAttribute("loginUser")).getCode());
 				review.setReserveCode(reserveCode);
@@ -141,9 +159,7 @@ public class InsertReviewServlet extends HttpServlet {
 					System.out.println("rePhoto : " + rePhoto);
 				}
 				
-				ReserveService reserveService = new ReserveService();
-				
-				int result = reserveService.insertReview(review, reviewPhoto);
+				int result = reserveService.updateReview(review, reviewPhoto);
 				
 				String path = "";
 				if (result > 0) {
@@ -159,7 +175,7 @@ public class InsertReviewServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				
-				int cnt = 0;
+				int cntt = 0;
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
 					
@@ -167,11 +183,11 @@ public class InsertReviewServlet extends HttpServlet {
 					boolean isDeleted = deletFile.delete();
 					
 					if (isDeleted) {
-						cnt++;
+						cntt++;
 					}
 				}
 			
-				if (cnt == fileList.size()) {
+				if (cntt == fileList.size()) {
 					System.out.println("실패 사진 삭제 완료!");
 					e.printStackTrace();
 				} else {
@@ -180,7 +196,6 @@ public class InsertReviewServlet extends HttpServlet {
 			}
 			
 		}
-	
 	}
 
 }

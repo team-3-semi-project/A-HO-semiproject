@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;
+import com.ahohotel.mypage.reserve.model.dto.MyReviewDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReserveSearchListDTO;
 import com.ahohotel.mypage.reserve.model.dto.ReviewPhotoDTO;
@@ -56,6 +57,36 @@ public class ReserveDAO {
 	public int insertReport(SqlSession session, ReportDTO report) {
 		
 		return session.insert("ReserveDAO.insertReport", report);
+	}
+
+	public List<MyReviewDTO> selectMyReviewList(SqlSession session, int user) {
+		
+		return session.selectList("ReserveDAO.selectMyReviewList", user);
+	}
+
+	public List<ReviewPhotoDTO> selectMyReviewPhoto(SqlSession session, int reserveCode) {
+
+		return session.selectList("ReserveDAO.selectMyReviewPhoto", reserveCode);
+	}
+
+	public int deleteReview(SqlSession session, int reserveCode) {
+		
+		return session.update("ReserveDAO.deleteReview", reserveCode);
+	}
+
+	public List<ReviewPhotoDTO> selectReviewPhoto(SqlSession session, int reserveCode) {
+		
+		return session.selectList("ReserveDAO.selectReviewPhoto", reserveCode);
+	}
+
+	public int deletReviewPhoto(SqlSession session, int reserveCode) {
+
+		return session.delete("ReserveDAO.deletReviewPhoto", reserveCode);
+	}
+
+	public int updateReview(SqlSession session, ReserveDTO review) {
+		
+		return session.update("ReserveDAO.updateReview", review);
 	}
 
 }

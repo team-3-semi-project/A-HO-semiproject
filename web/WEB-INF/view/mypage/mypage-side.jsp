@@ -16,9 +16,8 @@
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/point">포인트</a></li>
-                  <li class="list-group-item"><a href="#">찜 목록</a></li>
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/reserve">예약내역</a></li>
-                  <li class="list-group-item"><a href="#">나의 후기</a></li>
+                  <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/myReview">나의 후기</a></li>
                   <li class="list-group-item"><a href="${ pageContext.servletContext.contextPath }/mypage/inquiry">1:1문의 내역</a></li>
                 </ul>
                 <div class="card-body">

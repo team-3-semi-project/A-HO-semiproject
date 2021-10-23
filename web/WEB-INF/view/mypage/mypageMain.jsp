@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <div class="card" style="width: 30rem;">
                                 <div class="card-body">
-                                  <p class="card-text"><a href="">나의 후기</a></p>
+                                  <p class="card-text"><a href="${ pageContext.servletContext.contextPath }/mypage/myReview">나의 후기</a></p>
                                 </div>
                               </div>
                         </div>

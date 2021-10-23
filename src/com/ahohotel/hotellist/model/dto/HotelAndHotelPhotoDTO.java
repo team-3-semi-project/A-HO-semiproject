@@ -1,7 +1,6 @@
 package com.ahohotel.hotellist.model.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import com.ahohotel.mypage.reserve.model.dto.HotelPhotoDTO;

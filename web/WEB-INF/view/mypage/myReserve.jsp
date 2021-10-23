@@ -25,10 +25,11 @@
         <jsp:include page="mypage-side.jsp"/>
 
         <div class="col-sm-9" >
-          <div class="card" style="width: 50rem;">
+          <div class="card col-sm-9">
             <div class="card-body">
               <h2 class="card-title">예약 내역</h2><br><br>
               
+              <c:if test="${ !empty requestScope.reserveList }">
               <c:forEach var="reserved" items="${ requestScope.reserveList }">
                     <h4 class="card-title">결제일 <fmt:formatDate value="${ reserved.paymentDate }" type="date" pattern="yyyy-MM-dd (E)"/></h4>
                     <div class="card mb-3" style="max-width: 600px;">
@@ -68,6 +69,13 @@
                       </div>
                       <br>
               </c:forEach>
+              </c:if>
+              
+              <c:if test="${ empty requestScope.reserveList }">
+             	 <br><br>
+             	 <p style="text-align: center; font-size: 2.5em">예약 내역이 없습니다.</p>
+             	 <br><br>
+              </c:if>
 
                       <script>
                       	$(".review").click(function(){

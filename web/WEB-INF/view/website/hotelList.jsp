@@ -108,7 +108,13 @@
             </c:if>
               <div class="card-body">
               <div>
-                <p style="margin-left: 5px; float: left;" id="cardbody">성 호텔</p><p style="float: right; margin-right: 20px;">고객 평점 : <c:out value="${ requestScope.totalScore }"/> </p>
+                <p style="margin-left: 5px; float: left;" id="cardbody">성 호텔</p>
+                
+                <c:set value="${ requestScope.totalScore }" var="score"/>
+                <c:if test="${ score ne 0 }">
+                <p style="float: right; margin-right: 20px;">고객 평점 : <c:out value="${ requestScope.totalScore }"/> </p>
+                </c:if>
+                
               </div>
                 <br clear="both">
                 <div class="col-sm-5" style="height: 400px; float: left;" >
@@ -162,11 +168,14 @@
                   <br clear="both">
                   <hr>
                   <br>
+                  
+                  
+                  <c:if test="${ !empty requestScope.hotelReview }">
                   <div class="card">
-                    <h3 style="margin-left: 20px; margin-top: 10px;">리뷰</h3>
-                    
                     <c:forEach var="review" items="${ requestScope.hotelReview }">
                      <c:if test="${ !empty review.review }">
+                    <h3 style="margin-left: 20px; margin-top: 10px;">리뷰</h3>
+                    
                     <br>
                     <div style="border: 1px solid black; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;" i>
                     <h5 style="float: left; margin-left: 20px; margin-top: 10px;"><c:out value="${ requestScope.hotel.hoName }"/></h5>
@@ -196,7 +205,7 @@
                     
                     <div style="clear: both;">
                       <p style="float: right; margin-right: 20px;"><small><fmt:formatDate value="${ review.reviewDate }" type="date" pattern="yyyy-MM-dd"/></small></p>
-                     
+                     <br>
                       <c:if test="${ !empty review.reviewPhotoList }">
                       	<c:forEach var="reviewPhoto" items="${ review.reviewPhotoList }">
  	                     <img src="${ pageContext.servletContext.contextPath }/resources/upload/review-img/${ reviewPhoto.fileName }" alt="" style="width: 150px; height: 150px; margin-bottom: 20px; margin-left: 20px; float: left;">
@@ -214,8 +223,9 @@
                      </c:if>
                     </c:forEach>
                 
-               	 
 		</div>
+                  </c:if>
+               	 
                	 <br>
                   </div>
                   

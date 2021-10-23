@@ -29,6 +29,11 @@
 					successMessage = "신고 성공";
 					movePath = "${ pageContext.servletContext.contextPath }/hotel/list";
 					break;
+					
+				case "deleteReview" :
+					successMessage = "리뷰 삭제 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/mypage/myReview";
+					break;
 			}
 
 			alert(successMessage);
