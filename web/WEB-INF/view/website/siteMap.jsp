@@ -37,7 +37,7 @@
                   <h3>호텔 정보</h3>
                   <br>
                   <a href="${ pageContext.servletContext.contextPath }/hotel/list?no=1"><p>호텔 지점 정보</p></a>
-                  <a href=""><p>룸 정보</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/roomList"><p>룸 정보</p></a>
                   <a href="${ pageContext.servletContext.contextPath }/hotelserch"><p>호텔 검색</p></a>
                 </div>
 

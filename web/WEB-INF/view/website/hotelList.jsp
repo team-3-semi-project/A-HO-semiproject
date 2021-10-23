@@ -68,7 +68,7 @@
         <a class="nav-link active" href="${ pageContext.servletContext.contextPath }/hotel/list?no=1">호텔목록</a>
       </li>
       <li class="nav-item mt-auto">
-        <a class="nav-link" href="#">룸목록</a>
+        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/roomList">룸목록</a>
       </li>
       <li class="nav-item mt-auto">
         <a class="nav-link" href="${ pageContext.servletContext.contextPath }/hotelserch" style="font-size: 20px"><strong>호텔예약</strong></a>
