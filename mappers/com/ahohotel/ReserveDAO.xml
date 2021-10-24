@@ -186,7 +186,8 @@
   		     , A.H_ORIGINAL_FILE
   		     , A.H_FILE
   		  FROM HOTEL_PHOTO A
-  		 WHERE A.HOTEL_CODE = #{ hotelNum } 
+  		 WHERE A.HOTEL_CODE = #{ hotelNum }
+  		   AND A.H_THUMBNAIL_YN = 'N'
   	</select>
   	
   	<select id="selectOneReserve" resultMap="reserveListResultMap">
@@ -256,7 +257,7 @@
   		, #{ userCode }
   		, #{ reserveCode }
   		, #{ reportReason }
-  		, 'N'
+  		, ''
   		)
   	</insert>
   	
