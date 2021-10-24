@@ -56,7 +56,36 @@
                               
                               <p class="card-text"><small class="text-muted"><fmt:formatDate value="${ reserved.startDate }" type="date" pattern="yyyy-MM-dd 15시"/> ~ <fmt:formatDate value="${ reserved.endDate }" type="date" pattern="yyyy-MM-dd 11시"/></small>
                               <c:if test="${ reserved.startDate gt requestScope.today}">
-                              	<button style="float: right;" onclick="reviewCancle(${ reserved.reserveCode})" class="btn btn-secondary">취소</button>
+                              	
+                              	
+                              	
+                              	
+                              	
+                              	
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="float: right;">
+					  취소
+					</button>
+					<!-- Modal -->
+					<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="staticBackdropLabel">예약 취소 여부</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					       예약을 취소하시겠습니까?
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-primary" onclick="reviewCancle(${ reserved.reserveCode})">예</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니요</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+                              	
                               </c:if>
                               <c:if test="${ reserved.startDate lt requestScope.today}">
                               	<c:if test="${ empty reserved.review }">

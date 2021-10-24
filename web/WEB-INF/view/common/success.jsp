@@ -27,7 +27,7 @@
 					
 				case "insertReport" :
 					successMessage = "신고 성공";
-					movePath = "${ pageContext.servletContext.contextPath }/hotel/list";
+					movePath = "${ pageContext.servletContext.contextPath }/hotel/list?no=1";
 					break;
 					
 				case "deleteReview" :

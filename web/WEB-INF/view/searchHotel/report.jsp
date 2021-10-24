@@ -30,7 +30,7 @@ display: none;
   height: 100px;
 }
 
-.reviewB {
+#reportCancle, #reportOk {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
@@ -54,7 +54,7 @@ display: none;
         <jsp:include page="../mypage/mypage-side.jsp"/>
 
         <div class="col-sm-9" >
-          <div class="card" style="width: 50rem;">
+          <div class="card col-sm-9">
             <div class="card-body">
               <h2 class="card-title">신고 하기</h2><br><br>
               <form action="${ pageContext.servletContext.contextPath }/report" method="post" id="reportForm">
@@ -69,7 +69,7 @@ display: none;
                   <textarea name="reportText" id="reportText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
                   <input type="radio" name="reserveCode" value="${ requestScope.reserve.reserveCode }" style="display: none;" checked="checked">
                   <br>
-                  <button type="reset" class="reviewB" id="reportCancle">취소</button> <button type="button" class="reviewB" id="reportOk">확인</button>
+                  <button type="reset" class="btn btn-secondary" id="reportCancle">취소</button> <button type="button" class="btn btn-secondary" id="reportOk">확인</button>
                 </div>
                
               </form>
@@ -93,6 +93,11 @@ display: none;
         		document.getElementById("reportForm").submit();
         	}
         });
+      
+      $("#reportCancle").click(function(){
+    	 
+    	  location.href = "${ pageContext.servletContext.contextPath}/hotel/list?no=1"
+      });
       </script>
       
 </main>

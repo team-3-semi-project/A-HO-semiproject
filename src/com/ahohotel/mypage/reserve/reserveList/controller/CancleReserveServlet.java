@@ -41,6 +41,10 @@ public class CancleReserveServlet extends HttpServlet {
 		
 		int totalPoint = userPoint + usePoint - savePoint;
 		
+		if (totalPoint < 0) {
+			totalPoint = 0;
+		}
+		
 		int Pointresult = reserverService.updatePoint(totalPoint, user);
 		
 		int reserveResult = reserverService.deleteReserve(reserveCode); 

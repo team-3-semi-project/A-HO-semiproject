@@ -30,7 +30,7 @@ display: none;
   height: 100px;
 }
 
-.reviewB {
+#reviewCancle, #reviewOk {
   margin-bottom: 20px;
   margin-right: 20px;
   float: right;
@@ -53,7 +53,7 @@ display: none;
         <jsp:include page="../mypage-side.jsp"/>
 
         <div class="col-sm-9" >
-          <div class="card" style="width: 50rem;">
+          <div class="card col-sm-9">
             <div class="card-body">
               <h2 class="card-title">리뷰 작성</h2><br><br>
               <form action="${ pageContext.servletContext.contextPath }/mypage/review" method="post" id="reviewForm" encType="multipart/form-data">
@@ -74,7 +74,7 @@ display: none;
                   <div id="preview"></div>
                   <textarea name="reviewText" id="reviewText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
                   <input type="radio" name="reserveCode" value="${ reserve.reserveCode }" style="display: none;" checked="checked">
-                  <button type="reset" class="reviewB" id="reviewCancle">취소</button> <button type="button" class="reviewB" id="reviewOk">확인</button>
+                  <button type="reset" class="btn btn-secondary" id="reviewCancle">취소</button> <button type="button" class="btn btn-secondary" id="reviewOk">확인</button>
                   <br clear="both">
                 </div>
                

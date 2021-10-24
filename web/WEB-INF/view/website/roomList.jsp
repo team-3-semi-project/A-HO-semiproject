@@ -26,6 +26,22 @@
         text-decoration: none;
       }
 
+		#ddd {
+        
+        border: 1px solid black;
+      }
+
+		.nav-link{
+        color: black;
+      }
+	  
+	  @font-face {
+		    font-family: 'Pretendard-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		    font-weight: 400;
+		    font-style: normal;
+		}
+	  
       aside{
             width: 20%;
             height: 3000px;
@@ -50,6 +66,8 @@
             margin-right:auto;
             width: 800px;
             }
+            
+        
     </style>
 
   </head>
@@ -62,6 +80,25 @@
     
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
+        <div id="ddd" style="font-family: 'Pretendard-Regular';">
+
+    <ul class="nav justify-content-center">
+      <li class="nav-item mt-auto">
+        <a class="nav-link active" href="${ pageContext.servletContext.contextPath }/hotel/list?no=1">호텔목록</a>
+      </li>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/roomList">룸목록</a>
+      </li>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/hotelserch" style="font-size: 20px"><strong>호텔예약</strong></a>
+      </li>
+      <li class="nav-item mt-auto">
+        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/notice">공지사항</a>
+      </li>
+    </ul>
+  </div>
+  
+  <br>
             <!-- Heading Row-->
             <div class="row gx-4 gx-lg-5 align-items-center my-5" >
                 <div>

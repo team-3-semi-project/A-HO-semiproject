@@ -31,6 +31,13 @@
       line-height: 1.3em;
       }
       
+      @font-face {
+		    font-family: 'Pretendard-Regular';
+		    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+		    font-weight: 400;
+		    font-style: normal;
+		}
+      
       .starimg {
       margin-left: 7px; 
       float: left;
@@ -61,7 +68,7 @@
         </div>
       </div>
   <div class="container">
-      <div id="ddd">
+      <div id="ddd" style="font-family: 'Pretendard-Regular';">
 
     <ul class="nav justify-content-center">
       <li class="nav-item mt-auto">

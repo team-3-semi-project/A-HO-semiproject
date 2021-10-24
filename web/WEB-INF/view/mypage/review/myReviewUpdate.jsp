@@ -30,7 +30,7 @@ display: none;
   height: 100px;
 }
 
-.reviewB {
+#reviewCancle, #reviewOk {
   margin-bottom: 20px;
   margin-right: 20px;
   float: right;
@@ -74,7 +74,7 @@ display: none;
                   <div id="preview"></div>
                   <textarea name="reviewText" id="reviewText" cols="40" rows="20" style="margin: 20px; width: 95%;"></textarea>
                   <input type="radio" name="reserveCode" value="${ reserve.reserveCode }" style="display: none;" checked="checked">
-                  <button type="reset" class="reviewB" id="reviewCancle">취소</button> <button type="button" class="reviewB" id="reviewOk">확인</button>
+                  <button type="reset" class="btn btn-secondary" id="reviewCancle">취소</button> <button type="button" class="btn btn-primary" id="reviewOk">확인</button>
                   <br clear="both">
                 </div>
                
@@ -182,6 +182,9 @@ display: none;
         	}
         };
         
+        $("#reviewCancle").click(function(){
+        	location.href = "${ pageContext.servletContext.contextPath }/mypage/myReview"
+        });
       </script>
   </main>
 
