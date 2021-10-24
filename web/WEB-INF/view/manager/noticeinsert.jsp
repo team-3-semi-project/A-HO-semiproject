@@ -19,8 +19,7 @@
 		            <input required type="text" name="title" style="height: 50px;" id="title" class="form-control">
 		            <br>
 		            <h3 class="text-center">내용</h3>
-		            <textarea required name="content" id="content" style="height: 400px" form="notice-form" >
-		            </textarea>
+		            <textarea required name="content" id="content" style="height: 400px" form="notice-form" ></textarea>
 		            <br>
 		            <button type="submit" id="insertbtn" class="btn btn-primary btn-lg btn-block" value="insert">등록</button>
 		          </form>
