@@ -86,7 +86,6 @@
 					$("#inputcode").show();
 					$("#findpw").hide();
 					code = data;
-					console.log(code);
 				}
 			},
 			error: function(request, status, error){

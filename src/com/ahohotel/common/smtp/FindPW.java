@@ -16,8 +16,8 @@ public class FindPW {
 		String host = "smtp.naver.com";
 
 		// 발신자의 메일 계정 및 비밀번호
-		String user = "이메일";
-		String pwd = "비밀번호";
+		String user = "lmksm@naver.com";
+		String pwd = "lmkjww0522";
 
 		// SMTP 서버 설정
 		Properties props = new Properties();
