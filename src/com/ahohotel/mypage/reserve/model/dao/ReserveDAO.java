@@ -111,4 +111,9 @@ public class ReserveDAO {
 		return session.delete("ReserveDAO.deleteReserve", reserveCode);
 	}
 
+	public int deletPet(SqlSession session, int reserveCode) {
+
+		return session.delete("ReserveDAO.deletePet", reserveCode);
+	}
+
 }

@@ -350,4 +350,10 @@
   		  FROM RESERVE A
   		 WHERE RESERVE_CODE = #{ reserveCode }
   	</delete>
+  	
+  	<delete id="deletePet">
+  		DELETE
+  		  FROM PET A
+  		 WHERE A.RESERVE_CODE = #{ reserveCode }
+  	</delete>
 </mapper>
