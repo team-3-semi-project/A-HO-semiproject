@@ -92,15 +92,9 @@
                     호텔 목록(수정)
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${ pageContext.servletContext.contextPath }/manager/roomlist">
-                    <span data-feather="file-text"></span>
-                    객실 관리
-                    </a>
-                </li>
                 <br><br><br><br><br><br>
                 </ul>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
                 <br>
             </div>
         </nav>
