@@ -276,7 +276,7 @@ public class ReserveService {
 		int petResult = reserveDAO.deletPet(session, reserveCode);
 		int result = reserveDAO.deleteReserve(session, reserveCode);
 		
-		if (result > 0 && petResult > 0) {
+		if (result > 0) {
 			session.commit();
 		} else {
 			session.rollback();

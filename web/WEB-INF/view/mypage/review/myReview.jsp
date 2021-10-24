@@ -41,11 +41,8 @@
               <h2 class="card-title">나의 후기</h2><br><br>
               
               
-              <c:forEach var="review" items="${ requestScope.reviewList }">
-              	<c:set var="reviews" value="${ review.review }"></c:set>
-              </c:forEach>
 
-                <c:if test="${ !empty reviews }">
+                <c:if test="${ !empty requestScope.reviewList }">
                 <table class="table">
                     <thead class="thead-dark">
                       <tr align="center">
@@ -73,12 +70,12 @@
 						
 						
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="float: right;">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop${ review.reserveCode }" style="float: right;">
 					  삭제
 					</button>
 					<button type="button" style="float: right; margin-right: 10px;" onclick="reviewUpdate(${ review.reserveCode })" class="btn btn-primary" value="${ review.reserveCode }">수정</button>
 					<!-- Modal -->
-					<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					<div class="modal fade" id="staticBackdrop${ review.reserveCode }" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 					  <div class="modal-dialog">
 					    <div class="modal-content">
 					      <div class="modal-header">
@@ -112,12 +109,6 @@
 	              </c:forEach>
                     </tbody>
                   </table>
-             	</c:if>
-             	
-             	<c:if test="${ empty reviews }">
-             	<br><br>
-             	<p style="text-align: center; font-size: 2.5em">리뷰 내역이 없습니다.</p>
-             	<br><br>
              	</c:if>
              	
             </div>
