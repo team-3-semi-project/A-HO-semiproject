@@ -44,9 +44,9 @@
                 <div class="card-body" style="text-align: center;">
                   <h3>고객센터</h3>
                   <br>
-                  <a href="${ pageContext.servletContext.contextPath }/termsOfUse"><p>공지 사항</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/notice"><p>공지 사항</p></a>
                   <a href="${ pageContext.servletContext.contextPath }/website/oftenOQ"><p>자주하는 질문</p></a>
-                  <a href="${ pageContext.servletContext.contextPath }/notice"><p>약관 및 정책</p></a>
+                  <a href="${ pageContext.servletContext.contextPath }/termsOfUse"><p>약관 및 정책</p></a>
                 </div>
               </div>
             </div>

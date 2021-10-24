@@ -36,7 +36,7 @@
         <jsp:include page="../mypage-side.jsp"/>
 
         <div class="col-sm-9" >
-          <div class="card col-sm-9">
+          <div class="card col-sm-11">
             <div class="card-body">
               <h2 class="card-title">나의 후기</h2><br><br>
               
@@ -49,8 +49,8 @@
                         <th scope="col">리뷰 일자</th>
                         <th scope="col">이용 숙소</th>
                         <th scope="col">별점</th>
-                        <th scope="col">리뷰 내역</th>
-                        <th scope="col">리뷰 사진</th>
+                        <th scope="col" style="width: 50%">리뷰 내역</th>
+                        <th scope="col"style="width: 25%">리뷰 사진</th>
                       </tr>
                     </thead>
                     <tbody>
